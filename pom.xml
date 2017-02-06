@@ -23,20 +23,36 @@
   </dependencyManagement>
   
   <dependencies>
+  
+<!-- jdbc driver -->
     <dependency>
-      <groupId>com.oracle</groupId>
-      <artifactId>ojdbc7</artifactId>
-      <version>7</version>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc7</artifactId>
+        <version>7</version>
     </dependency>
+    
+<!-- logging -->
 	<dependency>
 	    <groupId>log4j</groupId>
 	    <artifactId>log4j</artifactId>
 	</dependency>
+	
+<!-- servlets -->
 	<dependency>
   		<groupId>javax.servlet</groupId>
   		<artifactId>javax.servlet-api</artifactId>
   		<scope>provided</scope>
   	</dependency>
+  	
+<!-- junit -->
+	<dependency>
+	 	<groupId>junit</groupId>
+	  	<artifactId>junit</artifactId>
+	</dependency>
+	<dependency>
+	  	<groupId>org.hamcrest</groupId>
+	  	<artifactId>hamcrest-library</artifactId>
+	</dependency>
   	
 <!-- spring -->
 	<dependency>
@@ -62,6 +78,7 @@
 		<artifactId>hibernate-entitymanager</artifactId>
 	</dependency>
 	
+<!-- common -->
 	<dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
