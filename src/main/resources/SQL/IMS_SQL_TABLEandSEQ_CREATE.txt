@@ -96,43 +96,43 @@ FOREIGN KEY(POL_PO) REFERENCES IMS_PURCHASE_ORDER(PO_ID)
 
 
 create sequence ADDR_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence CAT_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence PO_LINE_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence PROD_CAT_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence PROD_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence PURCH_ORDER_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence RET_INV_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence RET_SALE_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence RET_SEQ
-start with 1
+start with 100
 increment by 1;
 
 create sequence SUPP_SEQ
-start with 1
+start with 100
 increment by 1;
 
 COMMIT;
