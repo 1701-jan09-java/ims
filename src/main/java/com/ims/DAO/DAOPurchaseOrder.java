@@ -12,5 +12,5 @@ public interface DAOPurchaseOrder {
 	
 	//Query
 	List<PurchaseOrder> getAllPurchaseOrders();
-
+	List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID);
 }
