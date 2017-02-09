@@ -1,5 +1,9 @@
 package com.ims.dao;
 
+import java.util.List;
+
+import com.ims.domain.Inventory;
+
 public interface DAOInventory {
 	
 	//basic CRUD
@@ -8,5 +12,13 @@ public interface DAOInventory {
 	void updateInventory(int productID, int retailer);
 	
 	//Query
-	int getInventory(int productID, int retailerID);
+	
+	/* this was originally to return an int */ 
+	
+	Inventory getInventory(int productID, int retailerID);
+	
+	/* Added by Efren -  2/9/17 */ 
+	List<Inventory> getAllInventory(int retailerID);
+	
+	
 }
