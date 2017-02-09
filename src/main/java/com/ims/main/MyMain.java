@@ -1,6 +1,7 @@
 package com.ims.main;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,15 +10,31 @@ import org.hibernate.cfg.Configuration;
 
 import com.ims.domain.*;
 import com.ims.domain.util.HibernateUtil;
+import com.ims.logic.*;
 
 public class MyMain {
 
 	public static void main(String[] args) {
 		
-		Session session = HibernateUtil.getSession(); 
-		Transaction tx = session.beginTransaction();
+		/*
+		// Test Retail Logic methods
+		RetailerLogic retLogic = new RetailerLogic();
 		
-		Date date = new Date();
+		Retailer testRet = retLogic.viewRetailerById(2);
+		
+		System.out.println(testRet);
+		
+		List<Retailer> testAllRet = retLogic.viewAllRetailers();
+		
+		for(Retailer all : testAllRet) {
+			System.out.println(all);
+		}
+		*/
+		
+		//Session session = HibernateUtil.getSession(); 
+		//Transaction tx = session.beginTransaction();
+		
+		//Date date = new Date();
 		
 		/*
 		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
@@ -62,8 +79,8 @@ public class MyMain {
 		System.out.println(inv.toString());
 		*/
 		
-		tx.commit();
-		session.close(); 
+		//tx.commit();
+		//session.close(); 
 	}
 	
 }
