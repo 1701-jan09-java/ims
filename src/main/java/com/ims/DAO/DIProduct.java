@@ -2,23 +2,25 @@ package com.ims.DAO;
 
 import java.util.List;
 
+import org.hibernate.cfg.NotYetImplementedException;
+
 public class DIProduct implements DAOProduct{
 
 	@Override
 	public Product getProduct(int id) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
 	public List<Product> getAllProductsByCategory(int categoryID) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
