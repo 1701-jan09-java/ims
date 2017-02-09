@@ -1,43 +1,43 @@
-package com.ims.DAO;
+package com.ims.dao;
 
 import java.util.List;
 
 import org.hibernate.cfg.NotYetImplementedException;
 
-public class DIPurchaseOrder implements DAOPurchaseOrder {
+public class DISale implements DAOSale{
 
 	@Override
-	public void createPurchaseOrder(PurchaseOrder po) {
+	public void createSale(Sale sale) {
 		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
-	public void updatePurchaseOrder(PurchaseOrder po) {
+	public void updateSale(Sale sale) {
 		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
-	public void deleteRPurchaseOrder(PurchaseOrder po) {
+	public void deleteSale(Sale sale) {
 		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
-	public PurchaseOrder getPurchaseOrder(int id) {
+	public Sale getSale(int id) {
 		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
-	public List<PurchaseOrder> getAllPurchaseOrders() {
+	public List<Sale> getAllSales() {
 		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
-	public List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
+	public List<Sale> getAllSalesByRetailer(int retailerID) {
 		throw new NotYetImplementedException();
 		return null;
 	}

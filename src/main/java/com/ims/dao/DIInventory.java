@@ -1,4 +1,4 @@
-package com.ims.DAO;
+package com.ims.dao;
 
 import org.hibernate.cfg.NotYetImplementedException;
 
