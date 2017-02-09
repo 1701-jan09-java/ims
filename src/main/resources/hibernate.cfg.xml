@@ -11,13 +11,19 @@
 	  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
       <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
       
-      <property name="hibernate.show_sql">true</property>
+      <property name="hibernate.show_sql">true</property> 
       
       <mapping class="com.ims.domain.Retailer"/>
       <mapping class="com.ims.domain.Supplier"/>
       <mapping class="com.ims.domain.Address"/>
       <mapping class="com.ims.domain.Product"/> 
       <mapping class="com.ims.domain.Category"/>  
+
+      <mapping class="com.ims.domain.Inventory"/>  
+      <mapping class="com.ims.domain.PurchaseOrder"/>    
+      <mapping class="com.ims.domain.PurchaseOrderLine"/>    
+      <mapping class="com.ims.domain.Sale"/>    
+      
     
     </session-factory>
 </hibernate-configuration>
