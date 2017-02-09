@@ -18,13 +18,13 @@ public class MyMain {
 		
 		/*
 		// Test Retail Logic methods
-		RetailerLogic retLogic = new RetailerLogic();
 		
-		Retailer testRet = retLogic.viewRetailerById(2);
+		Retailer testRet = RetailerLogic.viewRetailerById(1);
 		
 		System.out.println(testRet);
 		
-		List<Retailer> testAllRet = retLogic.viewAllRetailers();
+		
+		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
 		
 		for(Retailer all : testAllRet) {
 			System.out.println(all);

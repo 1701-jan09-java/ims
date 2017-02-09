@@ -8,16 +8,16 @@ import com.ims.domain.Retailer;
 
 public class RetailerLogic {
 	
-	DAORetailer daoRet = new DIRetailer();
+	private static DAORetailer daoRet = new DIRetailer();
 
-	public Retailer viewRetailerById(int id) {
+	public static Retailer viewRetailerById(int id) {
 		
 		Retailer retailer = daoRet.getRetailer(id);
 		
 		return retailer;
 	}
 	
-	public List<Retailer> viewAllRetailers() {
+	public static List<Retailer> viewAllRetailers() {
 		
 		List<Retailer> retailers = daoRet.getAllRetailers();
 		
