@@ -2,10 +2,9 @@ package com.ims.logic;
 
 import java.util.List;
 
-import com.ims.domain.Product;
-import com.ims.domain.Category;
-import com.ims.dao.DICategory;
 import com.ims.dao.DAOCategory;
+import com.ims.dao.DICategory;
+import com.ims.domain.Category;
 
 public class CategoryLogic {
 
@@ -18,7 +17,7 @@ public class CategoryLogic {
 		
 	}
 	
-	public List<Category> getAllCategorys() {
+	public List<Category> getAllCategories() {
 		
 		List<Category> categories = dao.getAllCategories();
 		return categories;
