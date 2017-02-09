@@ -8,22 +8,19 @@ import com.ims.domain.Supplier;
 
 public class SupplierLogic {	
 	
-	DAOSupplier daoSup = new DISupplier() {
+	private static DAOSupplier daoSup = new DISupplier();
 		
-		@Override
-		public Supplier getSupplier(int id) {
+		static public Supplier getSupplier(int id) {
 			// TODO Auto-generated method stub
 			Supplier sup = daoSup.getSupplier(id);
 			return sup;
 		}
 		
-		@Override
-		public List<Supplier> getAllSuppliers() {
+		static public List<Supplier> getAllSuppliers() {
 			// TODO Auto-generated method stub
 			
 			List<Supplier> supList = daoSup.getAllSuppliers();
 			return supList;
 		}
-	};
 
 }

@@ -1,6 +1,7 @@
 package com.ims.main;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,15 +10,16 @@ import org.hibernate.cfg.Configuration;
 
 import com.ims.domain.*;
 import com.ims.domain.util.HibernateUtil;
+import com.ims.logic.SupplierLogic;
 
 public class MyMain {
 
 	public static void main(String[] args) {
 		
-		Session session = HibernateUtil.getSession(); 
-		Transaction tx = session.beginTransaction();
+//		Session session = HibernateUtil.getSession(); 
+//		Transaction tx = session.beginTransaction();
 		
-		Date date = new Date();
+//		Date date = new Date();
 		
 		/*
 		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
@@ -61,9 +63,13 @@ public class MyMain {
 		Inventory inv = (Inventory) session.get(Inventory.class, 101);
 		System.out.println(inv.toString());
 		*/
+		List<Supplier> supList = SupplierLogic.getAllSuppliers();
+		System.out.println(supList);
+//		Supplier sup = SupplierLogic.getSupplier(100);
+//		System.out.println(sup);
 		
-		tx.commit();
-		session.close(); 
+//		tx.commit();
+//		session.close(); 
 	}
 	
 }
