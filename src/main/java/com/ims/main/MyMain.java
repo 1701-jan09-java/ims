@@ -35,20 +35,6 @@ public class MyMain {
 		session.close(); 
 		*/
 		
-		/*
-		// Test Retail Logic methods
-		
-		Retailer testRet = RetailerLogic.viewRetailerById(1);
-		
-		System.out.println(testRet);
-		
-		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
-		
-		for(Retailer all : testAllRet) {
-			System.out.println(all);
-		}
-		*/
-		
 //		Session session = HibernateUtil.getSession(); 
 //		Transaction tx = session.beginTransaction();
 		

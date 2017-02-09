@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.NotYetImplementedException;
 
 import com.ims.domain.util.HibernateUtil;
+import com.ims.logic.RetailerLogic;
 import com.ims.domain.Retailer;
 
 public class DIRetailer implements DAORetailer {
@@ -42,4 +43,17 @@ public class DIRetailer implements DAORetailer {
 		
 	}
 
+	public static void main(String[] args) {
+		
+		Retailer testRet = RetailerLogic.viewRetailerById(4);
+		
+		System.out.println(testRet);
+		
+		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
+		
+		for(Retailer all : testAllRet) {
+			System.out.println(all);
+		}
+		
+	}
 }
