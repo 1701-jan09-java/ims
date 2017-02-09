@@ -1,4 +1,4 @@
-package com.ims.DAO;
+package com.ims.dao;
 
 import java.util.EmptyStackException;
 import java.util.List;
