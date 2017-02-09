@@ -9,7 +9,7 @@ public class DIInventory implements DAOInventory {
 	}
 
 	@Override
-	public int inventory(int productID, int retailerID) {
+	public int getInventory(int productID, int retailerID) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

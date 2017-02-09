@@ -8,5 +8,5 @@ public interface DAOInventory {
 	void updateInventory(int productID, int retailer);
 	
 	//Query
-	int inventory(int productID, int retailerID);
+	int getInventory(int productID, int retailerID);
 }
