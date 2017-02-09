@@ -1,19 +1,19 @@
-package com.ims.DAO;
+package com.ims.dao;
 
 import java.util.List;
 
 import org.hibernate.cfg.NotYetImplementedException;
 
-public class DIRetailer implements DAORetailer {
+public class DICategory implements DAOCategory{
 
 	@Override
-	public Retailer getRetailer(int id) {
+	public Category getCategory(int id) {
 		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
-	public List<Retailer> getAllRetailers() {
+	public List<Category> getAllCategories() {
 		throw new NotYetImplementedException();
 		return null;
 	}
