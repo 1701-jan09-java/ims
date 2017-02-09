@@ -10,12 +10,8 @@ import org.hibernate.cfg.Configuration;
 
 import com.ims.domain.*;
 import com.ims.domain.util.HibernateUtil;
-<<<<<<< HEAD
 import com.ims.logic.SupplierLogic;
-=======
 import com.ims.logic.*;
->>>>>>> c7d72bd3c9e9c8dcb46eac3e3669a478be249221
-
 public class MyMain {
 
 	public static void main(String[] args) {
