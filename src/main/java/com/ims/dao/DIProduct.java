@@ -36,7 +36,7 @@ public class DIProduct implements DAOProduct{
 	public List<Product> getAllProductsByCategory(int categoryID) {
 		Session session = HibernateUtil.getSession();
 
-		Query query = session.createQuery("from Object where id = :idvalue");
+		Query query = session.createQuery("from Product where id = :idvalue");
 		query.setInteger("idvalue",categoryID);
 		
 		List<Product> products = query.list();

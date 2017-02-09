@@ -8,16 +8,16 @@ import com.ims.domain.Category;
 
 public class CategoryLogic {
 
-	DAOCategory dao = new DICategory();
+	private static DAOCategory dao = new DICategory();
 	
-	public Category getCategory(int categoryID) {
+	public static Category getCategory(int categoryID) {
 		
 		Category category = dao.getCategory(categoryID);
 		return category;
 		
 	}
 	
-	public List<Category> getAllCategories() {
+	public static List<Category> getAllCategories() {
 		
 		List<Category> categories = dao.getAllCategories();
 		return categories;
