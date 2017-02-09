@@ -13,7 +13,11 @@
       
       <property name="hibernate.show_sql">true</property>
       
-      <mapping class="com.example.domain.FlashCard"/>    
+      <mapping class="com.ims.domain.Retailer"/>
+      <mapping class="com.ims.domain.Supplier"/>
+      <mapping class="com.ims.domain.Address"/>
+      <mapping class="com.ims.domain.Product"/> 
+      <mapping class="com.ims.domain.Category"/>  
     
     </session-factory>
 </hibernate-configuration>

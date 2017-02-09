@@ -10,7 +10,7 @@ public class Supplier {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="supplierSeq")
 	@SequenceGenerator(allocationSize=1, name="supplierSeq", sequenceName="SUPP_SEQ")
 	@Column(name="s_id")
-	private Integer id;
+	private int id;
 	
 	@Column(name="s_name")
 	private String name;
@@ -31,7 +31,7 @@ public class Supplier {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -50,10 +50,7 @@ public class Supplier {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -63,11 +60,11 @@ public class Supplier {
 		return true;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

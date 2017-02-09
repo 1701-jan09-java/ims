@@ -10,7 +10,7 @@ public class Retailer {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="retailerSeq")
 	@SequenceGenerator(allocationSize=1, name="retailerSeq", sequenceName="RET_SEQ")
 	@Column(name="r_id")
-	private Integer id;
+	private int id;
 	
 	@Column(name="r_name")
 	private String name;
@@ -18,7 +18,7 @@ public class Retailer {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "r_address")
 	private Address address;
-
+	
 	public Retailer(){}
 		
 	@Override
@@ -31,7 +31,7 @@ public class Retailer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -50,10 +50,7 @@ public class Retailer {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -63,11 +60,11 @@ public class Retailer {
 		return true;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

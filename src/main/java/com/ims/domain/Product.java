@@ -11,16 +11,16 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="productSeq")
 	@SequenceGenerator(allocationSize=1, name="productSeq", sequenceName="PROD_SEQ")
 	@Column(name="p_id")
-	private Integer id;
+	private int id;
 	
 	@Column(name="p_name")
 	private String name;
 	
 	@Column(name="p_supplier_price")
-	private String supplierPrice;
+	private int supplierPrice;
 	
 	@Column(name="p_retailer_price")
-	private String retailerPrice;
+	private int retailerPrice;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="ims_product_category",
@@ -41,16 +41,17 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", supplierPrice=" + supplierPrice + ", retailerPrice="
 				+ retailerPrice + ", categories=" + categories + "]";
 	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((retailerPrice == null) ? 0 : retailerPrice.hashCode());
-		result = prime * result + ((supplierPrice == null) ? 0 : supplierPrice.hashCode());
+		result = prime * result + retailerPrice;
+		result = prime * result + supplierPrice;
 		return result;
 	}
 
@@ -68,34 +69,25 @@ public class Product {
 				return false;
 		} else if (!categories.equals(other.categories))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (retailerPrice == null) {
-			if (other.retailerPrice != null)
-				return false;
-		} else if (!retailerPrice.equals(other.retailerPrice))
+		if (retailerPrice != other.retailerPrice)
 			return false;
-		if (supplierPrice == null) {
-			if (other.supplierPrice != null)
-				return false;
-		} else if (!supplierPrice.equals(other.supplierPrice))
+		if (supplierPrice != other.supplierPrice)
 			return false;
 		return true;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -107,19 +99,19 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getSupplierPrice() {
+	public int getSupplierPrice() {
 		return supplierPrice;
 	}
 
-	public void setSupplierPrice(String supplierPrice) {
+	public void setSupplierPrice(int supplierPrice) {
 		this.supplierPrice = supplierPrice;
 	}
 
-	public String getRetailerPrice() {
+	public int getRetailerPrice() {
 		return retailerPrice;
 	}
 
-	public void setRetailerPrice(String retailerPrice) {
+	public void setRetailerPrice(int retailerPrice) {
 		this.retailerPrice = retailerPrice;
 	}
 

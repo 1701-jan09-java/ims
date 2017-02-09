@@ -10,7 +10,7 @@ public class Address {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="addressSeq")
 	@SequenceGenerator(allocationSize=1, name="addressSeq", sequenceName="ADDR_SEQ")	
 	@Column(name="a_id")
-	private Integer id;
+	private int id;
 	
 	@Column(name="a_street")
 	private String street;
@@ -26,6 +26,13 @@ public class Address {
 
 	public Address(){}
 	
+	public Address(String street, String city, String state, String zip) {
+		this.street=street;
+		this.city=city;
+		this.state=state;
+		this.zip=zip;
+	}
+
 	@Override
 	public String toString() {
 		return street + ", " + city + ",  " + state + ", " + zip;
@@ -36,7 +43,7 @@ public class Address {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
@@ -57,10 +64,7 @@ public class Address {
 				return false;
 		} else if (!city.equals(other.city))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (state == null) {
 			if (other.state != null)
@@ -80,11 +84,12 @@ public class Address {
 		return true;
 	}
 
-	public Integer getId() {
+
+	public int getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 
