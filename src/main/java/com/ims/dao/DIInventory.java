@@ -14,7 +14,7 @@ public class DIInventory implements DAOInventory {
 	public int getInventory(int productID, int retailerID) {
 		// TODO Auto-generated method stub
 		throw new NotYetImplementedException();
-		return 0;
+		
 	}
 
 }

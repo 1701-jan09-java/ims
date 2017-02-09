@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.cfg.NotYetImplementedException;
 
+import com.ims.domain.PurchaseOrder;
+
 public class DIPurchaseOrder implements DAOPurchaseOrder {
 
 	@Override
@@ -27,19 +29,16 @@ public class DIPurchaseOrder implements DAOPurchaseOrder {
 	@Override
 	public PurchaseOrder getPurchaseOrder(int id) {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrders() {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 }
