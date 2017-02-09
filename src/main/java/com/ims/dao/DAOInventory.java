@@ -9,16 +9,19 @@ public interface DAOInventory {
 	//basic CRUD
 	//void createInventory();
 	//void deleteInventory();
-	void updateInventory(int productID, int retailer);
+	
+	void updateInventory(Inventory inventory);
 	
 	//Query
+ 
+	Inventory getInventoryObject(int productID, int retailerID);
 	
-	/* this was originally to return an int */ 
-	
-	Inventory getInventory(int productID, int retailerID);
+	int getInventory(int productID, int retailerID);
 	
 	/* Added by Efren -  2/9/17 */ 
 	List<Inventory> getAllInventory(int retailerID);
+
+	
 	
 	
 }
