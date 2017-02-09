@@ -17,12 +17,25 @@ public class MyMain {
 	public static void main(String[] args) {
 		
 		/*
+		Session session = HibernateUtil.getSession(); 
+		Transaction tx = session.beginTransaction();
+		
+		Supplier supplier2  = new Supplier();
+		supplier2.setName("TestSupplier3");
+		Address address = (Address) session.get(Address.class, 64);
+		supplier2.setAddress(address);
+		session.save(supplier2);
+		
+		tx.commit();
+		session.close(); 
+		*/
+		
+		/*
 		// Test Retail Logic methods
 		
 		Retailer testRet = RetailerLogic.viewRetailerById(1);
 		
 		System.out.println(testRet);
-		
 		
 		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
 		
@@ -30,9 +43,6 @@ public class MyMain {
 			System.out.println(all);
 		}
 		*/
-		
-		//Session session = HibernateUtil.getSession(); 
-		//Transaction tx = session.beginTransaction();
 		
 		//Date date = new Date();
 		
@@ -79,8 +89,7 @@ public class MyMain {
 		System.out.println(inv.toString());
 		*/
 		
-		//tx.commit();
-		//session.close(); 
+		
 	}
 	
 }
