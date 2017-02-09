@@ -82,8 +82,8 @@ public class MyMain {
 		Inventory inv = (Inventory) session.get(Inventory.class, 101);
 		System.out.println(inv.toString());
 		*/
-		List<Supplier> supList = SupplierLogic.getAllSuppliers();
-		System.out.println(supList);
+		List<Retailer> retList = RetailerLogic.viewAllRetailers();
+		System.out.println(retList.toString());
 //		Supplier sup = SupplierLogic.getSupplier(100);
 //		System.out.println(sup);
 		
