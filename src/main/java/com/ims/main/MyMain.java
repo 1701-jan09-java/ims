@@ -35,6 +35,19 @@ public class MyMain {
 		session.close(); 
 		*/
 		
+		// Test Retail Logic methods
+		
+//		Retailer testRet = RetailerLogic.viewRetailerById(1);
+//		
+//		System.out.println(testRet);
+		
+//		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
+//		
+//		for(Retailer all : testAllRet) {
+//			System.out.println(all);
+//		}
+		
+	
 //		Session session = HibernateUtil.getSession(); 
 //		Transaction tx = session.beginTransaction();
 		
@@ -54,16 +67,16 @@ public class MyMain {
 		}
 		*/
 		
-		//Session session = HibernateUtil.getSession(); 
-		//Transaction tx = session.beginTransaction();
+//		Session session = HibernateUtil.getSession(); 
+//		Transaction tx = session.beginTransaction();
 		
 		//Date date = new Date();
 		
-		/*
-		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
-		Retailer retailer = (Retailer) session.get(Retailer.class, 5);				
-		Product product = (Product) session.get(Product.class, 100);		
-		*/
+		
+//		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
+//		Retailer retailer = (Retailer) session.get(Retailer.class, 5);				
+//		Product product = (Product) session.get(Product.class, 100);		
+		
 		
 		/*
 		// Test Purchase Order		
@@ -101,10 +114,16 @@ public class MyMain {
 		Inventory inv = (Inventory) session.get(Inventory.class, 101);
 		System.out.println(inv.toString());
 		*/
-		//List<Supplier> supList = SupplierLogic.getAllSuppliers();
-		//System.out.println(supList);
-//		Supplier sup = SupplierLogic.getSupplier(100);
+//		List<Retailer> retList = RetailerLogic.viewAllRetailers();
+//		System.out.println(retList.toString());
+		List<Supplier> supList = SupplierLogic.getAllSuppliers();
+		System.out.println(supList);
+//		Supplier sup = SupplierLogic.getSupplier(122);
+//		Supplier sup1 = SupplierLogic.getSupplier(123);
+//		Supplier sup2 = SupplierLogic.getSupplier(124);
 //		System.out.println(sup);
+//		System.out.println(sup1);
+//		System.out.println(sup2);
 		
 //		tx.commit();
 //		session.close(); 
