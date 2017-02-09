@@ -2,9 +2,9 @@ package com.ims.logic;
 
 import java.util.List;
 
+import com.ims.dao.DAOProduct;
+import com.ims.dao.DIProduct;
 import com.ims.domain.Product;
-import com.ims.domain.Category;
-import com.ims.dao.DaoProduct;
 
 public class ProductLogic {
 

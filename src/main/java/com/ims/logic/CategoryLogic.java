@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.ims.domain.Product;
 import com.ims.domain.Category;
-import com.ims.dao.DaoCategory;
+import com.ims.dao.DICategory;
+import com.ims.dao.DAOCategory;
 
 public class CategoryLogic {
 
@@ -21,13 +22,6 @@ public class CategoryLogic {
 		
 		List<Category> categories = dao.getAllCategories();
 		return categories;
-		
-	}
-	
-	public List<Category> getAllProductsByCategory(int categoryID) {
-		
-		List<Product> products = dao.getAllProductsByCategory(categoryID);
-		return products;
 		
 	}
 	
