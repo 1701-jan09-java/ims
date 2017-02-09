@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.cfg.NotYetImplementedException;
 
+import com.ims.domain.Sale;
+
 public class DISale implements DAOSale{
 
 	@Override
@@ -27,19 +29,16 @@ public class DISale implements DAOSale{
 	@Override
 	public Sale getSale(int id) {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 	@Override
 	public List<Sale> getAllSales() {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 	@Override
 	public List<Sale> getAllSalesByRetailer(int retailerID) {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 }
