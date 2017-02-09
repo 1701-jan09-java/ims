@@ -2,20 +2,44 @@ package com.ims.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.NotYetImplementedException;
 
+import com.ims.domain.util.HibernateUtil;
 import com.ims.domain.Retailer;
 
 public class DIRetailer implements DAORetailer {
 
 	@Override
 	public Retailer getRetailer(int id) {
-		throw new NotYetImplementedException();
+		
+		Session session = HibernateUtil.getSession(); 
+		Transaction tx = session.beginTransaction();	
+		
+		Retailer retailer = (Retailer) session.get(Retailer.class, id);
+		
+		session.close();
+		tx.commit();
+		
+		return retailer;
 	}
 
 	@Override
 	public List<Retailer> getAllRetailers() {
-		throw new NotYetImplementedException();
+		
+		Session session = HibernateUtil.getSession(); 
+		Transaction tx = session.beginTransaction();
+		
+		Query query = session.createQuery("from Retailer");
+		List<Retailer> allRetailers = query.list();
+		
+		session.close();
+		tx.commit();
+		
+		return allRetailers;
+		
 	}
 
 }

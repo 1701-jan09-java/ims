@@ -10,7 +10,11 @@ import org.hibernate.cfg.Configuration;
 
 import com.ims.domain.*;
 import com.ims.domain.util.HibernateUtil;
+<<<<<<< HEAD
 import com.ims.logic.SupplierLogic;
+=======
+import com.ims.logic.*;
+>>>>>>> c7d72bd3c9e9c8dcb46eac3e3669a478be249221
 
 public class MyMain {
 
@@ -20,6 +24,25 @@ public class MyMain {
 //		Transaction tx = session.beginTransaction();
 		
 //		Date date = new Date();
+		/*
+		// Test Retail Logic methods
+		
+		Retailer testRet = RetailerLogic.viewRetailerById(1);
+		
+		System.out.println(testRet);
+		
+		
+		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
+		
+		for(Retailer all : testAllRet) {
+			System.out.println(all);
+		}
+		*/
+		
+		//Session session = HibernateUtil.getSession(); 
+		//Transaction tx = session.beginTransaction();
+		
+		//Date date = new Date();
 		
 		/*
 		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
@@ -70,6 +93,8 @@ public class MyMain {
 		
 //		tx.commit();
 //		session.close(); 
+		//tx.commit();
+		//session.close(); 
 	}
 	
 }
