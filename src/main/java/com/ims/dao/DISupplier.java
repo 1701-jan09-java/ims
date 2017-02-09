@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.hibernate.cfg.NotYetImplementedException;
 
+import com.ims.domain.Supplier;
+
 public class DISupplier implements DAOSupplier{
 
 	@Override
 	public Supplier getSupplier(int id) {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 	@Override
 	public List<Supplier> getAllSuppliers() {
 		throw new NotYetImplementedException();
-		return null;
 	}
 
 }

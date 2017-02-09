@@ -2,6 +2,8 @@ package com.ims.dao;
 
 import java.util.List;
 
+import com.ims.domain.Supplier;
+
 public interface DAOSupplier {
 	
 	//basic CRUD
