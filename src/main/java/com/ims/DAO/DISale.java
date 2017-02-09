@@ -2,41 +2,43 @@ package com.ims.DAO;
 
 import java.util.List;
 
+import org.hibernate.cfg.NotYetImplementedException;
+
 public class DISale implements DAOSale{
 
 	@Override
 	public void createSale(Sale sale) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
 	public void updateSale(Sale sale) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
 	public void deleteSale(Sale sale) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
 	public Sale getSale(int id) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
 	public List<Sale> getAllSales() {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
 	public List<Sale> getAllSalesByRetailer(int retailerID) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 

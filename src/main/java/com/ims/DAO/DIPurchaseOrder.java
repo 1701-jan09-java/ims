@@ -2,41 +2,43 @@ package com.ims.DAO;
 
 import java.util.List;
 
+import org.hibernate.cfg.NotYetImplementedException;
+
 public class DIPurchaseOrder implements DAOPurchaseOrder {
 
 	@Override
 	public void createPurchaseOrder(PurchaseOrder po) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
 	public void updatePurchaseOrder(PurchaseOrder po) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
 	public void deleteRPurchaseOrder(PurchaseOrder po) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		
 	}
 
 	@Override
 	public PurchaseOrder getPurchaseOrder(int id) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrders() {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
-		// TODO Auto-generated method stub
+		throw new NotYetImplementedException();
 		return null;
 	}
 
