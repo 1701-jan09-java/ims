@@ -10,6 +10,11 @@ import org.hibernate.cfg.Configuration;
 
 import com.ims.domain.*;
 import com.ims.domain.util.HibernateUtil;
+
+import com.ims.logic.*;
+
+
+import com.ims.logic.SupplierLogic;
 import com.ims.logic.*;
 
 public class MyMain {
@@ -43,6 +48,28 @@ public class MyMain {
 			System.out.println(all);
 		}
 		*/
+		
+//		Session session = HibernateUtil.getSession(); 
+//		Transaction tx = session.beginTransaction();
+		
+//		Date date = new Date();
+		/*
+		// Test Retail Logic methods
+		
+		Retailer testRet = RetailerLogic.viewRetailerById(1);
+		
+		System.out.println(testRet);
+		
+		
+		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
+		
+		for(Retailer all : testAllRet) {
+			System.out.println(all);
+		}
+		*/
+		
+		//Session session = HibernateUtil.getSession(); 
+		//Transaction tx = session.beginTransaction();
 		
 		//Date date = new Date();
 		
@@ -88,8 +115,16 @@ public class MyMain {
 		Inventory inv = (Inventory) session.get(Inventory.class, 101);
 		System.out.println(inv.toString());
 		*/
+		//List<Supplier> supList = SupplierLogic.getAllSuppliers();
+		//System.out.println(supList);
+//		Supplier sup = SupplierLogic.getSupplier(100);
+//		System.out.println(sup);
 		
-		
+//		tx.commit();
+//		session.close(); 
+		//tx.commit();
+		//session.close(); 
+
 	}
 	
 }
