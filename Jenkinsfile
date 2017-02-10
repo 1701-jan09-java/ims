@@ -5,10 +5,14 @@
 node {
 	try {
 		def mvnHome = tool 'M3'
+		def buildType = ''
 		
 	    stage ('Checkout') {
 			checkout scm
-			notifyBuild('STARTED')
+			if (env.BRANCH_NAME == 'master') {
+				buildType = "DEPLOYMENT"
+			}
+			notifyBuild('STARTED', buildType)
 	    }
 	    stage ('Pre Build') {
 	    	sh "${mvnHome}/bin/mvn install:install-file -Dfile=jars/ojdbc7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=7 -Dpackaging=jar"
@@ -25,28 +29,27 @@ node {
 				    sh "${mvnHome}/bin/mvn clean package -Dmaven.tomcat.url=${PRODURL} -Dtomcat.username=${USERNAME} -Dtomcat.password=${PASSWORD} tomcat7:redeploy"
 				}
 		  	}
-		  	currentBuild.type = "DEPLOYMENT"
 		}
 		
 	} catch(Exception e) {
 		currentBuild.result = "FAILED"
 		throw e
 	} finally {
-		notifyBuild(currentBuild.result, currentBuild.type)
+		notifyBuild(currentBuild.result, buildType)
 	}
 	
 } 
 
 
-def notifyBuild(String buildStatus, String type) {
+def notifyBuild(String buildStatus, String buildType) {
 	//build status of null means successful
 	buildStatus = buildStatus ?: 'SUCCESSFUL'
-	echo "type"
+	echo "$currentBuild"
 	
 	
 	// default values
 	def commitAuthor = sh script: "git show -s --pretty=%an", returnStdout: true
-	def message = "$type $buildStatus\n*Job:* ${env.JOB_NAME} [${env.BUILD_NUMBER}]\n*Job Link:* ${env.BUILD_URL}\n*Author:* $commitAuthor"
+	def message = "$buildType $buildStatus\n*Job:* ${env.JOB_NAME} [${env.BUILD_NUMBER}]\n*Job Link:* ${env.BUILD_URL}\n*Author:* $commitAuthor"
 	def colorCode = '#FF0000'
 	
     // Override default values based on build status
