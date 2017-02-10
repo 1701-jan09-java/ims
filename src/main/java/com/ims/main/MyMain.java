@@ -1,7 +1,6 @@
 package com.ims.main;
 
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,72 +10,20 @@ import org.hibernate.cfg.Configuration;
 import com.ims.domain.*;
 import com.ims.domain.util.HibernateUtil;
 
-import com.ims.logic.*;
-
-
-import com.ims.logic.SupplierLogic;
-import com.ims.logic.*;
-
 public class MyMain {
 
 	public static void main(String[] args) {
 		
-		/*
 		Session session = HibernateUtil.getSession(); 
 		Transaction tx = session.beginTransaction();
 		
-		Supplier supplier2  = new Supplier();
-		supplier2.setName("TestSupplier3");
-		Address address = (Address) session.get(Address.class, 64);
-		supplier2.setAddress(address);
-		session.save(supplier2);
+		Date date = new Date();
 		
-		tx.commit();
-		session.close(); 
-		*/
-		
-		// Test Retail Logic methods
-		
-//		Retailer testRet = RetailerLogic.viewRetailerById(1);
-//		
-//		System.out.println(testRet);
-		
-//		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
-//		
-//		for(Retailer all : testAllRet) {
-//			System.out.println(all);
-//		}
-		
-	
-//		Session session = HibernateUtil.getSession(); 
-//		Transaction tx = session.beginTransaction();
-		
-//		Date date = new Date();
 		/*
-		// Test Retail Logic methods
-		
-		Retailer testRet = RetailerLogic.viewRetailerById(1);
-		
-		System.out.println(testRet);
-		
-		
-		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
-		
-		for(Retailer all : testAllRet) {
-			System.out.println(all);
-		}
+		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
+		Retailer retailer = (Retailer) session.get(Retailer.class, 5);				
+		Product product = (Product) session.get(Product.class, 100);		
 		*/
-		
-//		Session session = HibernateUtil.getSession(); 
-//		Transaction tx = session.beginTransaction();
-		
-		//Date date = new Date();
-		
-		
-//		Supplier supplier = (Supplier) session.get(Supplier.class, 100);		
-//		Retailer retailer = (Retailer) session.get(Retailer.class, 5);				
-//		Product product = (Product) session.get(Product.class, 100);		
-		
 		
 		/*
 		// Test Purchase Order		
@@ -114,22 +61,9 @@ public class MyMain {
 		Inventory inv = (Inventory) session.get(Inventory.class, 101);
 		System.out.println(inv.toString());
 		*/
-//		List<Retailer> retList = RetailerLogic.viewAllRetailers();
-//		System.out.println(retList.toString());
-		List<Supplier> supList = SupplierLogic.getAllSuppliers();
-		System.out.println(supList);
-//		Supplier sup = SupplierLogic.getSupplier(122);
-//		Supplier sup1 = SupplierLogic.getSupplier(123);
-//		Supplier sup2 = SupplierLogic.getSupplier(124);
-//		System.out.println(sup);
-//		System.out.println(sup1);
-//		System.out.println(sup2);
 		
-//		tx.commit();
-//		session.close(); 
-		//tx.commit();
-		//session.close(); 
-
+		tx.commit();
+		session.close(); 
 	}
 	
 }
