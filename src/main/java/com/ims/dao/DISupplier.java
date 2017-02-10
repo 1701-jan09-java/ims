@@ -33,8 +33,8 @@ public class DISupplier implements DAOSupplier{
 		Query query = session.createQuery("FROM Supplier");
 		List<Supplier> supList = query.list();
 		
-		session.close();
 		tx.commit();
+		session.close();	
 		
 		return supList;
 		

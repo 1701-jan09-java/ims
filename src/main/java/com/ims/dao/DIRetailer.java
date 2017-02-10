@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.NotYetImplementedException;
 
 import com.ims.domain.util.HibernateUtil;
 import com.ims.logic.RetailerLogic;
@@ -21,8 +20,8 @@ public class DIRetailer implements DAORetailer {
 		
 		Retailer retailer = (Retailer) session.get(Retailer.class, id);
 		
-		session.close();
 		tx.commit();
+		session.close();	
 		
 		return retailer;
 	}
@@ -35,9 +34,9 @@ public class DIRetailer implements DAORetailer {
 		
 		Query query = session.createQuery("from Retailer");
 		List<Retailer> allRetailers = query.list();
-		
-		session.close();
+	
 		tx.commit();
+		session.close();
 		
 		return allRetailers;
 		
