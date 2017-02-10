@@ -19,42 +19,34 @@ node {
 	  	}
 	  	
 		if (env.BRANCH_NAME == 'master') {
-	  	
 		  	stage ('Deploy to Production') {
 				echo 'Deploying master to production'
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'prod', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'], [$class: 'StringBinding', credentialsId: 'prod-url', variable: 'PRODURL' ]]) { 
-					
-					echo "allo"
-					
-					echo "${USERNAME}"
-					echo "${PASSWORD}"
-					echo "${PRODURL}"
-					
-					
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'prod', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'], [$class: 'StringBinding', credentialsId: 'prod-url', variable: 'PRODURL']]) { 					
 				    sh "${mvnHome}/bin/mvn clean package -Dmaven.tomcat.url=${PRODURL} -Dtomcat.username=${USERNAME} -Dtomcat.password=${PASSWORD} tomcat7:redeploy"
 				}
-				
-		
 		  	}
+		  	currentBuild.type = "DEPLOYMENT"
 		}
+		
 	} catch(Exception e) {
 		currentBuild.result = "FAILED"
 		throw e
 	} finally {
-		notifyBuild(currentBuild.result)
+		notifyBuild(currentBuild.result, currentBuild.type)
 	}
 	
 } 
 
 
-def notifyBuild(String buildStatus) {
+def notifyBuild(String buildStatus, String type) {
 	//build status of null means successful
 	buildStatus = buildStatus ?: 'SUCCESSFUL'
+	echo "type"
 	
 	
 	// default values
 	def commitAuthor = sh script: "git show -s --pretty=%an", returnStdout: true
-	def message = "$buildStatus\n*Job:* ${env.JOB_NAME} [${env.BUILD_NUMBER}]\n*Job Link:* ${env.BUILD_URL}\n*Author:* $commitAuthor"
+	def message = "$type $buildStatus\n*Job:* ${env.JOB_NAME} [${env.BUILD_NUMBER}]\n*Job Link:* ${env.BUILD_URL}\n*Author:* $commitAuthor"
 	def colorCode = '#FF0000'
 	
     // Override default values based on build status
