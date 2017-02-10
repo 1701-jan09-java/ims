@@ -3,9 +3,10 @@
 
 
 node {
+	def buildType = ''
+
 	try {
 		def mvnHome = tool 'M3'
-		def buildType = ''
 		
 	    stage ('Checkout') {
 			checkout scm
