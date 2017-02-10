@@ -6,6 +6,8 @@
 <!-- bootstrap.css -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.css"/>
+ 	
+<!-- Custom CSS --> 	
  	<link rel="stylesheet" type="text/css" href="styles/mainPage.css">
  	
 </head>
@@ -18,63 +20,71 @@ Define Top of Page Banner
 		Website Name/Decal
 		User Profile/Decal
 		Login/Logout
-		
-	<div class = "container Banner">
-		<div class = "container PanelTop hidden">Contains Control Panel</div>
-		<div class = "container Website">Contains Website Name and Logo</div>
-		<div class = "container UserProfile hidden">Contains Username</div>
-		<div class = "container Log">Contains Login/Logout</div>
-	</div>
-				 
+-->		
+	<nav class = "navbar navbar-default navbar-fixed-top" id = "Banner">
+		<div class = "container-fluid">
+			<div class = "nav navbar-header">
+				<div class = "nav navbar-nav">Control Panel</div>
+			</div>
+			<div id = "navbar" class = "navbar-collapse collapse">
+				<ul class = "nav navbar-nav" id = "minibar">
+					<li class="nav navbar-brand">ASU ~ IMS</li>
+					<li class = "nav navbar-nav" id = "UserProfile">
+						<p>Username</p>
+					</li>
+					<li class = "nav navbar-nav" id = "Log">
+						<p>Login/Logout</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<!--				 
 	Define Results View
 		Full Page when Control Panel is Toggled Reduced
 		Page-view size when CP is Toggled Exposed
 		
-	<div class = "fluid-container ResultsView">
-		<div class = "container Products hidden">Layout for Products</div>
-		<div class = "container Retailers hidden">
-		
+	<div class = "container-fluid" id = "ResultsView">
+
 --Template
-			<div class = "row" id = "RetailRow">
+		<div class = "row" id = "RetailRow">
+			<div class = "col-md-6">
 				<p>RetailerID</p>
-				<button>Inventory</button>
-				<button>Sales</button>
-				<button>Orders</button>
-				<div class = "toggle MakeSale">
-					<button id = "addLine">Add Line</button>
-					<div class = "drop-down">Product</div>
-					<input id = "userInput" type = "text"/>
-					<button id = "submitSale">Submit</button>
-				</div>
-				<div class = "toggle MakeOrder">
-					<div class = "drop-down">Product</div>
-					<input id = "userInput" type = "text"/>
-					<button id = "submitOrder">Submit</button>
-				</div>
+				<button id = "Inventory">Inventory</button>
+				<button id = "Sales">Sales</button>
+				<button id = "Orders">Orders</button>
+				<button class = "collapse" id = "MakeSale" data-toggle="collapse" data-target="#MakeSaleInfo">
+					Make Sale
+				</button>	
+					<div id = "MakeSaleInfo" class = "collapse-in">
+						<button id = "addLine">APPENDS COPY OF THIS DIV TO MakeSale BUTTON AND REMOVES ADDLINE AND SUBMIT FROM THIS ROW</button>
+						<div class = "drop-down">Product</div>
+						<input id = "userInput" type = "text"/>
+						<button id = "submitSale">Submit</button>
+					</div>
+				<button class = "collapse" id = "MakeOrder" data-toggle="collapse" data-target="#MakeOrderInfo">
+					Make Order
+				</button>	
+					<div id = "MakeSaleInfo" class = "collapse-in">		
+						<div class = "drop-down">Product</div>
+						<input id = "userInput" type = "text"/>
+						<button id = "submitOrder">Submit</button>
+					</div>
 			</div>
 ----------
 
 		</div>
-		<div class = "container Orders hidden">Layout for Orders</div>
-		<div class = "container Sales hidden">Layout for Sales</div>
-		<div class = "container Home">Layout for Home</div>
 	</div>
 		
-	Define Control Panel
+		
+		
+Define Control Panel
 		Drop-down hiding / exposing
 		Contains Dashboard
 			Product Catalogue
 			Retailers
 			Orders
 			Sales
-	
-	<div class = "container ControlPanel toggle">
-		<div class = "container HomeButton" id = "Tab">Runs goHome logic</div>
-		<div class = "container ProductButton" id = "Tab">Runs getProducts logic</div>
-		<div class = "container RetailerButton" id = "Tab">Runs getRetailers logic</div>
-		<div class = "container OrderButton" id = "Tab">Runs getOrders logic</div>
-		<div class = "container SalesButton" id = "Tab">Runs getSales logic</div>
-	</div>
 				 
 				 
 Define Control Panel Tabs

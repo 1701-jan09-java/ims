@@ -1,6 +1,46 @@
 @CHARSET "ISO-8859-1";
 
-.div.Banner{
+.nav>li>p {
+    position : relative;
+    display : block;
+    padding : 20px;
+}
+
+.nav>li:last-child{
+	float:right;
+}
+
+#minibar{
+	position: relative;
+	float : right;
+	width : 100%;
+}
+
+#navbar{
+	position: relative;
+	float : right;
+	width : 75%;
+}
+
+.navbar-header {
+    position : relative;
+    display : block;
+    padding : 20px 60px;
+    width : 25%;
+}
+
+.navbar-brand {
+    position : relative;
+    display : block;
+    padding : 20px;
+    width : 50%;
+}
+
+
+/*
+.div #Banner{
+
+	background: set color of navbar Banner 
 	
 }
 
@@ -43,3 +83,4 @@
 .div.Sales{
 	
 }
+*/
