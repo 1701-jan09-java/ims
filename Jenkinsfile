@@ -27,6 +27,7 @@ node {
 					echo "allo"
 					
 					echo '${prod}'
+					echo "${prod}"
 					
 					
 				    sh "${mvnHome}/bin/mvn clean package -Dmaven.tomcat.url=${PROD-URL} -Dtomcat.username=${USERNAME} -Dtomcat.password=${PASSWORD} tomcat7:redeploy"
