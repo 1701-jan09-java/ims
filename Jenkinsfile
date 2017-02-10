@@ -61,6 +61,10 @@ def notifyBuild(String buildStatus, String buildType) {
     } else {
       colorCode = '#FF0000'
     }
+    
+    if (buildTyoe == 'DEPLOYMENT') {
+      colorCode = '#000000'
+    }
 
 	slackSend (color: colorCode, message: message)
 		
