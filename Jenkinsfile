@@ -26,7 +26,7 @@ node {
 					
 					echo "allo"
 					
-					echo '${USERNAME}'
+					echo "${USERNAME}"
 					echo "${PASSWORD}"
 					
 					
