@@ -62,7 +62,7 @@ def notifyBuild(String buildStatus, String buildType) {
       colorCode = '#FF0000'
     }
     
-    if (buildTyoe == 'DEPLOYMENT') {
+    if (buildType == 'DEPLOYMENT') {
       colorCode = '#000000'
     }
 
