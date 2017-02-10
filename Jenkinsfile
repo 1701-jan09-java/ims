@@ -22,9 +22,9 @@ node {
 	  	
 		  	stage ('Deploy to Production') {
 				echo 'Deploying master to production'
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'prod', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'], [$class: 'StringBinding', credentialsId: 'prod-url', variable: 'URL' ]]) { 
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'prod', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'], [$class: 'StringBinding', credentialsId: 'prod-url', variable: 'PROD-URL' ]]) { 
 	
-				    sh "${mvnHome}/bin/mvn clean package -Dmaven.tomcat.url=${URL} -Dtomcat.username=${USERNAME} -Dtomcat.password=${PASSWORD} tomcat7:redeploy"
+				    sh "${mvnHome}/bin/mvn clean package -Dmaven.tomcat.url=${PROD-URL} -Dtomcat.username=${USERNAME} -Dtomcat.password=${PASSWORD} tomcat7:redeploy"
 				}
 				
 		
