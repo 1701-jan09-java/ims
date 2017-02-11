@@ -5,9 +5,6 @@
 <hibernate-configuration>
     <session-factory>
     
-      <property name="hibernate.connection.username">ims</property>
-      <property name="hibernate.connection.password">password1</property>
-      <property name="hibernate.connection.url">jdbc:oracle:thin:@efren-rds.cys36alvnszw.us-west-1.rds.amazonaws.com:1521:orcl</property>
 	  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
       <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
       
