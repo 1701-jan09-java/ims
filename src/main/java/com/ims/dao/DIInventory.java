@@ -37,12 +37,6 @@ public class DIInventory implements DAOInventory {
 		try{
 			Session session = HibernateUtil.getSession();
 			
-			/*
-			 * changed return type to Inventory object
-			 * 	- green commented out sections are for returning an int 
-			 * 	  based on the original return 
-			 */
-			
 			Criteria criteria = session.createCriteria(Inventory.class);	
 			DAOProduct daoProd = new DIProduct();
 			DAORetailer daoRet = new DIRetailer();
@@ -62,12 +56,6 @@ public class DIInventory implements DAOInventory {
 	public int getInventory(int productID, int retailerID) {
 		try{
 			Session session = HibernateUtil.getSession();
-			
-			/*
-			 * changed return type to Inventory object
-			 * 	- green commented out sections are for returning an int 
-			 * 	  based on the original return 
-			 */
 			
 			Criteria criteria = session.createCriteria(Inventory.class);	
 			DAOProduct daoProd = new DIProduct();
