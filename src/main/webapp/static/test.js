@@ -20,7 +20,7 @@ $(document).ready(function() {
             },
 
             failure: function() {
-                setTimeout(function(){productRequest(id);},2000);
+                setTimeout(function(){productRequest(group,id);},2000);
             }
         });
     };
