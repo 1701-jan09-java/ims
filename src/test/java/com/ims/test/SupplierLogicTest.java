@@ -1,13 +1,30 @@
 package com.ims.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import static org.mockito.Mock.*;
+
+
+import com.ims.domain.Supplier;
+import com.ims.logic.SupplierLogic;
 
 import static com.ims.logic.SupplierLogic.*;
 
 public class SupplierLogicTest {
 	
+	@Mock
+	SupplierLogic mockSupLog = mock(SupplierLogic.class);
+	
+	//stubbing
+//	when(mockSupLog.getSupplier(100).getName()).thenReturn("TestSupplier");
+	
+	
+	/*
 	@Test
 	public void testGetSupplier() {
 		
@@ -27,5 +44,5 @@ public class SupplierLogicTest {
 		
 		assertEquals(expected, actual);
 	}
-
+	*/
 }
