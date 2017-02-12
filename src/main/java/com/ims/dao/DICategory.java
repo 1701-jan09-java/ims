@@ -3,9 +3,11 @@ package com.ims.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.ims.domain.Category;
+import com.ims.domain.Product;
 import com.ims.domain.util.HibernateUtil;
 
 public class DICategory implements DAOCategory{
@@ -31,6 +33,19 @@ public class DICategory implements DAOCategory{
 		
 		return categories;
 		
+	}
+
+	@Override
+	public List<Category> getAllCategoriesByProduct(int productID) {
+		Session session = HibernateUtil.getSession();
+
+		Query query = session.createQuery("from Category where id = :idvalue");
+		query.setInteger("idvalue",productID);
+		
+		List<Category> categories = query.list();
+
+		session.close();
+		return categories;
 	}
 
 }
