@@ -1,0 +1,159 @@
+@CHARSET "ISO-8859-1";
+
+#Banner{
+	height : 60px;
+}
+
+.nav>li>p {
+    position : relative;
+    display : block;
+    padding : 10px;
+}
+
+.nav>li:last-child{
+	float:right;
+}
+
+#minibar{
+	position: relative;
+	float : right;
+	width : 100%;
+}
+
+#navbar{
+	position: relative;
+	float : right;
+	width : 75%;
+}
+
+.navbar-header {
+    position : relative;
+    display : block;
+    padding : 10px 60px;
+    width : 25%;
+}
+
+.navbar-brand {
+    position : relative;
+    display : block;
+    padding : 10px;
+    width : 50%;
+}
+
+
+/*
+.div #Banner{
+
+	background: set color of navbar Banner 
+	
+}
+
+.div.PanelTop{
+	
+}
+
+.div.UserProfile{
+	
+}
+
+.div.Log{
+	
+}
+
+.div.ResultsView{
+	
+}
+
+.div.ControlPanel{
+	
+}
+
+.ControlPanel > #Tab{
+	
+}
+
+.div.Products{
+	
+}
+
+.div.Retailers{
+	
+}
+
+.div.Orders{
+	
+}
+
+.div.Sales{
+	
+}
+
+*/
+
+#openNavBar {
+	background-color: #0288D1;
+	color: white;
+}
+
+#navbar-color {
+	background-color: #455A64;
+}
+
+.button-style {
+	color: #FFFFFF;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+}
+
+#row-style {
+	top: 1;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	z-index: 10;
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #212121;
+    overflow-x: hidden;
+    transition: 0.6s;
+    padding-top: 80px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #FFFFFF;
+    display: block;
+    transition: 0.5s
+}
+
+.sidenav a:hover{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
