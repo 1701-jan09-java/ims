@@ -12,9 +12,10 @@
   
 <!--   Search for spring beans -->
   <context:component-scan base-package="com.example"/>
-  
+  <context:component-scan base-package="com.ims"/>
 <!-- Enable urls for static content (css, js, etc.)   -->
-<!-- <mvc:resources mapping="/resources/**" location="/resources/" />  -->
+<!--  mapping=url, location=directory -->
+<mvc:resources mapping="/resources/**" location="/static/" /> 
 
 
   <!-- freemarker config -->
