@@ -2,25 +2,47 @@ package com.ims.dao;
 
 import java.util.List;
 
-import org.hibernate.cfg.NotYetImplementedException;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import com.ims.domain.Product;
+import com.ims.domain.util.HibernateUtil;
 
 public class DIProduct implements DAOProduct{
 
 	@Override
 	public Product getProduct(int id) {
-		throw new NotYetImplementedException();
+		Session session = HibernateUtil.getSession();
+
+		Product product = (Product) session.get(Product.class, id);
+
+		session.close();
+
+		return product;
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		throw new NotYetImplementedException();
+		Session session = HibernateUtil.getSession();
+
+		Criteria criteria = session.createCriteria(Product.class);
+
+		List<Product> products = criteria.list();
+		return products;	
 	}
 
 	@Override
 	public List<Product> getAllProductsByCategory(int categoryID) {
-		throw new NotYetImplementedException();
+		Session session = HibernateUtil.getSession();
+
+		Query query = session.createQuery("from Product where id = :idvalue");
+		query.setInteger("idvalue",categoryID);
+		
+		List<Product> products = query.list();
+
+		session.close();
+		return products;
 	}
 
 }
