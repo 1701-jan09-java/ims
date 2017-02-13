@@ -1,0 +1,32 @@
+
+.container {
+    width: 450px;
+    height: 600px;
+    margin-top: 100px;
+    align-self: center;
+    background-color: silver;
+}
+
+img {
+    height: 90%;
+}
+
+div {
+    font-size: 20pt;
+    text-align: center;
+    align-self: center;
+}
+
+.row10 {
+    height: 10%;
+    padding: 2%;
+}
+
+.row40 {
+    height: 40%;
+    padding: 2%;
+}
+
+.col-xs-6 {
+    font-size: 12pt;
+}
