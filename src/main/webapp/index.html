@@ -14,57 +14,45 @@
 
 </head>
 <body>
-	<div class="container-fluid" id="main">
-		<div class="row" id="set-height">
-			<div class="col-md-12">
-				<nav class="navbar navbar-fixed-top">
-					<div class="container-fluid">
-
-						<div class="row" id="row-style">
-							<div class="col-md-12">
-								<a class="btn align-left" id="openNavBar" href="#">&#9776 control panel</a>
-							</div>
-
-						</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-		<div id="mySideNav" class="sidenav">
-			<a href="#">Dash Board</a> <a href="#">Catalogue</a> <a
-				href="#">Retailers</a> <a href="#">Orders</a> <a href="#">Sales</a>
-		</div>
-		
-		<p>
-
-		</p>
-	</div>
-	<!--
+<!-- 
 
 Define Top of Page Banner
 	Contains Control Panel
 		Website Name/Decal
 		User Profile/Decal
 		Login/Logout
--->		
+-->	
+
 	<nav class = "navbar navbar-default navbar-fixed-top" id = "Banner">
-		<div class = "container-fluid">
+		<div class = "container-fluid" id = "main">
 			<div class = "nav navbar-header">
-				<div class = "nav navbar-nav">Control Panel</div>
-			</div>
-			<div id = "navbar" class = "navbar-collapse collapse">
-				<ul class = "nav navbar-nav" id = "minibar">
-					<li class="nav navbar-brand">ASU ~ IMS</li>
-					<li class = "nav navbar-nav" id = "UserProfile">
-						<p>Username</p>
-					</li>
-					<li class = "nav navbar-nav" id = "Log">
-						<p>Login/Logout</p>
-					</li>
-				</ul>
+				<div class="row" id="row-style">
+					<div class="col-md-12">
+						<a class="btn" id="openNavBar" href="#">&#9776 Control Panel</a>
+						<div id = "navbar" class = "navbar-collapse collapse">
+							<ul class = "nav navbar-nav" id = "minibar">
+								<li class="nav navbar-brand">ASU ~ IMS</li>
+								<li class = "nav navbar-nav" id = "UserProfile">
+									<p>Username</p>
+								</li>
+								<li class = "nav navbar-nav" id = "Log">
+									<p>Login/Logout</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</nav>
+	<div id="mySideNav" class="sidenav">
+		<a href="#">Dash Board</a>
+		<a href="#">Catalogue</a>
+		<a href="#">Retailers</a>
+		<a href="#">Orders</a>
+		<a href="#">Sales</a>
+	</div>
+
 <!--				 
 	Define Results View
 		Full Page when Control Panel is Toggled Reduced
@@ -161,7 +149,7 @@ Define Control Panel Tabs
 		src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="scripts/script.js"></script>
+	<script type="text/javascript" src="scripts/sidebarScript.js"></script>
 
 	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
 </body>
