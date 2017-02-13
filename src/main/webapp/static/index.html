@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ASU Team Inventory Management System</title>
+<!-- bootstrap.css -->
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.css"/>
+ 	
+<!-- Custom CSS --> 	
+ 	<link rel="stylesheet" type="text/css" href="styles/mainPage.css">
+
+
+</head>
+<body>
+<!-- 
+
+Define Top of Page Banner
+	Contains Control Panel
+		Website Name/Decal
+		User Profile/Decal
+		Login/Logout
+-->	
+
+	<nav class = "navbar navbar-default navbar-fixed-top" id = "Banner">
+		<div class = "container-fluid" id = "main">
+			<div class = "nav navbar-header">
+				<div class="row" id="row-style">
+					<div class="col-md-12">
+						<a class="btn" id="openNavBar" href="#">&#9776 Control Panel</a>
+						<div id = "navbar" class = "navbar-collapse collapse">
+							<ul class = "nav navbar-nav" id = "minibar">
+								<li class="nav navbar-brand">ASU ~ IMS</li>
+								<li class = "nav navbar-nav" id = "UserProfile">
+									<p>Username</p>
+								</li>
+								<li class = "nav navbar-nav" id = "Log">
+									<p>Login/Logout</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div id="mySideNav" class="sidenav">
+		<a href="#">Dash Board</a>
+		<a href="#">Catalogue</a>
+		<a href="#">Retailers</a>
+		<a href="#">Orders</a>
+		<a href="#">Sales</a>
+	</div>
+
+<!--				 
+	Define Results View
+		Full Page when Control Panel is Toggled Reduced
+		Page-view size when CP is Toggled Exposed
+		
+	<div class = "container-fluid" id = "ResultsView">
+
+--Template
+		<div class = "row" id = "RetailRow">
+			<div class = "col-md-6">
+				<p>RetailerID</p>
+				<button id = "Inventory">Inventory</button>
+				<button id = "Sales">Sales</button>
+				<button id = "Orders">Orders</button>
+				<button class = "collapse" id = "MakeSale" data-toggle="collapse" data-target="#MakeSaleInfo">
+					Make Sale
+				</button>	
+					<div id = "MakeSaleInfo" class = "collapse-in">
+						<button id = "addLine">APPENDS COPY OF THIS DIV TO MakeSale BUTTON AND REMOVES ADDLINE AND SUBMIT FROM THIS ROW</button>
+						<div class = "drop-down">Product</div>
+						<input id = "userInput" type = "text"/>
+						<button id = "submitSale">Submit</button>
+					</div>
+				<button class = "collapse" id = "MakeOrder" data-toggle="collapse" data-target="#MakeOrderInfo">
+					Make Order
+				</button>	
+					<div id = "MakeSaleInfo" class = "collapse-in">		
+						<div class = "drop-down">Product</div>
+						<input id = "userInput" type = "text"/>
+						<button id = "submitOrder">Submit</button>
+					</div>
+			</div>
+----------
+
+		</div>
+	</div>
+		
+		
+		
+Define Control Panel
+		Drop-down hiding / exposing
+		Contains Dashboard
+			Product Catalogue
+			Retailers
+			Orders
+			Sales
+				 
+				 
+Define Control Panel Tabs
+	*All tabs empty View before showing new View*
+
+	Dashboard button redirects to home
+	 
+	Product Catalogue exposes Product divs in Results View
+	 	Table-lists all products carried by our company
+	 		Product ID, Price, Supplier
+	 		
+	Retailers exposes Retailers divs in Results View
+		Row-lists all retailers
+			Retailer ID, Inventory Button, Sales Button, Orders Button, Make Order Button, Make Sale Button
+	 		
+	 			Inventory Button exposes Inventory div, populates with table containing inventory at selected retailer
+	 				Product ID, Product Name, Price, Current Inventory
+	 			Sales Button exposes Sales div, populates with table containing sales information at selected retailer
+	 				Sale ID, Products, Sale Total
+	 			Orders Button exposes Orders div, populates with table containing orders information at selected retailer
+	 				Order ID, Products, Order Total
+	 			Make Order Button exposes Make Order Dropdown div
+	 				Dropdown selects from carried products, user input quantity, Submit Button
+	 			Make Sale Button exposes Make Sale Dropdown div
+	 				Dropdown selects from carried products, user input quantity, add line(appends duplicate div to parent div), Submit Button
+	 			
+	 Orders exposes Orders divs in Results View
+	 	Table-lists all orders
+	 		Order ID, Retailer, Supplier, Product, Quantity, Price
+	 
+	 Sales exposes Sales divs in Results View
+	 	Table-lists all sales
+	 		Sale ID, Retailer, Products w/ Quantity & Price (Listed inside one element, new row/new product), Subtotal, Tax, Total
+	 
+-->
+
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		crossorigin="anonymous"></script>
+
+	<!-- bootstrap.js -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="scripts/sidebarScript.js"></script>
+
+	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
+</body>
+</html>
