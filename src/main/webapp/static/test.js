@@ -51,7 +51,6 @@ $(document).ready(function() {
     });
     
     $("#allCat").click(function(){
-        console.log("hi");
         sendRequest("category");
     });
 });

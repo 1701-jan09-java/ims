@@ -1,5 +1,6 @@
 package com.ims.controllers.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ims.domain.Product;
+import com.ims.dto.ProductDTO;
 import com.ims.logic.ProductLogic;
 
 @RestController
@@ -15,15 +17,20 @@ import com.ims.logic.ProductLogic;
 public class ProductAPI {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public Product getProduct(@PathVariable("id") Integer id) {
+	public ProductDTO getProduct(@PathVariable("id") Integer id) {
 		Product product = ProductLogic.getProduct(id);
-		return product;
+		ProductDTO productDto = new ProductDTO(product);
+		return productDto;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/")
-	public List<Product> getAllProducts() {
+	public List<ProductDTO> getAllProducts() {
 		List<Product> products = ProductLogic.getAllProducts();
-		return products;
+		List<ProductDTO> productsDto = new ArrayList<>();
+		for (Product product: products) {
+			productsDto.add(new ProductDTO(product));
+		}
+		return productsDto;
 	}
 	
 //	@RequestMapping(method=RequestMethod.GET, value="/", params={"limit","offset"})
