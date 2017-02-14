@@ -1,5 +1,26 @@
 @CHARSET "ISO-8859-1";
 
+#ResultsView{
+	padding : 60px;
+}
+
+#RetailRow{
+	padding : 20px;
+	margin-top : 10px;
+	border-style: solid;
+	border-width : 2px;
+	border-color : #bdbdbd #5a5a5a #5a5a5a #bdbdbd;
+	max-width : 700px;
+}
+
+#ID{
+	font-size:20px;
+}
+
+.RetailButton{
+	margin-right : 2px;
+}
+
 #Banner{
 	height : 60px;
 }
@@ -41,8 +62,8 @@
 }
 
 div#ResultsView{
-        display: block;
-        margin-top: 60px;
+    display: block;
+    margin-top: 60px;
 }
 
 /*
@@ -91,8 +112,7 @@ div#ResultsView{
 */
 
 #openNavBar {
-	background-color: #0288D1;
-	color: white;
+	color: #5a5a5a;
 }
 
 #navbar-color {

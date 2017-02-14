@@ -48,12 +48,11 @@ Define Top of Page Banner
 	</nav>
 	<div id="mySideNav" class="sidenav">
 		<a href="#">Dash Board</a>
-		<a href="#">Catalogue</a>
+		<a href="#">Product Catalog</a>
 		<a href="#">Retailers</a>
 		<a href="#">Orders</a>
 		<a href="#">Sales</a>
-                <a href="#" id="productsButton">Products</a>
-                <a href="#" id="categoriesButton">Categories</a>
+        <a href="#" id="categoriesButton">Categories</a>
 	</div>
 
 <!--				 
@@ -61,41 +60,43 @@ Define Top of Page Banner
 		Full Page when Control Panel is Toggled Reduced
 		Page-view size when CP is Toggled Exposed
 -->
-	<div class = "container-fluid" id = "ResultsView">test</div>
+	<div class = "container-fluid" id = "ResultsView">
 
-<!--
---Template
 		<div class = "row" id = "RetailRow">
-			<div class = "col-md-6">
-				<p>RetailerID</p>
-				<button id = "Inventory">Inventory</button>
-				<button id = "Sales">Sales</button>
-				<button id = "Orders">Orders</button>
-				<button class = "collapse" id = "MakeSale" data-toggle="collapse" data-target="#MakeSaleInfo">
-					Make Sale
-				</button>	
-					<div id = "MakeSaleInfo" class = "collapse-in">
-						<button id = "addLine">APPENDS COPY OF THIS DIV TO MakeSale BUTTON AND REMOVES ADDLINE AND SUBMIT FROM THIS ROW</button>
-						<div class = "drop-down">Product</div>
-						<input id = "userInput" type = "text"/>
-						<button id = "submitSale">Submit</button>
-					</div>
-				<button class = "collapse" id = "MakeOrder" data-toggle="collapse" data-target="#MakeOrderInfo">
-					Make Order
-				</button>	
-					<div id = "MakeSaleInfo" class = "collapse-in">		
-						<div class = "drop-down">Product</div>
-						<input id = "userInput" type = "text"/>
-						<button id = "submitOrder">Submit</button>
-					</div>
+			<p id = "ID">RetailerID</p>
+			<div class = "btn-group">
+				<button type = "button" class = "btn RetailButton" id = "Inventory">Inventory</button>
+				<button type = "button" class = "btn RetailButton" id = "Sales">Sales</button>
+				<button type = "button" class = "btn RetailButton" id = "Orders">Orders</button>
 			</div>
-----------
-
+			<div class = "btn-group pull-right">
+				<button class = "btn RetailButton" id = "MakeSale">Make Sale</button>
+				<button class = "btn RetailButton" id = "MakeOrder">Make Order</button>
+			</div>
 		</div>
+			<!-- Dropdowns append here -->
+		
+		<!-- More RetailRows will append here -->
+		
+		
+		
+	</div>
 	
+	<!--
+	<div id = "MakeSaleInfo" class = "collapse-in">
+		<button id = "addLine"> Add Line</button>
+		<div class = "drop-down">Product</div>
+		<input id = "userInput" type = "text"/>
+		<button id = "submitSale">Submit</button>
+	</div>
+	<div id = "MakeSaleInfo" class = "collapse-in">		
+		<div class = "drop-down">Product</div>
+		<input id = "userInput" type = "text"/>
+		<button id = "submitOrder">Submit</button>
+	</div>
 		
 		
-		
+<!--		
 Define Control Panel
 		Drop-down hiding / exposing
 		Contains Dashboard
