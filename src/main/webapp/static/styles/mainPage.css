@@ -40,6 +40,10 @@
     width : 50%;
 }
 
+div#ResultsView{
+        display: block;
+        margin-top: 60px;
+}
 
 /*
 .div #Banner{
@@ -57,10 +61,6 @@
 }
 
 .div.Log{
-	
-}
-
-.div.ResultsView{
 	
 }
 
