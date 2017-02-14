@@ -16,11 +16,9 @@ public class DIRetailer implements DAORetailer {
 	public Retailer getRetailer(int id) {
 		
 		Session session = HibernateUtil.getSession(); 
-		Transaction tx = session.beginTransaction();	
-		
+	
 		Retailer retailer = (Retailer) session.get(Retailer.class, id);
 		
-		tx.commit();
 		session.close();	
 		
 		return retailer;
@@ -30,19 +28,17 @@ public class DIRetailer implements DAORetailer {
 	public List<Retailer> getAllRetailers() {
 		
 		Session session = HibernateUtil.getSession(); 
-		Transaction tx = session.beginTransaction();
 		
 		Query query = session.createQuery("from Retailer");
 		List<Retailer> allRetailers = query.list();
 	
-		tx.commit();
 		session.close();
 		
 		return allRetailers;
 		
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		Retailer testRet = RetailerLogic.viewRetailerById(4);
 		
@@ -54,5 +50,5 @@ public class DIRetailer implements DAORetailer {
 			System.out.println(all);
 		}
 		
-	}
+	}*/
 }
