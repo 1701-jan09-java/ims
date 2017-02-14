@@ -17,13 +17,11 @@ public class DIInventory implements DAOInventory {
 	
 	@Override
 	public void updateInventory(Inventory inventory) {
-		
 		Session session = HibernateUtil.getSession();
 		Transaction trax = session.beginTransaction();
 		session.update(inventory);
 		trax.commit();
 		session.close();
-		
 	}
 
 	/**
@@ -53,7 +51,7 @@ public class DIInventory implements DAOInventory {
 	
 	
 	@Override
-	public int getInventory(int productID, int retailerID) {
+	public int getInventoryAmount(int productID, int retailerID) {
 		try{
 			Session session = HibernateUtil.getSession();
 			
@@ -82,21 +80,6 @@ public class DIInventory implements DAOInventory {
 		session.close();
 		return list;
 	}
-
-	
-	public static void main(String[] args) {
-		
-		DAOInventory dao = new DIInventory();
-		List<Inventory> list = dao.getAllInventory(5);
-		System.out.println(list);
-		
-//		Inventory inventory = dao.getInventory(100, 5);
-//		int howMany = inventory.getProductQuantity();
-//		System.out.println(howMany);
-	}
-
-
-
 
 	
 }

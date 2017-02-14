@@ -11,8 +11,8 @@
   <mvc:annotation-driven/>
   
 <!--   Search for spring beans -->
-  <context:component-scan base-package="com.example"/>
-  <context:component-scan base-package="com.ims"/>
+  <context:component-scan base-package="com"/>
+<!--   <context:component-scan base-package="com.ims"/> -->
 <!-- Enable urls for static content (css, js, etc.)   -->
 <!--  mapping=url, location=directory -->
 <mvc:resources mapping="/resources/**" location="/static/" /> 
