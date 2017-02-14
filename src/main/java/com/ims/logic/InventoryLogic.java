@@ -13,19 +13,19 @@ public class InventoryLogic {
 	private static DAOInventory daoInv = new DIInventory();
 	
 	
+	
 	public static List<Inventory> viewAllInventory(int retailerId){
 		List<Inventory> list = daoInv.getAllInventory(retailerId);
 		return list;
 	}
 	
+	public static Inventory getInventoryObject(int retailerID, int productID){
+		Inventory inv = daoInv.getInventoryObject(productID, retailerID);
+		return inv;
+	}
 	
-//	public static void main(String[] args) {
-//		InventoryLogic invy = new InventoryLogic();
-//		List<Inventory> dogsAndMoreDogs = invy.viewAllInventory(5);
-//		
-//		System.out.println(dogsAndMoreDogs);
-//		
-//	}
-	
+	public static void updateInventory(Inventory inventory){
+		daoInv.updateInventory(inventory);		
+	}
 
 }
