@@ -20,7 +20,7 @@ public class CategoryAPI {
 		return category;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/")
+	@RequestMapping(method=RequestMethod.GET, value="")
 	public List<Category> getAllCategories() {
 		List<Category> categories = CategoryLogic.getAllCategories();
 		return categories;

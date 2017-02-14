@@ -23,7 +23,7 @@ public class ProductAPI {
 		return productDto;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/")
+	@RequestMapping(method=RequestMethod.GET, value="")
 	public List<ProductDTO> getAllProducts() {
 		List<Product> products = ProductLogic.getAllProducts();
 		List<ProductDTO> productsDto = new ArrayList<>();
