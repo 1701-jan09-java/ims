@@ -15,13 +15,27 @@ public class DIPurchaseOrder implements DAOPurchaseOrder {
 
 	@Override
 	public void createPurchaseOrder(PurchaseOrder po) {
-		throw new NotYetImplementedException();
+		Session session = HibernateUtil.getSession();
+
+		Transaction tx = session.beginTransaction();
+		
+		session.save(po);
+
+		tx.commit();
+		session.close();
 		
 	}
 
 	@Override
 	public void updatePurchaseOrder(PurchaseOrder po) {
-		throw new NotYetImplementedException();
+		Session session = HibernateUtil.getSession();
+
+		Transaction tx = session.beginTransaction();
+		
+		session.update(po);
+
+		tx.commit();
+		session.close();
 		
 	}
 
