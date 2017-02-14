@@ -4,45 +4,74 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.UUID;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import static org.mockito.Mock.*;
+import org.mockito.Mockito;
 
-
+import com.ims.dao.DAOSupplier;
+import com.ims.dao.DISupplier;
 import com.ims.domain.Supplier;
+import com.ims.domain.util.HibernateUtil;
 import com.ims.logic.SupplierLogic;
 
 import static com.ims.logic.SupplierLogic.*;
 
 public class SupplierLogicTest {
 	
-	@Mock
-	SupplierLogic mockSupLog = mock(SupplierLogic.class);
-	
-	//stubbing
-//	when(mockSupLog.getSupplier(100).getName()).thenReturn("TestSupplier");
-	
-	
-	/*
 	@Test
-	public void testGetSupplier() {
+	public void testGetSupplierByIdSuccess() throws Exception {
 		
-		assertEquals("Supplier [id=100, name=TestSupplier, address=24916 Square Street, Pheonix,  AZ, 85203]", getSupplier(100).toString());
-		assertEquals("Supplier [id=122, name=Apple, address=245 B Street, Pheonix,  AZ, 85203]", getSupplier(122).toString());
-		assertEquals("Supplier [id=123, name=TestSupplier2, address=Ap #532-4097 Vel, Avenue, Carson City,  NV, 82529]", getSupplier(123).toString());
-		assertEquals("Supplier [id=124, name=TestSupplier3, address=845-6559 Aliquam Rd., Shreveport,  Louisiana, 49344]", getSupplier(124).toString());
-	}
+		//Setup
+		
+//		HibernateUtil mockHib = mock(HibernateUtil.class);
+//		Transaction mockTx = mock(Transaction.class);
+		
+		DAOSupplier mockDAOSupplier = mock(DAOSupplier.class);
+		
+//		DISupplier sup = mock(DISupplier.class);
+		
+//		SupplierLogic supLog = mock(SupplierLogic.class);
+		
+		
+		
+		
+//		sup.getSupplier(mockDAOSupplier);
+		
+//		Session session = HibernateUtil.getSession();
+		
+		
+		
+//		Supplier supplier1 = mock(Supplier.class, "supplier1");
+//		Supplier supplier2 = mock(Supplier.class, "supplier2");
+//		Supplier supplier3 = mock(Supplier.class, "supplier3");
+		
+//		supplier1.setId(1);
+//		supplier2.setId(2);
+//		supplier3.setId(3);
+		
+		//Execution
+//		Supplier result = supLog.getSupplier(1);
+		
+		//Verification
+//		when(supLog.getSupplier(1)).thenReturn(supplier1);
+		Supplier supplier1 = new Supplier();
+		
+		when(mockDAOSupplier.getSupplier(1)).thenReturn(supplier1);
+		
+		SupplierLogic supLog = new SupplierLogic();
+		supLog.setDaoSup(mockDAOSupplier);
+		
+		assertEquals(supplier1, supLog.getSupplier(2));
+		
+//		return supplier1;
+		
+		
 	
-	@Test
-	public void testGetAllSuppliers() {
-		String expected = "[Supplier [id=123, name=TestSupplier2, address=Ap #532-4097 Vel, Avenue, Carson City,  NV, 82529]," + 
-						" Supplier [id=124, name=TestSupplier3, address=845-6559 Aliquam Rd., Shreveport,  Louisiana, 49344]," + 
-						" Supplier [id=100, name=TestSupplier, address=24916 Square Street, Pheonix,  AZ, 85203]," + 
-						" Supplier [id=122, name=Apple, address=245 B Street, Pheonix,  AZ, 85203]]";
-		String actual = getAllSuppliers().toString();
-		
-		assertEquals(expected, actual);
 	}
-	*/
+
 }

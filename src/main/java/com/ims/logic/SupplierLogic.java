@@ -8,15 +8,21 @@ import com.ims.domain.Supplier;
 
 public class SupplierLogic {	
 	
-	private static DAOSupplier daoSup = new DISupplier();
+	private DAOSupplier daoSup = new DISupplier();
+	
+	
 		
-		static public Supplier getSupplier(int id) {
+		public void setDaoSup(DAOSupplier daoSup) {
+		this.daoSup = daoSup;
+	}
+
+		public Supplier getSupplier(int id) {
 			// TODO Auto-generated method stub
 			Supplier sup = daoSup.getSupplier(id);
 			return sup;
 		}
 		
-		static public List<Supplier> getAllSuppliers() {
+		public List<Supplier> getAllSuppliers() {
 			// TODO Auto-generated method stub
 			
 			List<Supplier> supList = daoSup.getAllSuppliers();
