@@ -23,4 +23,8 @@ public class SupplierLogic {
 			return supList;
 		}
 
+		public static void setDaoSup(DAOSupplier daoSup) {
+			SupplierLogic.daoSup = daoSup;
+		}
+
 }
