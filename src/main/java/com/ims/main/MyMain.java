@@ -21,19 +21,22 @@ public class MyMain {
 
 	public static void main(String[] args) {
 		
-		/*
+		
 		Session session = HibernateUtil.getSession(); 
 		Transaction tx = session.beginTransaction();
 		
-		Supplier supplier2  = new Supplier();
-		supplier2.setName("TestSupplier3");
-		Address address = (Address) session.get(Address.class, 64);
-		supplier2.setAddress(address);
-		session.save(supplier2);
+		Supplier supplier100  = new Supplier();
+		supplier100.setName("TestSupplier3");
+		Address address = (Address) session.get(Address.class, 100);
+		supplier100.setAddress(address);
+		session.save(supplier100);
+		
+		System.out.println(supplier100);
 		
 		tx.commit();
 		session.close(); 
-		*/
+		
+		System.out.println(supplier100);
 		
 		// Test Retail Logic methods
 		
@@ -116,8 +119,8 @@ public class MyMain {
 		*/
 //		List<Retailer> retList = RetailerLogic.viewAllRetailers();
 //		System.out.println(retList.toString());
-		List<Supplier> supList = SupplierLogic.getAllSuppliers();
-		System.out.println(supList);
+//		List<Supplier> supList = SupplierLogic.getAllSuppliers();
+//		System.out.println(supList);
 //		Supplier sup = SupplierLogic.getSupplier(122);
 //		Supplier sup1 = SupplierLogic.getSupplier(123);
 //		Supplier sup2 = SupplierLogic.getSupplier(124);
