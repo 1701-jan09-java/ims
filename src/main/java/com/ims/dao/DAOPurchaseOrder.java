@@ -9,7 +9,7 @@ public interface DAOPurchaseOrder {
 	//basic CRUD
 	void createPurchaseOrder(PurchaseOrder po);
 	void updatePurchaseOrder(PurchaseOrder po);
-	void deleteRPurchaseOrder(PurchaseOrder po);
+	void deletePurchaseOrder(PurchaseOrder po);
 	PurchaseOrder getPurchaseOrder(int id);
 	
 	//Query
