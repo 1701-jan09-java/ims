@@ -28,37 +28,11 @@ public class SupplierLogicTest {
 		
 		//Setup
 		
-//		HibernateUtil mockHib = mock(HibernateUtil.class);
-//		Transaction mockTx = mock(Transaction.class);
-		
 		DAOSupplier mockDAOSupplier = mock(DAOSupplier.class);
 		
-//		DISupplier sup = mock(DISupplier.class);
-		
-//		SupplierLogic supLog = mock(SupplierLogic.class);
-		
-		
-		
-		
-//		sup.getSupplier(mockDAOSupplier);
-		
-//		Session session = HibernateUtil.getSession();
-		
-		
-		
-//		Supplier supplier1 = mock(Supplier.class, "supplier1");
-//		Supplier supplier2 = mock(Supplier.class, "supplier2");
-//		Supplier supplier3 = mock(Supplier.class, "supplier3");
-		
-//		supplier1.setId(1);
-//		supplier2.setId(2);
-//		supplier3.setId(3);
 		
 		//Execution
-//		Supplier result = supLog.getSupplier(1);
-		
-		//Verification
-//		when(supLog.getSupplier(1)).thenReturn(supplier1);
+
 		Supplier supplier1 = new Supplier();
 		
 		when(mockDAOSupplier.getSupplier(1)).thenReturn(supplier1);
@@ -66,10 +40,7 @@ public class SupplierLogicTest {
 		SupplierLogic supLog = new SupplierLogic();
 		supLog.setDaoSup(mockDAOSupplier);
 		
-		assertEquals(supplier1, supLog.getSupplier(2));
-		
-//		return supplier1;
-		
+		assertEquals(supplier1, supLog.getSupplier(2));		
 		
 	
 	}
