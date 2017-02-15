@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ims.dao.DAOPurchaseOrder;
 import com.ims.dao.DAORetailer;
 import com.ims.dao.DAOSupplier;
-import com.ims.dao.DIPurchaseOrder;
 import com.ims.dao.DIRetailer;
 import com.ims.dao.DISupplier;
 import com.ims.domain.PurchaseOrder;
@@ -23,7 +22,9 @@ import com.ims.dto.PurchaseOrderDTO;
 public class PurchaseOrderLogic {
 
 	@Autowired
-	private DAOPurchaseOrder dao = new DIPurchaseOrder();
+	private DAOPurchaseOrder dao;
+	private SupplierLogic suppLogic;
+	private RetailerLogic retLogic;
 	
 	public PurchaseOrder getPurchaseOrder(int poId) {
 		
@@ -68,8 +69,8 @@ public class PurchaseOrderLogic {
 	}
 	
 	public PurchaseOrder createPurchaseOrder(PurchaseOrderDTO poDto) {
-		Supplier supplier = SupplierLogic.getSupplier(poDto.getSupId());
-		Retailer retailer = RetailerLogic.viewRetailerById(poDto.getRetId());
+		Supplier supplier = suppLogic.getSupplier(poDto.getSupId());
+		Retailer retailer = retLogic.viewRetailerById(poDto.getRetId());
 		PurchaseOrder po = new PurchaseOrder(supplier, retailer, poDto.getCost());
 		createPurchaseOrder(po);
 		// stuff for lines
