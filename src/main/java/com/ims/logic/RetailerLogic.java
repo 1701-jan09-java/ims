@@ -24,19 +24,17 @@ public class RetailerLogic {
 		return retailers;
 	}
 	
-	/*
+	
 	public static void main(String[] args) {
 	
 		Retailer testRet = RetailerLogic.viewRetailerById(4);
 	
 		System.out.println(testRet);
 	
-		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
+		String testAllRet = RetailerLogic.viewAllRetailers().toString();
 	
-		for(Retailer all : testAllRet) {
-			System.out.println(all);
-		}
+		System.out.println(testAllRet);
 	
-	}*/
+	}
 }
 
