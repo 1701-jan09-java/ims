@@ -60,6 +60,66 @@ $(document).ready(function() {
         
     };
     
+    var updateViewRetailers = function(data) {
+    	
+    	EVENTS.viewArea.empty();
+    	EVENTS.viewArea.append("<div class='col-xs-2'>Retailer ID</div>");
+    	EVENTS.viewArea.append("<div class='col-xs-4'>Retailer Name</div>");
+        EVENTS.viewArea.append("<div class='col-xs-6'>Address</div>");
+        var i = 0;
+        var n = 0;
+        var fullAddr = "";
+        
+        for (i=0; i<data.length; i++) {
+        	 EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
+             EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
+             EVENTS.viewArea.append("<div id='address"+i+"' class='col-xs-6'></div>");
+             
+             var a = $("#address"+i);
+             console.log(a);
+             if(data[i].address.length === 0) {
+            	 a.html("&ltNone&gt");            	 
+             } else {
+            	
+            	fullAddr = data[i].address.street + " " + data[i].address.city + " " +
+            		 	   data[i].address.state + " " + data[i].address.zip;
+            	a.html(a.html() + fullAddr);
+            	 
+             };
+        }    	
+    };
+    
+    var updateViewSales = function(data) {
+    	
+    	EVENTS.viewArea.empty();
+    	EVENTS.viewArea.append("<div class='col-sm-2'>Sale ID</div>");
+    	EVENTS.viewArea.append("<div class='col-sm-3'>Retailer Name</div>");
+        EVENTS.viewArea.append("<div class='col-sm-3'>Product Name</div>");
+        EVENTS.viewArea.append("<div class='col-sm-1'>Quantity</div>");
+        EVENTS.viewArea.append("<div class='col-sm-1'>Cost</div>");
+        EVENTS.viewArea.append("<div class='col-sm-2'>Sale Date</div>");
+    	
+        for (i=0; i<data.length; i++) {
+        	
+        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].id+"</div>");
+        	 EVENTS.viewArea.append("<div id='retailer"+i+"' class='col-sm-3'></div>");
+        	 EVENTS.viewArea.append("<div id='product"+i+"' class='col-sm-3'></div>");
+        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].productQuantity+"</div>");
+        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].cost+"</div>");
+        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].saleDate+"</div>");
+        	 
+        	 var r = $("#retailer"+i);
+        	 console.log(r);
+        	 var p = $("#product"+i);
+        	 console.log(p);
+        	 
+        	 r.html(r.html()+data[i].retailer.name);
+        	 p.html(p.html()+data[i].product.name);
+        	 
+        }
+    }
+
+    
     var sendRequest = function (group,id) {
         var tempUrl = "/ims/"+group+"/";
         
@@ -77,6 +137,10 @@ $(document).ready(function() {
                     updateViewProducts(data);
                 } else if (group === "category") {
                     updateViewCategories(data);
+                } else if(group === "retailer") {
+                	updateViewRetailers(data);
+                } else if(group === "sale") {
+                	updateViewSales(data);
                 }
 
             },
@@ -111,5 +175,13 @@ $(document).ready(function() {
     
     $("#categoriesButton").click(function(){
         sendRequest("category");
+    });
+    
+    $("#retailersButton").click(function(){
+    	sendRequest("retailer");
+    });
+    
+    $("#salesButton").click(function(){
+    	sendRequest("sale");
     });
 });

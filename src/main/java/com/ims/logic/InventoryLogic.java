@@ -2,30 +2,28 @@ package com.ims.logic;
 
 import java.util.List;
 
-import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ims.dao.DAOInventory;
-import com.ims.dao.DIInventory;
-import com.ims.domain.Inventory;
-import com.ims.domain.util.HibernateUtil;
 
+import com.ims.domain.Inventory;
+
+@Service
+@Transactional(readOnly=false, isolation=Isolation.READ_COMMITTED)
 public class InventoryLogic {
-	private static DAOInventory daoInv = new DIInventory();
-	
-	
-	
-	public static List<Inventory> viewAllInventory(int retailerId){
+
+	@Autowired
+	private DAOInventory daoInv;
+		
+	public  List<Inventory> viewAllInventory(int retailerId){
 		List<Inventory> list = daoInv.getAllInventory(retailerId);
 		return list;
 	}
+
 	
-	public static Inventory getInventoryObject(int retailerID, int productID){
-		Inventory inv = daoInv.getInventoryObject(productID, retailerID);
-		return inv;
-	}
-	
-	public static void updateInventory(Inventory inventory){
-		daoInv.updateInventory(inventory);		
-	}
+
 
 }
