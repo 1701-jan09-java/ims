@@ -2,6 +2,11 @@ package com.ims.logic;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ims.dao.DAOPurchaseOrder;
 import com.ims.dao.DAORetailer;
 import com.ims.dao.DAOSupplier;
@@ -13,33 +18,36 @@ import com.ims.domain.Retailer;
 import com.ims.domain.Supplier;
 import com.ims.dto.PurchaseOrderDTO;
 
+@Service
+@Transactional(readOnly=false, isolation=Isolation.READ_COMMITTED)
 public class PurchaseOrderLogic {
 
-	private static DAOPurchaseOrder dao = new DIPurchaseOrder();
+	@Autowired
+	private DAOPurchaseOrder dao = new DIPurchaseOrder();
 	
-	public static PurchaseOrder getPurchaseOrder(int poId) {
+	public PurchaseOrder getPurchaseOrder(int poId) {
 		
 		PurchaseOrder po = dao.getPurchaseOrder(poId);
 		return po;
 	}
 	
-	public static List<PurchaseOrder> getAllPurchaseOrders() {
+	public List<PurchaseOrder> getAllPurchaseOrders() {
 		
 		List<PurchaseOrder> poList = dao.getAllPurchaseOrders();
 		return poList;
 	}
 	
-	public static List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
+	public List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
 		
 		List<PurchaseOrder> poList = dao.getAllPurchaseOrdersByRetailer(retailerID);
 		return poList;
 	}
 	
-	public static void createPurchaseOrder(PurchaseOrder po) {
+	public void createPurchaseOrder(PurchaseOrder po) {
 		dao.createPurchaseOrder(po);
 	}
 	
-	public static PurchaseOrder createPurchaseOrder(int supplierId, int retailerId, double cost) {
+	public PurchaseOrder createPurchaseOrder(int supplierId, int retailerId, double cost) {
 		DAORetailer daoRet = new DIRetailer();
 		DAOSupplier daoSupp = new DISupplier();
 		PurchaseOrder po = new PurchaseOrder();
@@ -51,15 +59,15 @@ public class PurchaseOrderLogic {
 		return po;
 	}
 	
-	public static void updatePurchaseOrder(PurchaseOrder po) {
+	public void updatePurchaseOrder(PurchaseOrder po) {
 		dao.updatePurchaseOrder(po);
 	}
 	
-	public static void deletePurchaseOrder(PurchaseOrder po) {
+	public void deletePurchaseOrder(PurchaseOrder po) {
 		dao.deletePurchaseOrder(po);
 	}
 	
-	public static PurchaseOrder createPurchaseOrder(PurchaseOrderDTO poDto) {
+	public PurchaseOrder createPurchaseOrder(PurchaseOrderDTO poDto) {
 		Supplier supplier = SupplierLogic.getSupplier(poDto.getSupId());
 		Retailer retailer = RetailerLogic.viewRetailerById(poDto.getRetId());
 		PurchaseOrder po = new PurchaseOrder(supplier, retailer, poDto.getCost());

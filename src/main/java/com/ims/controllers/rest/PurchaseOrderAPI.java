@@ -3,6 +3,7 @@ package com.ims.controllers.rest;
 import java.util.List;
 
 import org.hibernate.cfg.NotYetImplementedException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ import com.ims.logic.PurchaseOrderLogic;
 @RestController
 @RequestMapping(value="/purchase-order")
 public class PurchaseOrderAPI {
+	
+	@Autowired
+	private PurchaseOrderLogic poLogic;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	public PurchaseOrder getPurchaseOrder(@PathVariable("id") Integer id) {
@@ -45,14 +49,14 @@ public class PurchaseOrderAPI {
 	public boolean createPurchaseOrder(@RequestBody PurchaseOrderDTO json) {
 		System.out.println(json);
 		
-//		PurchaseOrder po = PurchaseOrderLogic.createPurchaseOrder(supplierId, retailerId, cost);
+		PurchaseOrder po = poLogic.createPurchaseOrder(json);
 		
-//		if (po == null) {
-//			return false;
-//		}
-//		
-//		else return true;
-		return false;
+		if (po == null) {
+			return false;
+		}
+		
+		else return true;
+
 	}
 		
 }
