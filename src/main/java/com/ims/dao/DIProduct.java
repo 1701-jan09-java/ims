@@ -2,31 +2,33 @@ package com.ims.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ims.domain.Product;
-import com.ims.domain.util.HibernateUtil;
 
+@Component
 public class DIProduct implements DAOProduct{
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	@Override
 	public Product getProduct(int id) {
-		Session session = HibernateUtil.getSession();
+		Session session = sessionFactory.getCurrentSession();
 
 		Product product = (Product) session.get(Product.class, id);
-
-		session.close();
 
 		return product;
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		Session session = HibernateUtil.getSession();
+		Session session = sessionFactory.getCurrentSession();
 
 		Criteria criteria = session.createCriteria(Product.class);
 
@@ -36,14 +38,13 @@ public class DIProduct implements DAOProduct{
 
 	@Override
 	public List<Product> getAllProductsByCategory(int categoryID) {
-		Session session = HibernateUtil.getSession();
+		Session session = sessionFactory.getCurrentSession();
 
 		Query query = session.createQuery("from Product where id = :idvalue");
 		query.setInteger("idvalue",categoryID);
 		
 		List<Product> products = query.list();
 
-		session.close();
 		return products;
 	}
 
