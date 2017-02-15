@@ -143,17 +143,25 @@ $(document).ready(function() {
     var updateViewRetailers = function(data) {
     	
     	EVENTS.viewArea.empty();
-    	EVENTS.viewArea.append("<div class='col-xs-2'>Retailer ID</div>");
-    	EVENTS.viewArea.append("<div class='col-xs-4'>Retailer Name</div>");
-        EVENTS.viewArea.append("<div class='col-xs-6'>Address</div>");
+    	EVENTS.viewArea.append("<div class='row'>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>Retailer ID</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>Name</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>View Sales</div>");
+        EVENTS.viewArea.append("<div class='col-md-6'>Address</div>");
+        EVENTS.viewArea.append("</div>");
+        
         var i = 0;
         var n = 0;
         var fullAddr = "";
         
         for (i=0; i<data.length; i++) {
-        	 EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
-             EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
-             EVENTS.viewArea.append("<div id='address"+i+"' class='col-xs-6'></div>");
+        	
+        	 EVENTS.viewArea.append("<div class='row'>");
+        	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
+             EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
+             EVENTS.viewArea.append("<div class='col-md-2'><button onclick=\"salesByRetButton('"+data[i].id+"')\">Sales</button></div>");             
+             EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-6'></div>");
+             EVENTS.viewArea.append("</div");
              
              var a = $("#address"+i);
              console.log(a);
@@ -161,7 +169,7 @@ $(document).ready(function() {
             	 a.html("&ltNone&gt");            	 
              } else {
             	
-            	fullAddr = data[i].address.street + " " + data[i].address.city + " " +
+            	fullAddr = data[i].address.street + " " + data[i].address.city + ", " +
             		 	   data[i].address.state + " " + data[i].address.zip;
             	a.html(a.html() + fullAddr);
             	 
@@ -264,4 +272,5 @@ $(document).ready(function() {
     $("#salesButton").click(function(){
     	sendRequest("sale");
     });
+    
 });
