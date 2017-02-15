@@ -92,7 +92,7 @@ public class DISale implements DAOSale{
 		
 		if (salesByRet.isEmpty()) {
 			
-			System.out.println("No such retailer has sales");
+			System.out.println("This retailer has no sales");
 			return null;
 			
 		}

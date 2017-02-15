@@ -2,13 +2,11 @@ package com.ims.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import com.ims.domain.util.HibernateUtil;
-import com.ims.logic.RetailerLogic;
 import com.ims.domain.Retailer;
+import com.ims.domain.util.HibernateUtil;
 
 public class DIRetailer implements DAORetailer {
 
@@ -29,26 +27,11 @@ public class DIRetailer implements DAORetailer {
 		
 		Session session = HibernateUtil.getSession(); 
 		
-		Query query = session.createQuery("from Retailer");
-		List<Retailer> allRetailers = query.list();
-	
-		session.close();
+		Criteria criteria = session.createCriteria(Retailer.class);
+		
+		List<Retailer> allRetailers = criteria.list();
 		
 		return allRetailers;
 		
 	}
-
-	/*public static void main(String[] args) {
-		
-		Retailer testRet = RetailerLogic.viewRetailerById(4);
-		
-		System.out.println(testRet);
-		
-		List<Retailer> testAllRet = RetailerLogic.viewAllRetailers();
-		
-		for(Retailer all : testAllRet) {
-			System.out.println(all);
-		}
-		
-	}*/
 }
