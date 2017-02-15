@@ -29,10 +29,20 @@ public class DummyMain {
 //		
 //		System.out.println(PurchaseOrderLogic.getAllPurchaseOrders());
 //		System.out.println(PurchaseOrderLogic.getAllPurchaseOrdersByRetailer(1));
+		
+		PurchaseOrderLine pol = new PurchaseOrderLine();
+		PurchaseOrder po = new PurchaseOrder();
+//		po.setId(104);
+		pol.setId(120);
+		pol.setCost(15);
+//		pol.setPurchaseOrder(po);
 		PurchaseOrderLineLogic polLogic = new PurchaseOrderLineLogic();
-		List<PurchaseOrderLine> pol = polLogic.getAllPurchaseOrderLines(104);
-		for(PurchaseOrderLine pols : pol){
-			System.out.println(pols);
-		};
+//		PurchaseOrderLine pol = new PurchaseOrderLine();
+		polLogic.updatePurchaseOrderLine(pol);;
+		System.out.println(pol);
+//		List<PurchaseOrderLine> pol = polLogic.getAllPurchaseOrderLines(104);
+//		for(PurchaseOrderLine pols : pol){
+//			System.out.println(pols);
+//		};
 	}
 }

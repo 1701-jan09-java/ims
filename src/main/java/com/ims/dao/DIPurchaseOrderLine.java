@@ -78,9 +78,15 @@ public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 		
 		Transaction tx = session.beginTransaction();
 		
+//		Query query = session.createQuery("delete PurchaseOrderLine where purchaseOrder.id = :idvalue");
+//		query.setInteger("idvalue", poLineId);
+		
 		session.delete(poLineId);
+
 		
 		tx.commit();
+		
+		
 		session.close();
 		
 	}
