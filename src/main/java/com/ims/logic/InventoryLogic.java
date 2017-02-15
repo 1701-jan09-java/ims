@@ -22,5 +22,14 @@ public class InventoryLogic {
 		return list;
 	}
 	
+	public static void main(String[] args) {
+		
+		InventoryLogic invy = new InventoryLogic();
+		String testInv = invy.viewAllInventory(5).toString();
+		
+		System.out.println(testInv);
+		
+	}
+	
 
 }

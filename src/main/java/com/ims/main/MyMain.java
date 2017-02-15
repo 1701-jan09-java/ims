@@ -116,8 +116,8 @@ public class MyMain {
 		*/
 //		List<Retailer> retList = RetailerLogic.viewAllRetailers();
 //		System.out.println(retList.toString());
-		List<Supplier> supList = SupplierLogic.getAllSuppliers();
-		System.out.println(supList);
+//		List<Supplier> supList = SupplierLogic.getAllSuppliers();
+//		System.out.println(supList);
 //		Supplier sup = SupplierLogic.getSupplier(122);
 //		Supplier sup1 = SupplierLogic.getSupplier(123);
 //		Supplier sup2 = SupplierLogic.getSupplier(124);
