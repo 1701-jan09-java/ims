@@ -22,15 +22,7 @@ public class InventoryLogic {
 		List<Inventory> list = daoInv.getAllInventory(retailerId);
 		return list;
 	}
-	
-	public static void main(String[] args) {
-		
-		InventoryLogic invy = new InventoryLogic();
-		String testInv = invy.viewAllInventory(5).toString();
-		
-		System.out.println(testInv);
-		
-	}
+
 	
 
 }
