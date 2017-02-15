@@ -7,9 +7,9 @@ import com.ims.domain.PurchaseOrderLine;
 
 public interface DAOPurchaseOrderLine {
 	//basic CRUD
-	void createPurchaseOrderLine(PurchaseOrder po);
+	void createPurchaseOrderLine(PurchaseOrderLine pol);
 	PurchaseOrderLine getPurchaseOrderLine(int poLineId);
-	List<PurchaseOrderLine> getAllPurchaseOrderLines();
+	List<PurchaseOrderLine> getAllPurchaseOrderLines(PurchaseOrder poId);
 	void updatePurchaseOrderLine(int poLineId);
 	void deletePurchaseOrderLine(int poLineId);
 	

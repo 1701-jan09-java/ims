@@ -2,6 +2,7 @@ package com.ims.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.NotYetImplementedException;
@@ -13,12 +14,12 @@ import com.ims.domain.util.HibernateUtil;
 public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 
 	@Override
-	public void createPurchaseOrderLine(PurchaseOrder po) {
-		// TODO Auto-generated method stub
+	public void createPurchaseOrderLine(PurchaseOrderLine pol) {
+
 		Session session = HibernateUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		
-		PurchaseOrder purchaseOrder = (PurchaseOrder) session.save(po);
+		session.save(pol);
 		
 		tx.commit();
 		session.close();
@@ -28,27 +29,55 @@ public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 
 	@Override
 	public PurchaseOrderLine getPurchaseOrderLine(int poLineId) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+		
+		Session session = HibernateUtil.getSession();
+		PurchaseOrderLine pol = (PurchaseOrderLine) session.get(PurchaseOrderLine.class, poLineId);
+		
+		session.close();
+		
+		return pol;
+		
+		
 	}
 
 	@Override
-	public List<PurchaseOrderLine> getAllPurchaseOrderLines() {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+	public List<PurchaseOrderLine> getAllPurchaseOrderLines(PurchaseOrder poId) {
+		
+		Session session = HibernateUtil.getSession();
+		
+		Criteria criteria = session.createCriteria(PurchaseOrderLine.class);
+		
+		List<PurchaseOrderLine> pOLs = criteria.list();
+		
+		return pOLs;
+
 	}
 
 	@Override
 	public void updatePurchaseOrderLine(int poLineId) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+		
+		Session session = HibernateUtil.getSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		session.update(poLineId);
+		
+		tx.commit();
+		session.close();
 		
 	}
 
 	@Override
 	public void deletePurchaseOrderLine(int poLineId) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+		
+		Session session = HibernateUtil.getSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		session.delete(poLineId);
+		
+		tx.commit();
+		session.close();
 		
 	}
 
