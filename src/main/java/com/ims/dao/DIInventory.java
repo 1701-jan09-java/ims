@@ -4,26 +4,29 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ims.domain.Inventory;
 import com.ims.domain.util.HibernateUtil;
 
+
+@Component
 public class DIInventory implements DAOInventory {
 
 		
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	
 	@Override
 	public void updateInventory(Inventory inventory) {
-		
-		Session session = HibernateUtil.getSession();
-		Transaction trax = session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
 		session.update(inventory);
-		trax.commit();
-		session.close();
-		
 	}
 
 	/**
