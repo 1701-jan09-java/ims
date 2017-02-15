@@ -4,7 +4,7 @@
 	padding : 60px;
 }
 
-#RetailRow{
+.RetailRow, .RetailRowClone{
 	padding : 20px;
 	margin-top : 10px;
 	border-style: solid;
@@ -13,8 +13,16 @@
 	max-width : 700px;
 }
 
-#ID{
+#ID, #Identifier{
 	font-size:20px;
+}
+
+.btn{
+	margin : 2px;	
+}
+
+.dropdown-toggle{
+	margin-left : 2px;
 }
 
 .RetailButton{
