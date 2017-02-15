@@ -22,7 +22,10 @@ public class InventoryAPI {
 //		return category;
 //	}
 	
-	
+	/**
+	 * Id relates to the retailer ID, 
+	 * and this returns a list of all their inventory objects
+	**/
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	public  List<Inventory> getAllInventory(@PathVariable("id") Integer id) {
 		List<Inventory> invList = InventoryLogic.viewAllInventory(id);
