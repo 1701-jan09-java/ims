@@ -2,6 +2,7 @@ package com.ims.controllers.rest;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,10 @@ import com.ims.logic.PurchaseOrderLineLogic;
 @RequestMapping(value="/purchaseorderline")
 public class PurchaseOrderLineAPI {
 	
+	@Autowired
+	private PurchaseOrderLineLogic polLogic;
+	
+	/*
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	public PurchaseOrderLine getPurchaseOrderLine(@PathVariable("id") Integer id) {
 		PurchaseOrderLine pol = PurchaseOrderLineLogic.getPurchaseOrderLine(id);
@@ -25,5 +30,6 @@ public class PurchaseOrderLineAPI {
 		List<PurchaseOrderLine> purchaseOrderLine = PurchaseOrderLineLogic.getAllPurchaseOrderLinesByPO(id);
 		return purchaseOrderLine;
 	}
+	*/
 
 }

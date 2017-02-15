@@ -7,25 +7,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ims.dao.DAOProduct;
+import com.ims.dao.DAOPurchaseOrder;
 import com.ims.dao.DAOPurchaseOrderLine;
-import com.ims.dao.DIPurchaseOrderLine;
 import com.ims.domain.Product;
 import com.ims.domain.PurchaseOrder;
 import com.ims.domain.PurchaseOrderLine;
+import com.ims.dto.POLineDTO;
 
 @Service
 @Transactional(readOnly=false, isolation=Isolation.READ_COMMITTED)
 public class PurchaseOrderLineLogic {
 	
 	@Autowired
-	private DAOPurchaseOrderLine dao = new DIPurchaseOrderLine();
-	private PurchaseOrder po;
-	private Product prod;
+	private DAOPurchaseOrderLine dao;
+	private DAOProduct daoProd;
+	private DAOPurchaseOrder daoPO;
 	
-	public void createPurchaseOrderLine(PurchaseOrderLine pol) {
+	public void createPurchaseOrderLine(POLineDTO polDTO, int poId) {
 		
-		p
-		dao.createPurchaseOrderLine(pol);
+		PurchaseOrderLine poLine = new PurchaseOrderLine();
+		Product prod = daoProd.getProduct(polDTO.getProdId());
+		PurchaseOrder po = daoPO.getPurchaseOrder(poId);
+		poLine.setProduct(prod);
+		poLine.setCost(polDTO.getCost());
+		poLine.setQuantity(polDTO.getCount());
+		poLine.setPurchaseOrder(po);
+				
+		dao.createPurchaseOrderLine(poLine);
 		
 	}
 
