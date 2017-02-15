@@ -4,40 +4,36 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ims.domain.util.HibernateUtil;
 import com.ims.logic.RetailerLogic;
 import com.ims.domain.Retailer;
 
+@Component
 public class DIRetailer implements DAORetailer {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public Retailer getRetailer(int id) {
 		
-		Session session = HibernateUtil.getSession(); 
-		Transaction tx = session.beginTransaction();	
-		
+		Session session = sessionFactory.getCurrentSession(); 
 		Retailer retailer = (Retailer) session.get(Retailer.class, id);
-		
-		tx.commit();
-		session.close();	
-		
+
 		return retailer;
 	}
 
 	@Override
 	public List<Retailer> getAllRetailers() {
 		
-		Session session = HibernateUtil.getSession(); 
-		Transaction tx = session.beginTransaction();
-		
+		Session session = sessionFactory.getCurrentSession(); 
 		Query query = session.createQuery("from Retailer");
 		List<Retailer> allRetailers = query.list();
-	
-		tx.commit();
-		session.close();
-		
 		return allRetailers;
 		
 	}
