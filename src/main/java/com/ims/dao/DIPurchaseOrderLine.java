@@ -42,7 +42,7 @@ public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 	}
 
 	@Override
-	public List<PurchaseOrderLine> getAllPurchaseOrderLines(int poId) {
+	public List<PurchaseOrderLine> getAllPurchaseOrderLinesByPO(int poId) {
 		
 		Session session = HibernateUtil.getSession();
 		

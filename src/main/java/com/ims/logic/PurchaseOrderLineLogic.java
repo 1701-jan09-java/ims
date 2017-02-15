@@ -24,7 +24,7 @@ public class PurchaseOrderLineLogic {
 		
 	}
 
-	public PurchaseOrderLine getPurchaseOrderLine(int poLineId) {
+	public static PurchaseOrderLine getPurchaseOrderLine(int poLineId) {
 		
 		PurchaseOrderLine pol = dao.getPurchaseOrderLine(poLineId);
 		return pol;
@@ -32,24 +32,24 @@ public class PurchaseOrderLineLogic {
 	}
 
 	
-	public List<PurchaseOrderLine> getAllPurchaseOrderLines(int pol_po) {
+	public static List<PurchaseOrderLine> getAllPurchaseOrderLinesByPO(int pol_po) {
 		
 		
-		List<PurchaseOrderLine> polList = dao.getAllPurchaseOrderLines(pol_po);
+		List<PurchaseOrderLine> polList = dao.getAllPurchaseOrderLinesByPO(pol_po);
 		
 		return polList;
 		
 	}
 
 	
-	public void updatePurchaseOrderLine(PurchaseOrderLine poLineId) {
+	public static void updatePurchaseOrderLine(PurchaseOrderLine poLineId) {
 		
 		dao.updatePurchaseOrderLine(poLineId);
 		
 	}
 
 	
-	public void deletePurchaseOrderLine(PurchaseOrderLine poLineId) {
+	public static void deletePurchaseOrderLine(PurchaseOrderLine poLineId) {
 		
 		dao.deletePurchaseOrderLine(poLineId);
 		
