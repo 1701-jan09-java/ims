@@ -19,13 +19,14 @@ public class InventoryLogic {
 	}
 	
 	
-//	public static void main(String[] args) {
-//		InventoryLogic invy = new InventoryLogic();
-//		List<Inventory> dogsAndMoreDogs = invy.viewAllInventory(5);
-//		
-//		System.out.println(dogsAndMoreDogs);
-//		
-//	}
+	public static void main(String[] args) {
+		
+		InventoryLogic invy = new InventoryLogic();
+		String testInv = invy.viewAllInventory(5).toString();
+		
+		System.out.println(testInv);
+		
+	}
 	
 
 }

@@ -23,4 +23,11 @@ public class SupplierLogic {
 			return supList;
 		}
 
+		public static void main(String[] args) {
+			
+			//String testAllSup = getAllSuppliers().toString();
+			String testSup = getSupplier(123).toString();
+			
+			System.out.println(testSup);
+		}
 }

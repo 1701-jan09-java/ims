@@ -27,11 +27,11 @@ public class RetailerLogic {
 	
 	public static void main(String[] args) {
 	
-		Retailer testRet = RetailerLogic.viewRetailerById(4);
+		Retailer testRet = viewRetailerById(4);
 	
 		System.out.println(testRet);
 	
-		String testAllRet = RetailerLogic.viewAllRetailers().toString();
+		String testAllRet = viewAllRetailers().toString();
 	
 		System.out.println(testAllRet);
 	
