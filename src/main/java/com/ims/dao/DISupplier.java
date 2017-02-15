@@ -5,13 +5,11 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ims.domain.Supplier;
-import com.ims.domain.util.HibernateUtil;
+
 
 @Component
 public class DISupplier implements DAOSupplier{

@@ -1,22 +1,5 @@
 package com.ims.main;
 
-import java.util.Date;
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import com.ims.domain.*;
-import com.ims.domain.util.HibernateUtil;
-
-import com.ims.logic.*;
-
-
-import com.ims.logic.SupplierLogic;
-import com.ims.logic.*;
-
 public class MyMain {
 
 	public static void main(String[] args) {

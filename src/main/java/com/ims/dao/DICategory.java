@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ims.domain.Category;
-import com.ims.domain.util.HibernateUtil;
 
 @Component
 public class DICategory implements DAOCategory{
