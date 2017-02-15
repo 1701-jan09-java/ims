@@ -3,6 +3,7 @@ package com.ims.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.NotYetImplementedException;
@@ -41,20 +42,23 @@ public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 	}
 
 	@Override
-	public List<PurchaseOrderLine> getAllPurchaseOrderLines(PurchaseOrder poId) {
+	public List<PurchaseOrderLine> getAllPurchaseOrderLines(int poId) {
 		
 		Session session = HibernateUtil.getSession();
 		
-		Criteria criteria = session.createCriteria(PurchaseOrderLine.class);
+		Query query = session.createQuery("from PurchaseOrderLine where purchaseOrder.id = :idvalue");
+		query.setInteger("idvalue", poId);
 		
-		List<PurchaseOrderLine> pOLs = criteria.list();
+		List<PurchaseOrderLine> pOLs = query.list();
+		
+		session.close();
 		
 		return pOLs;
 
 	}
 
 	@Override
-	public void updatePurchaseOrderLine(int poLineId) {
+	public void updatePurchaseOrderLine(PurchaseOrderLine poLineId) {
 		
 		Session session = HibernateUtil.getSession();
 		
@@ -68,7 +72,7 @@ public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 	}
 
 	@Override
-	public void deletePurchaseOrderLine(int poLineId) {
+	public void deletePurchaseOrderLine(PurchaseOrderLine poLineId) {
 		
 		Session session = HibernateUtil.getSession();
 		
