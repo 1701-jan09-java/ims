@@ -25,13 +25,14 @@ public class DIInventory implements DAOInventory {
 	@Autowired
 	private DAORetailer daoRet; // needed to match retailer in get methods
 	
+	
+	
 	@Override
 	public void updateInventory(Inventory inventory) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(inventory);
 	}
 
-	
 	
 	/**
 	 * 

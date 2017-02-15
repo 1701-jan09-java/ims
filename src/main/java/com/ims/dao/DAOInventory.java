@@ -18,7 +18,6 @@ public interface DAOInventory {
 	
 	int getInventoryAmount(int productID, int retailerID);
 	
-	/* Added by Efren -  2/9/17 */ 
 	List<Inventory> getAllInventory(int retailerID);
 
 	
