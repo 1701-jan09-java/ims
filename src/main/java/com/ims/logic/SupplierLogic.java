@@ -2,25 +2,32 @@ package com.ims.logic;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ims.dao.DAOSupplier;
 import com.ims.dao.DISupplier;
 import com.ims.domain.Supplier;
 
+@Service
+@Transactional(readOnly=false, isolation=Isolation.READ_COMMITTED)
 public class SupplierLogic {	
 	
-	private static DAOSupplier daoSup = new DISupplier();
+	@Autowired
+	private DAOSupplier dao;
 		
-		static public Supplier getSupplier(int id) {
+		 public Supplier getSupplier(int id) {
 			// TODO Auto-generated method stub
-			Supplier sup = daoSup.getSupplier(id);
+			Supplier sup = dao.getSupplier(id);
 			return sup;
 		}
 		
-		static public List<Supplier> getAllSuppliers() {
+		 public List<Supplier> getAllSuppliers() {
 			// TODO Auto-generated method stub
 			
-			List<Supplier> supList = daoSup.getAllSuppliers();
+			List<Supplier> supList = dao.getAllSuppliers();
 			return supList;
 		}
-
 }
