@@ -5,84 +5,58 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.NotYetImplementedException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ims.domain.PurchaseOrder;
-import com.ims.domain.util.HibernateUtil;
 
+@Component
 public class DIPurchaseOrder implements DAOPurchaseOrder {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	@Override
 	public void createPurchaseOrder(PurchaseOrder po) {
-		Session session = HibernateUtil.getSession();
-
-		Transaction tx = session.beginTransaction();
-		
+		Session session = sessionFactory.getCurrentSession();
 		session.save(po);
-
-		tx.commit();
-		session.close();
-		
 	}
 
 	@Override
 	public void updatePurchaseOrder(PurchaseOrder po) {
-		Session session = HibernateUtil.getSession();
-
-		Transaction tx = session.beginTransaction();
-		
+		Session session = sessionFactory.getCurrentSession();
 		session.update(po);
-
-		tx.commit();
-		session.close();
-		
 	}
 
 	@Override
 	public void deletePurchaseOrder(PurchaseOrder po) {
-		Session session = HibernateUtil.getSession();
-
-		Transaction tx = session.beginTransaction();
-		
+		Session session = sessionFactory.getCurrentSession();
 		session.delete(po);
-
-		tx.commit();
-		session.close();
-		
 	}
 
 	@Override
 	public PurchaseOrder getPurchaseOrder(int id) {
-		Session session = HibernateUtil.getSession();
-
+		Session session = sessionFactory.getCurrentSession();
 		PurchaseOrder po = (PurchaseOrder) session.get(PurchaseOrder.class, id);
-
-		session.close();
-
 		return po;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrders() {
-		Session session = HibernateUtil.getSession();
-
+		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(PurchaseOrder.class);
-
 		List<PurchaseOrder> poList = criteria.list();
 		return poList;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
-		Session session = HibernateUtil.getSession();
-
+		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from PurchaseOrder where retailer.id = :idvalue");
 		query.setInteger("idvalue",retailerID);
-		
 		List<PurchaseOrder> poList = query.list();
-
-		session.close();
 		return poList;
 	}
 

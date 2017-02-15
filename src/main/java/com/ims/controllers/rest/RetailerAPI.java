@@ -8,26 +8,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ims.domain.Category;
-import com.ims.logic.CategoryLogic;
+import com.ims.domain.Retailer;
+import com.ims.logic.RetailerLogic;
 
-@RestController
-@RequestMapping(value="/category")
-public class CategoryAPI {
+@RestController 
+@RequestMapping(value="/retailer")
+public class RetailerAPI {
 	
 	@Autowired
-	private CategoryLogic categoryLogic;
+	private RetailerLogic retailerLogic;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public Category getCategory(@PathVariable("id") Integer id) {
-		Category category = categoryLogic.getCategory(id);
-		return category;
+	public Retailer getRetailer(@PathVariable("id") Integer id) {
+		
+		Retailer retailer = retailerLogic.viewRetailerById(id);
+		
+		return retailer;
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="")
-	public List<Category> getAllCategories() {
-		List<Category> categories = categoryLogic.getAllCategories();
-		return categories;
-	}
+	public List<Retailer> getAllRetailers() {
 		
+		List<Retailer> retailers = retailerLogic.viewAllRetailers();
+		
+		return retailers;
+		
+	}
+	
+	
 }

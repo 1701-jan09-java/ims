@@ -9,9 +9,9 @@ import com.ims.logic.PurchaseOrderLogic;
 import com.ims.logic.RetailerLogic;
 import com.ims.logic.SupplierLogic;
 
+
 public class DummyMain {
-	
-	
+
 	
 	public static void main(String[] args) {
 		
@@ -44,5 +44,6 @@ public class DummyMain {
 //		for(PurchaseOrderLine pols : pol){
 //			System.out.println(pols);
 //		};
+
 	}
 }

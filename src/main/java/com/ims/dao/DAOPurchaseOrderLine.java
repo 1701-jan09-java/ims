@@ -2,7 +2,6 @@ package com.ims.dao;
 
 import java.util.List;
 
-import com.ims.domain.PurchaseOrder;
 import com.ims.domain.PurchaseOrderLine;
 
 public interface DAOPurchaseOrderLine {
