@@ -20,7 +20,7 @@ public class POLineDTO {
 	private Integer count;
 
 	@JsonProperty("cost")
-	private Integer cost;
+	private Double cost;
 	
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -53,11 +53,11 @@ public class POLineDTO {
 		this.count = count;
 	}
 	
-	public Integer getCost() {
+	public Double getCost() {
 		return cost;
 	}
 	
-	public void setCost(Integer cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 	
