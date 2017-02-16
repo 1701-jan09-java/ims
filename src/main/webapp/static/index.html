@@ -47,9 +47,9 @@ Define Top of Page Banner
 		</div>
 	</nav>
 	<div id="mySideNav" class="sidenav">
-		<a href="#">Dash Board</a>
+		<a href="index.html">Home</a>
 		<a href="#" id="productsButton">Product Catalogue</a>
-		<a href="#" id="retailersButton">Retailers</a>
+		<a href="#" id="retailersButton" onclick="unhide(this, 'retailers', 'ret')">Retailers</a>
 		
 		<a href="#">Orders</a>
 		<a href="#" id="salesButton">Sales</a>
@@ -61,10 +61,13 @@ Define Top of Page Banner
 		Full Page when Control Panel is Toggled Reduced
 		Page-view size when CP is Toggled Exposed
 -->
-	<div class = "container-fluid" id = "ResultsView">
 
-		<div class = "row RetailRow">
-			<p id = "ID">RetailerID</p>
+	<div class = "container-fluid" id = "ResultsView">	
+
+		<div class = "container "><h3>Welcome!</h3></div>
+		
+		<div id = "retailers" class = "hidden row RetailRow" >
+			<p class = "myID">Retailer ID<span id="ret"></span></p> 
 			<div class = "btn-group">
 				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
 				<button type = "button" class = "btn RetailButton salesButton">Sales</button>
@@ -133,9 +136,11 @@ Define Top of Page Banner
 		</div>
 		
 		<!-- RetailRows will append here -->
-				
+		
 			
 		</div>
+		
+	
 	</div>
 		
 		
@@ -195,17 +200,11 @@ Define Control Panel Tabs
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="scripts/sidebarScript.js"></script>
-
-
-    <script type="text/javascript" src="scripts/buttonEvents.js"></script>
-
-    
-
-
+	<script type="text/javascript" src="scripts/sidebarScript.js"></script>    
+			 
         <script type="text/javascript" src="scripts/buttonEvents.js"></script>
         <script type="text/javascript" src="scripts/salesByRetailer.js"></script>
-
+        <script type="text/javascript" src=scripts/showRetailers.js></script>	
 
 	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
 </body>
