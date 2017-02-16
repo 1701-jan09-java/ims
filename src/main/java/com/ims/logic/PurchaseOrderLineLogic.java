@@ -21,10 +21,10 @@ public class PurchaseOrderLineLogic {
 	
 	@Autowired
 	private DAOPurchaseOrderLine dao;
-	
+
 	@Autowired
 	private DAOProduct daoProd;
-	
+
 	@Autowired
 	private DAOPurchaseOrder daoPO;
 	
