@@ -48,12 +48,11 @@ Define Top of Page Banner
 	</nav>
 	<div id="mySideNav" class="sidenav">
 		<a href="#">Dash Board</a>
-		<a href="#">Catalogue</a>
+		<a href="#" id="productsButton">Product Catalogue</a>
 		<a href="#" id="retailersButton">Retailers</a>
 		<a href="#">Orders</a>
 		<a href="#" id="salesButton">Sales</a>
-        <a href="#" id="productsButton">Products</a>
-        <a href="#" id="categoriesButton">Categories</a>
+        
 	</div>
 
 <!--				 
@@ -61,41 +60,86 @@ Define Top of Page Banner
 		Full Page when Control Panel is Toggled Reduced
 		Page-view size when CP is Toggled Exposed
 -->
-	<div class = "container-fluid" id = "ResultsView">test</div>
+	<div class = "container-fluid" id = "ResultsView">
 
-<!--
---Template
-		<div class = "row" id = "RetailRow">
-			<div class = "col-md-6">
-				<p>RetailerID</p>
-				<button id = "Inventory">Inventory</button>
-				<button id = "Sales">Sales</button>
-				<button id = "Orders">Orders</button>
-				<button class = "collapse" id = "MakeSale" data-toggle="collapse" data-target="#MakeSaleInfo">
-					Make Sale
-				</button>	
-					<div id = "MakeSaleInfo" class = "collapse-in">
-						<button id = "addLine">APPENDS COPY OF THIS DIV TO MakeSale BUTTON AND REMOVES ADDLINE AND SUBMIT FROM THIS ROW</button>
-						<div class = "drop-down">Product</div>
-						<input id = "userInput" type = "text"/>
-						<button id = "submitSale">Submit</button>
-					</div>
-				<button class = "collapse" id = "MakeOrder" data-toggle="collapse" data-target="#MakeOrderInfo">
-					Make Order
-				</button>	
-					<div id = "MakeSaleInfo" class = "collapse-in">		
-						<div class = "drop-down">Product</div>
-						<input id = "userInput" type = "text"/>
-						<button id = "submitOrder">Submit</button>
-					</div>
+		<div class = "row RetailRow">
+			<p id = "ID">RetailerID</p>
+			<div class = "btn-group">
+				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
+				<button type = "button" class = "btn RetailButton salesButton">Sales</button>
+				<button type = "button" class = "btn RetailButton ordersButton">Orders</button>
 			</div>
-----------
-
+			<div class = "btn-group pull-right">
+				<button class = "btn RetailButton makeSaleButton">Make Sale</button>
+				<button class = "btn RetailButton makeOrderButton">Make Order</button>
+			</div>
+				
+		<!-- Dropdowns append here -->
+				
+			<div class = "MakeOrderInfo hidden">
+			<p id = "Identifier">Make an Order</p>
+			<div class = "btn-group" role = "group">
+				<div class = "btn-group supplierDropdown" role = "group" >
+					<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">
+					Supplier <span class = "caret"></span></button>
+					<ul class = "dropdown-menu" role = "menu">
+						<li><a href = "#"> Supplier 1 </a></li>
+						<li><a href = "#"> Supplier 2 </a></li>
+					</ul>
+				</div>
+				<div class = "btn-group pull-right" role = "group">
+					<button type = "button" class = "btn addLine">Add Line</button>
+					<button type = "button" class = "btn removeLine">Remove Line</button>
+					<button type = "button" class = "btn pull-right submitOrder">Submit</button>
+				</div>
+			</div>
+			
+			<div class="productOrder">
+				<div class = "btn-group orderLine" role = "group">
+					<div class = "btn-group" role = "group">
+						<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">
+						Product <span class = "caret"></span></button>
+						<ul class = "dropdown-menu" role = "menu">
+							<li><a href = "#">Product 1</a></li>
+							<li><a href = "#">Product 2</a></li>
+						</ul>
+					</div>
+					<div class = "input-group">
+						<input id = "userInput" type = "text" class = "form-control" placeholder = "Quantity"/>
+					</div>
+				</div>
+			</div>
 		</div>
-	
+		
+		<div class = "MakeSaleInfo hidden">
+			<p id = "Identifier">Make a Sale</p>
+			<div class = "btn-group saleLine" role = "group">
+				<div class = "btn-group" role = "group">
+					<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">
+					Product <span class = "caret"></span></button>
+					<ul class = "dropdown-menu" role = "menu">
+						<li><a href = "#">Product 1</a></li>
+						<li><a href = "#">Product 2</a></li>
+					</ul>
+				</div>
+				<div class = "col-sm-4" style = "padding:0; margin-top:2px">
+					<div class = "input-group">
+						<input id = "userInput" type = "text" class = "form-control" placeholder = "Quantity"/>
+					</div>
+				</div>
+				<button type = "button" class = "btn submitSale">Submit</button>	
+			</div>
+		</div>
+		
+		<!-- RetailRows will append here -->
+				
+			
+		</div>
+	</div>
 		
 		
 		
+<!--		
 Define Control Panel
 		Drop-down hiding / exposing
 		Contains Dashboard
@@ -145,16 +189,13 @@ Define Control Panel Tabs
 		crossorigin="anonymous"></script>
 
 	<!-- bootstrap.js -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
-	<script type="text/javascript"
-		src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="scripts/sidebarScript.js"></script>
-        <script type="text/javascript" src="scripts/buttonEvents.js"></script>
+    <script type="text/javascript" src="scripts/buttonEvents.js"></script>
 
 	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
 </body>
