@@ -2,87 +2,7 @@ var EVENTS = {
     
 };
 
-var saleButton;
-var orderButton;
-
 $(document).ready(function() {
-
-    $('.dropdown-toggle').dropdown();
-    
-    $('.inventoryButton').on('click', function(){
-    	var view = $('#ResultsView');
-    	var row = $('.RetailRow');
-    	var clone = row.clone(true);
-    	clone.removeClass('RetailRow');
-    	clone.addClass('RetailRowClone');
-    	view.append(clone);
-    });
-    
-    $('.submitOrder').on('click', function(){
-    	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-    	uncle.find(".orderClone").each(function(){
-    		$(this).remove();
-    	})
-    });
-    
-    $('.addLine').on('click',function(){
-    	
-		var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-		var elmnt = uncle.find(".orderLine");
-    	var clone = elmnt.clone(true);
-    	clone.removeClass("orderLine");
-    	clone.addClass("orderClone");
-
-		uncle.append(clone);
-		
-    });
-    
-    $('.removeLine').on('click',function(){
-    	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-    	$('.orderClone:last-child', uncle).remove();
-    });
-    
-    $('.makeOrderButton').click(function(){
-    	var grandparent = $(this).parent().parent();
-    	
-    	if(grandparent.hasClass('RetailRow')){
-	    	var uncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
-	    	var saleUncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
-    	} else {
-    		var uncle = $(this).parents('.RetailRowClone').find(".MakeOrderInfo");
-	    	var saleUncle = $(this).parents('.RetailRowClone').find(".MakeSaleInfo");
-    	}
-    	if(uncle.hasClass('hidden')){
-    		uncle.removeClass('hidden');
-    	} else {
-    		uncle.addClass('hidden');
-    	}
-    	
-    	if(!saleUncle.hasClass('hidden')){
-    		saleUncle.addClass('hidden');
-    	}
-    });
-    
-    $('.makeSaleButton').click(function(){
-    	var grandparent = $(this).parent().parent();
-    	
-    	if(grandparent.hasClass('RetailRow')){
-	    	var uncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
-	    	var orderUncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
-    	} else {
-    		var uncle = $(this).parents('.RetailRowClone').find(".MakeSaleInfo");
-	    	var orderUncle = $(this).parents('.RetailRowClone').find(".MakeOrderInfo");
-    	}
-    	if(uncle.hasClass('hidden')){
-    		uncle.removeClass('hidden');
-    	} else {
-    		uncle.addClass('hidden');
-    	}
-    	
-    	if(!orderUncle.hasClass('hidden')){
-    		orderUncle.addClass('hidden');
-    	}
-    });
     
     EVENTS.viewArea = $("#ResultsView");
     
@@ -199,40 +119,39 @@ $(document).ready(function() {
         }
     };
     
-    var updateViewPurchaseOrderByRetailer = function(data) {
+    var updateViewPurchaseOrderByRetailer = function(data, row) {
+    	var myRow = row;
+    	var newRow = $("<div class='orderTable container-fluid'></div>");
     	console.log(data);
-    	console.log("purchaseOrderByRetailerButton");
-    	EVENTS.viewArea.empty();
-    	EVENTS.viewArea.append("<div class='col-sm-2'>PO ID</div>");
-    	EVENTS.viewArea.append("<div class='col-sm-3'>Purchase Date</div>");
-        EVENTS.viewArea.append("<div class='col-sm-3'>Supplier Name</div>");
-        EVENTS.viewArea.append("<div class='col-sm-1'>Retailer Name</div>");
-        EVENTS.viewArea.append("<div class='col-sm-1'>Cost</div>");
-        EVENTS.viewArea.append("<div class='col-sm-2'>Sale Date</div>");
+    	console.log(newRow);
+    	
+    	
+    	newRow.append("<div class='col-sm-1'>ID</div>");
+    	newRow.append("<div class='col-sm-2'>Date</div>");
+    	newRow.append("<div class='col-sm-3'>Supplier Name</div>");
+    	newRow.append("<div class='col-sm-3'>Product Name</div>");
+    	newRow.append("<div class='col-sm-2'>Quantity</div>");
+    	newRow.append("<div class='col-sm-1'>Cost</div>");
     	
         for (i=0; i<data.length; i++) {
         	
-        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].id+"</div>");
-        	 EVENTS.viewArea.append("<div id='retailer"+i+"' class='col-sm-3'></div>");
-        	 EVENTS.viewArea.append("<div id='product"+i+"' class='col-sm-3'></div>");
-        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].productQuantity+"</div>");
-        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].cost+"</div>");
-        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].saleDate+"</div>");
-        	 
-        	 var r = $("#retailer"+i);
-        	 console.log(r);
-        	 var p = $("#product"+i);
-        	 console.log(p);
-        	 
-        	 r.html(r.html()+data[i].retailer.name);
-        	 p.html(p.html()+data[i].product.name);
+        	newRow.append("<div class='col-sm-1'>"+data[i].purchaseOrder.id+"</div>");
+        	newRow.append("<div class='col-sm-2'>"+data[i].purchaseOrder.purchaseDate+"</div>");
+        	newRow.append("<div class='col-sm-3'>"+data[i].purchaseOrder.supplier.name+"</div>");
+        	console.log(data[i].product);
+        	console.log(data[i].product.name);
+        	newRow.append("<div class='col-sm-3'>"+data[i].product.name+"</div>");
+        	newRow.append("<div class='col-sm-2'>"+data[i].quantity+"</div>");
+        	newRow.append("<div class='col-sm-1'>"+data[i].cost+"</div>");
         	 
         }
+        myRow.append(newRow);
     }
 
     
-    var sendRequest = function (group,id) {
+    var sendRequest = function (group,id,row) {
         var tempUrl = "/ims/"+group+"/";
+        var myRow = row;
         
         if (id) {
             tempUrl += id;
@@ -252,8 +171,8 @@ $(document).ready(function() {
                 	updateViewRetailers(data);
                 } else if(group === "sale") {
                 	updateViewSales(data);
-                } else if(group === "purchase-order") {
-                	updateViewPurchaseOrderByRetailer(data);
+                } else if(group === "purchase-order-line/po") {
+                	updateViewPurchaseOrderByRetailer(data,myRow);
                 }
 
             },
@@ -298,7 +217,10 @@ $(document).ready(function() {
     	sendRequest("sale");
     });
     
-    $("#purchaseOrderByRetailerButton").click(function(){
-    	sendRequest("purchase-order");
+    $(".ordersButton").click(function(){
+    	var uncle = $(this).parents('.RetailRow').find('.myID');
+    	var id = uncle.html();
+    	var grandparent = $(this).parents('.RetailRow');
+    	sendRequest("purchase-order-line/po", id, grandparent);
     });
 });
