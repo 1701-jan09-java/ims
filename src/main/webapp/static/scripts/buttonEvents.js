@@ -141,6 +141,8 @@ $(document).ready(function() {
                 	updateViewRetailers(data);
                 } else if(group === "sale") {
                 	updateViewSales(data);
+                } else if(group === "purchase-order/retailer") {
+                	updateViewPurchaseOrderByRetailer(data);
                 }
 
             },
