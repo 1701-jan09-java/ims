@@ -4,7 +4,84 @@ var EVENTS = {
 
 $(document).ready(function() {
     
-    EVENTS.viewArea = $("#ResultsView");
+$('.dropdown-toggle').dropdown();
+    
+    $('.inventoryButton').on('click', function(){
+        var view = $('#ResultsView');
+        var row = $('.RetailRow');
+        var clone = row.clone(true);
+        clone.removeClass('RetailRow');
+        clone.addClass('RetailRowClone');
+        view.append(clone);
+    });
+    
+    $('.submitOrder').on('click', function(){
+        var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
+        uncle.find(".orderClone").each(function(){
+            $(this).remove();
+        })
+    });
+    
+    $('.addLine').on('click',function(){
+        
+        var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
+        var elmnt = uncle.find(".orderLine");
+        var clone = elmnt.clone(true);
+        clone.removeClass("orderLine");
+        clone.addClass("orderClone");
+
+        uncle.append(clone);
+        
+    });
+    
+    $('.removeLine').on('click',function(){
+        var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
+        $('.orderClone:last-child', uncle).remove();
+    });
+    
+    $('.makeOrderButton').click(function(){
+        var grandparent = $(this).parent().parent();
+        
+        if(grandparent.hasClass('RetailRow')){
+            var uncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
+            var saleUncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
+        } else {
+            var uncle = $(this).parents('.RetailRowClone').find(".MakeOrderInfo");
+            var saleUncle = $(this).parents('.RetailRowClone').find(".MakeSaleInfo");
+        }
+        if(uncle.hasClass('hidden')){
+            uncle.removeClass('hidden');
+        } else {
+            uncle.addClass('hidden');
+        }
+        
+        if(!saleUncle.hasClass('hidden')){
+            saleUncle.addClass('hidden');
+        }
+    });
+    
+    $('.makeSaleButton').click(function(){
+        var grandparent = $(this).parent().parent();
+        
+        if(grandparent.hasClass('RetailRow')){
+            var uncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
+            var orderUncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
+        } else {
+            var uncle = $(this).parents('.RetailRowClone').find(".MakeSaleInfo");
+            var orderUncle = $(this).parents('.RetailRowClone').find(".MakeOrderInfo");
+        }
+        if(uncle.hasClass('hidden')){
+            uncle.removeClass('hidden');
+        } else {
+            uncle.addClass('hidden');
+        }
+        
+        if(!orderUncle.hasClass('hidden')){
+            orderUncle.addClass('hidden');
+        }
+    });
+    
+	EVENTS.viewArea = $("#ResultsView");
     
     var updateViewProducts = function(data){
         EVENTS.viewArea.empty();
@@ -218,9 +295,28 @@ $(document).ready(function() {
     });
     
     $(".ordersButton").click(function(){
-    	var uncle = $(this).parents('.RetailRow').find('.myID');
-    	var id = uncle.html();
-    	var grandparent = $(this).parents('.RetailRow');
-    	sendRequest("purchase-order-line/po", id, grandparent);
+    	var ancestor = $(this).parent().parent();
+    	if(!ancestor.children().hasClass("orderTable")) {
+	    	var uncle;
+	    	var id;
+	    	var grandparent;
+	    	
+	    	if(ancestor.hasClass("RetailRow")) {
+		    	uncle = $(this).parents('.RetailRow').find('.myID');
+		    	id = uncle.html();
+		    	console.log(id);
+		    	console.log(uncle);
+		    	grandparent = $(this).parents('.RetailRow');
+	    	} else {
+	    		uncle = $(this).parents('.RetailRowClone').find('.myID');
+		    	id = uncle.html();
+		    	console.log(id);
+		    	console.log(uncle);
+		    	grandparent = $(this).parents('.RetailRowClone');
+	    	}
+    	
+    	
+    		sendRequest("purchase-order-line/po", id, grandparent);
+    	}
     });
 });
