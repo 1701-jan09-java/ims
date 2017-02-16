@@ -117,6 +117,37 @@ $(document).ready(function() {
         	 p.html(p.html()+data[i].product.name);
         	 
         }
+    };
+    
+    var updateViewPurchaseOrderByRetailer = function(data) {
+    	console.log(data);
+    	console.log("purchaseOrderByRetailerButton");
+    	EVENTS.viewArea.empty();
+    	EVENTS.viewArea.append("<div class='col-sm-2'>PO ID</div>");
+    	EVENTS.viewArea.append("<div class='col-sm-3'>Purchase Date</div>");
+        EVENTS.viewArea.append("<div class='col-sm-3'>Supplier Name</div>");
+        EVENTS.viewArea.append("<div class='col-sm-1'>Retailer Name</div>");
+        EVENTS.viewArea.append("<div class='col-sm-1'>Cost</div>");
+        EVENTS.viewArea.append("<div class='col-sm-2'>Sale Date</div>");
+    	
+        for (i=0; i<data.length; i++) {
+        	
+        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].id+"</div>");
+        	 EVENTS.viewArea.append("<div id='retailer"+i+"' class='col-sm-3'></div>");
+        	 EVENTS.viewArea.append("<div id='product"+i+"' class='col-sm-3'></div>");
+        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].productQuantity+"</div>");
+        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].cost+"</div>");
+        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].saleDate+"</div>");
+        	 
+        	 var r = $("#retailer"+i);
+        	 console.log(r);
+        	 var p = $("#product"+i);
+        	 console.log(p);
+        	 
+        	 r.html(r.html()+data[i].retailer.name);
+        	 p.html(p.html()+data[i].product.name);
+        	 
+        }
     }
 
     
@@ -141,7 +172,7 @@ $(document).ready(function() {
                 	updateViewRetailers(data);
                 } else if(group === "sale") {
                 	updateViewSales(data);
-                } else if(group === "purchase-order/retailer") {
+                } else if(group === "purchase-order") {
                 	updateViewPurchaseOrderByRetailer(data);
                 }
 
@@ -185,5 +216,9 @@ $(document).ready(function() {
     
     $("#salesButton").click(function(){
     	sendRequest("sale");
+    });
+    
+    $("#purchaseOrderByRetailerButton").click(function(){
+    	sendRequest("purchase-order");
     });
 });
