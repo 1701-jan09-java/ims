@@ -23,7 +23,9 @@ public class PurchaseOrderLogic {
 
 	@Autowired
 	private DAOPurchaseOrder dao;
+	@Autowired
 	private SupplierLogic suppLogic;
+	@Autowired
 	private RetailerLogic retLogic;
 	
 	public PurchaseOrder getPurchaseOrder(int poId) {
