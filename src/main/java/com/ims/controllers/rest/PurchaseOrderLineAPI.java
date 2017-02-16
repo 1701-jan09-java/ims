@@ -12,24 +12,24 @@ import com.ims.domain.PurchaseOrderLine;
 import com.ims.logic.PurchaseOrderLineLogic;
 
 @RestController
-@RequestMapping(value="/purchaseorderline")
+@RequestMapping(value="/purchase-order-line")
 public class PurchaseOrderLineAPI {
 	
 	@Autowired
 	private PurchaseOrderLineLogic polLogic;
 	
-	/*
+	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	public PurchaseOrderLine getPurchaseOrderLine(@PathVariable("id") Integer id) {
-		PurchaseOrderLine pol = PurchaseOrderLineLogic.getPurchaseOrderLine(id);
+		PurchaseOrderLine pol = polLogic.getPurchaseOrderLine(id);
 		return pol;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="po/{id}")
 	public List<PurchaseOrderLine> getAllPurchaseOrderLinesByPO(@PathVariable("id") Integer id) {
-		List<PurchaseOrderLine> purchaseOrderLine = PurchaseOrderLineLogic.getAllPurchaseOrderLinesByPO(id);
+		List<PurchaseOrderLine> purchaseOrderLine = polLogic.getAllPurchaseOrderLinesByPO(id);
 		return purchaseOrderLine;
 	}
-	*/
+	
 
 }

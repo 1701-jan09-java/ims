@@ -23,13 +23,15 @@ public class PurchaseOrderAPI {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	public PurchaseOrder getPurchaseOrder(@PathVariable("id") Integer id) {
-		throw new NotYetImplementedException();
+		PurchaseOrder po = poLogic.getPurchaseOrder(id);
+		return po;
 	}
 	
 	//wait
 	@RequestMapping(method=RequestMethod.GET, value="")
 	public List<PurchaseOrder> getAllProducts() {
-		throw new NotYetImplementedException();
+		List<PurchaseOrder> purchaseOrder = poLogic.getAllPurchaseOrders();
+		return purchaseOrder;
 	}
 	
 //	@RequestMapping(method=RequestMethod.POST, value="", params={"supplierId","retailerId","cost"})
