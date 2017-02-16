@@ -161,7 +161,11 @@ $(document).ready(function() {
         	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
              EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
              EVENTS.viewArea.append("<div class='col-md-2'><button onclick=\"salesByRetButton('"+data[i].id+"')\">Sales</button></div>");             
-             EVENTS.viewArea.append("<div class='col-md-2'><button onclick=\"inventoryByRetButton('"+data[i].id+"')\">Inventory</button></div>");             
+             EVENTS.viewArea.append("<div class='col-md-2'><button onclick=\"inventoryByRetButton('"+data[i].id+"')\">Inventory</button></div>");
+//             
+//             
+//             <button id="genMatchup" types="button" class="btn btn-primary btn-lg">Generate New Matchup!</button>
+//             EVENTS.viewArea.append("<div class='col-md-2'><class=\"btn btn-primary btn-lg\" \"button\" onclick=\"inventoryByRetButton('"+data[i].id+"')\">Inventory</button></div>");             
              EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-4'></div>");
              EVENTS.viewArea.append("</div");
              

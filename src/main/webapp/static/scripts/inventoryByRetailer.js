@@ -15,7 +15,9 @@ global.invProdQuantArray=[];
 	 
 	function clearArrays(){
 		// not sure if want to use object array or field arrays
-		global.invObjArray=[];
+		global.invObjArray=[];// Inventory Object Array
+		
+		// data fields arrays
 		global.invProdIdArray=[];
 		global.invProdNameArray=[];
 		global.invProdQuantArray=[];
@@ -34,7 +36,9 @@ global.invProdQuantArray=[];
 
 	function displayData(invArray){
 		for(ii=0;ii<invArray.length;ii++){
-			console.log(global.invObjArray[ii]);
+			console.log("Inventory Id: " +global.invObjArray[ii].id);
+			console.log("Product: "+ global.invObjArray[ii].product.name);
+			console.log("Amount: "+global.invObjArray[ii].productQuantity);
 		}
 	}
 	 
@@ -46,9 +50,7 @@ global.invProdQuantArray=[];
     	  url: inventURL,
     	  success: function(data){
     		  clearArrays();
-    		  global.invObjArray = [];
     		  global.invObjArray=(data);
-//    		  console.log(data);
     		  storeData(data);
      	  },
     	  
