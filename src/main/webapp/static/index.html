@@ -62,7 +62,7 @@ Define Top of Page Banner
 -->
 	<div class = "container-fluid" id = "ResultsView">
 
-		<div class = "row RetailRow">
+		<div id="ret-5" class = "row RetailRow">
 			<p id = "ID">RetailerID</p>
 			<div class = "btn-group">
 				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
@@ -95,7 +95,16 @@ Define Top of Page Banner
 			</div>
 			
 			<div class="productOrder">
-				<div class = "btn-group orderLine" role = "group">
+                            <div class="row">
+                                <div class="col-md-2 text-center">Product</div>
+                                <div class="col-md-10">
+                                    <div class="col-md-3 text-center">Product ID</div>
+                                    <div class="col-md-3 text-center">Unit Cost</div>
+                                    <div class="col-md-3 text-center">Quantity</div>
+                                    <div class="col-md-3 text-center">Total Cost</div>
+                                </div>
+                            </div>
+<!--				<div class = "btn-group orderLine" role = "group">
 					<div class = "btn-group" role = "group">
 						<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">
 						Product <span class = "caret"></span></button>
@@ -107,7 +116,7 @@ Define Top of Page Banner
 					<div class = "input-group">
 						<input id = "userInput" type = "text" class = "form-control" placeholder = "Quantity"/>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 		
