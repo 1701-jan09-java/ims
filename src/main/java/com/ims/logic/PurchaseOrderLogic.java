@@ -24,8 +24,14 @@ public class PurchaseOrderLogic {
 
 	@Autowired
 	private DAOPurchaseOrder dao;
+	
+	@Autowired
 	private SupplierLogic suppLogic;
+	
+	@Autowired
 	private RetailerLogic retLogic;
+	
+	@Autowired
 	private PurchaseOrderLineLogic polLogic;
 	
 	public PurchaseOrder getPurchaseOrder(int poId) {
@@ -58,6 +64,7 @@ public class PurchaseOrderLogic {
 		po.setSupplier(daoSupp.getSupplier(supplierId));
 		po.setCost(cost);
 		dao.createPurchaseOrder(po);
+		// Grab creation date from db
 		po = dao.getPurchaseOrder(po.getId());
 		return po;
 	}
@@ -73,8 +80,11 @@ public class PurchaseOrderLogic {
 	public PurchaseOrder createPurchaseOrder(PurchaseOrderDTO poDto) {
 		Supplier supplier = suppLogic.getSupplier(poDto.getSupId());
 		Retailer retailer = retLogic.viewRetailerById(poDto.getRetId());
+		System.out.println(supplier+" "+retailer+" "+poDto.getCost());
 		PurchaseOrder po = new PurchaseOrder(supplier, retailer, poDto.getCost());
 		createPurchaseOrder(po);
+		// Grab creation date from db
+		po = dao.getPurchaseOrder(po.getId());
 		for (POLineDTO polDTO : poDto.getLines()){
 			polLogic.createPurchaseOrderLine(polDTO, po.getId());
 		}

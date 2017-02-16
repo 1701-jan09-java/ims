@@ -46,10 +46,10 @@ public class PurchaseOrderAPI {
 //	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="", consumes="application/json")
-	public boolean createPurchaseOrder(@RequestBody PurchaseOrderDTO json) {
-		System.out.println(json);
+	public boolean createPurchaseOrder(@RequestBody PurchaseOrderDTO poDTO) {
+		System.out.println(poDTO);
 		
-		PurchaseOrder po = poLogic.createPurchaseOrder(json);
+		PurchaseOrder po = poLogic.createPurchaseOrder(poDTO);
 		
 		if (po == null) {
 			return false;
