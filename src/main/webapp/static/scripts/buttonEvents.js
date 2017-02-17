@@ -341,7 +341,6 @@ $(document).ready(function() {
     var checkPidField = function(pidField){
         var prod = getProdById(pidField.val());
         var prodCheck = false;
-        console.log(prod);
         if (prod === undefined) {
             pidField.addClass("invalid-input");
         } else {
@@ -355,7 +354,6 @@ $(document).ready(function() {
     var checkQtyField = function(qtyField) {
         var qty = Number(qtyField.val());
         var qtyCheck = false;
-        console.log(qty);
         if (!Number.isInteger(qty) || qty < 1) {
             qtyField.addClass("invalid-input");
         } else {
@@ -386,7 +384,7 @@ $(document).ready(function() {
     }
     
     var createPo = function(retRow) {
-        var retId = retRow.attr("id").split("-")[1];
+        var retId = retRow.find("p").html();
         var supId = 20;
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
@@ -429,7 +427,6 @@ $(document).ready(function() {
         orderDiv.find(".line-cost-display").each(function() {
             total += Number($(this).val());
         });
-        console.log(total);
         orderDiv.find(".total-cost-display").val(total);
     }
     
@@ -524,8 +521,6 @@ $(document).ready(function() {
 	    	if(ancestor.hasClass("RetailRow")) {
 		    	uncle = $(this).parents('.RetailRow').find('.myID');
 		    	id = uncle.html();
-		    	console.log(id);
-		    	console.log(uncle);
 		    	grandparent = $(this).parents('.RetailRow');
 	    	} else {
 	    		uncle = $(this).parents('.RetailRowClone').find('.myID');
