@@ -1,8 +1,12 @@
 package com.ims.main;
 
+import com.ims.logic.InventoryLogic;
+
 public class MyMain {
 
 	public static void main(String[] args) {
+		
+		
 		
 		/*
 		Session session = HibernateUtil.getSession(); 

@@ -36,5 +36,6 @@ public class InventoryLogic {
 		List<Inventory> list = daoInv.getAllInventory(retailerId);
 		return list;
 	}
+	
 
 }
