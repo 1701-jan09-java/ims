@@ -17,12 +17,20 @@
 
 <!-- 	Enable @Transactional annotation	 -->
   <tx:annotation-driven/>
-  
+  <!--  AWS DB
     <bean id="mydataSource" class="org.apache.commons.dbcp.BasicDataSource">  
         <property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"></property>  
         <property name="url" value="#{systemEnvironment['IMS_URL']}"></property>  
         <property name="username" value="#{systemEnvironment['IMS_USER']}"></property>  
         <property name="password" value="#{systemEnvironment['IMS_PASS']}"></property>  
+    </bean>
+    -->
+    <!-- POSTGRESQL -->
+    <bean id="mydataSource" class="org.apache.commons.dbcp.BasicDataSource">  
+        <property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"></property>  
+        <property name="url" value="#{systemEnvironment['IMS_URL']}"></property>  
+        <property name="username" value="#{systemEnvironment['PG_IMS_USER']}"></property>  
+        <property name="password" value="#{systemEnvironment['PG_IMS_PASS']}"></property>  
     </bean>
     
     <bean id="mySessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
