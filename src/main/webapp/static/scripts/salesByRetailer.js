@@ -14,14 +14,19 @@ function salesByRetButton(input) {
 		     	  method: "GET",
 		     	  url: retailURL,
 	});
+
 	$.when(ajax1).done(function(data){
-		 console.log(data); 
-  	 	 global.retailData = data.slice();
+		 
+  	 	global.retailData = data.slice();
+  	 	console.log(global.retailData);
   	 	global.modalBody = document.getElementById("modal-body");
-  	 	global.modalHeader = document.getElementById("modal-title")
+  	 	console.log(global.modalBody);
+  	 	global.modalHeader = document.getElementById("modal-title");
+  	 	
   	 	var saleRow = document.createElement("div");
   	 	saleRow.className = "row";
   	 	global.modalBody.appendChild(saleRow);
+  	 	console.log(global.modalBody);
   	 	
   	 	var saleHeader = document.createElement("div");
   	 	saleHeader.className = "col-md-12";
@@ -107,5 +112,6 @@ function salesByRetButton(input) {
 
 
 
+ 
  
  

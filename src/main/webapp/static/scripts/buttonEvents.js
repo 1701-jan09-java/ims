@@ -84,8 +84,6 @@ $(document).ready(function() {
     	}
     });
     
-    EVENTS.viewArea = $("#ResultsView");
-    
     var updateViewProducts = function(data){
         EVENTS.viewArea.empty();
         EVENTS.viewArea.append("<div class='col-xs-2'>Product ID</div>");
@@ -175,22 +173,7 @@ $(document).ready(function() {
             	 
              };
         }
-     
-        EVENTS.viewArea.append("<div id=\"modal\" class=\"modal fade\" role='dialog'>" +
-        		"<div class=\"modal-dialog\">" +
-        		"<div class=\"modal-content\">" +
-        		"<div class=\"modal-header\">" +
-                "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"></button>" +
-                "<h4 id=\"modal-title\"></h4>" +
-                "</div>" +
-                "<div class=\"modal-body\" id= \"modal-body\">" +
-                "</div>" +
-                "<div class=\"modal-footer\">" +
-                "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</div>");
+
     };
     
     var updateViewSales = function(data) {
@@ -264,7 +247,11 @@ $(document).ready(function() {
         } else console.log("Invalid Entry");
     });
     
-    $("#productsButton").click(function(){
+    $("#productsButton").click(function(){       	
+    	hideOtherDivs();
+    	
+    	$("#ProductsView").removeClass("hidden");
+    	EVENTS.viewArea = $("#ProductsView");
         sendRequest("product");
     });
     
@@ -279,14 +266,29 @@ $(document).ready(function() {
     
     $("#categoriesButton").click(function(){
         sendRequest("category");
-    });
+    }); 
+   
     
-    $("#retailersButton").click(function(){
-    	sendRequest("retailer");
-    });
-    
-    $("#salesButton").click(function(){
+    $("#salesButton").click(function(){    	
+    	hideOtherDivs();
+    	$("#SalesView").removeClass("hidden");
+    	EVENTS.viewArea = $("#SalesView");
     	sendRequest("sale");
     });
+    
+    function hideOtherDivs() {
+    	
+    	$("#Loading").removeClass("hidden");
+    	$("#ProductsView").addClass("hidden");
+    	$("#SalesView").addClass("hidden");
+    	$("#Retailers").addClass("hidden");
+    	$("#Welcome").addClass("hidden");
+    	//$("#SalesView").addClass("hidden");
+    	
+    	
+    	
+    	
+    	
+    }
     
 });
