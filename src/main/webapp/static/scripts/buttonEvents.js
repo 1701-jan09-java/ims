@@ -77,7 +77,7 @@ $(document).ready(function() {
     
     var addOrderLine = function(orderDiv) {
         var retId = orderDiv.parents(".RetailRow").attr("id");
-        var id = orderDiv.children().length+1;
+        var id = orderDiv.children(".orderLine").length;
         var orderLineId = retId+'-POL-'+id;
         
         orderDiv.append('<div id="'+orderLineId+'" class = "btn-group orderLine" role = "group">'+
@@ -90,10 +90,10 @@ $(document).ready(function() {
 						'</ul>'+
 					'</div>'+
 					'<div class = "input-group col-md-10">'+
-						'<div class="col-md-3 text-box"><input class="text-right" type = "text" class = "pid-input form-control" /></div>'+
-                                                '<div class="col-md-3 text-box"><input class="text-right" type = "text" class = "form-control" value = "0" disabled="disabled"/></div>'+
-                                                '<div class="col-md-3 text-box"><input class="text-right" type = "text" class = "qty-input form-control" value="0"/></div>'+
-                                                '<div class="col-md-3 text-box"><input class="text-right" type = "text" class = "form-control" value = "0" disabled="disabled"/></div>'+
+						'<div class="col-md-3 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
+                                                '<div class="col-md-3 text-box"><input class="text-right form-control" type = "text" value = "0" disabled="disabled"/></div>'+
+                                                '<div class="col-md-3 text-box"><input class="text-right qty-input form-control" type = "text" value="0"/></div>'+
+                                                '<div class="col-md-3 text-box"><input class="text-right form-control" type = "text" value = "0" disabled="disabled"/></div>'+
 					'</div>'+
 				'</div>');
     };
@@ -232,7 +232,7 @@ $(document).ready(function() {
         	 p.html(p.html()+data[i].product.name);
         	 
         }
-    }
+    };
 
     
     var sendRequest = function (group,id) {
@@ -269,15 +269,29 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.attr("id").split("-")[1];
+        var supId = 123;
         var orderLines = retRow.find(".orderLine");
         var product;
         var qty;
+        var cost = 500;
+        
+        var poObj = {
+            retId: retId,
+            supId: supId,
+            cost: cost,
+            lines: []
+        };
+        
         for (let i=0;i<orderLines.length;i++) {
             product = $($(orderLines[i]).find(".pid-input")[0]).val();
-            qty = $($(orderLines[i]).find(".pid-input")[0]).val();
+            qty = $($(orderLines[i]).find(".qty-input")[0]).val();
             console.log(product);
             console.log(qty);
+            poObj.
         }
+        
+        
+        
     };
     
     var sendCreatePoRequest = function (poObj) {
