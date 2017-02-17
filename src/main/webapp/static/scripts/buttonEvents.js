@@ -159,7 +159,7 @@ $(document).ready(function() {
         	 EVENTS.viewArea.append("<div class='row'>");
         	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
              EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
-             EVENTS.viewArea.append("<div class='col-md-2'><button onclick=\"salesByRetButton('"+data[i].id+"')\">Sales</button></div>");             
+             EVENTS.viewArea.append("<div class='col-md-2'><button class=\"btn btn-primary open-modal\"  onclick=\"salesByRetButton('"+data[i].id+"');\">Sales</button></div>");             
              EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-6'></div>");
              EVENTS.viewArea.append("</div");
              
@@ -174,7 +174,23 @@ $(document).ready(function() {
             	a.html(a.html() + fullAddr);
             	 
              };
-        }    	
+        }
+     
+        EVENTS.viewArea.append("<div id=\"modal\" class=\"modal fade\" role='dialog'>" +
+        		"<div class=\"modal-dialog\">" +
+        		"<div class=\"modal-content\">" +
+        		"<div class=\"modal-header\">" +
+                "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"></button>" +
+                "<h4 id=\"modal-title\"></h4>" +
+                "</div>" +
+                "<div class=\"modal-body\" id= \"modal-body\">" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>");
     };
     
     var updateViewSales = function(data) {
