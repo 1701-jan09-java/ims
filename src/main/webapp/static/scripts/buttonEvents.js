@@ -63,6 +63,7 @@ $(document).ready(function() {
             addOrderLine(productOrder);
         }
         $(this).parents(".orderLine").remove();
+        updateTotal(productOrder);
     });
     
     $('.makeOrderButton').click(function(){
@@ -92,6 +93,10 @@ $(document).ready(function() {
     
     var getProdById = function (id) {
         return $.grep(allProducts, function(e){ return e.id == id; })[0];
+    };
+    
+    var getProdByName = function (name) {
+        return $.grep(allProducts, function(e){ return e.name === name; })[0];
     };
     
     var addOrderLine = function(orderDiv) {
@@ -344,6 +349,19 @@ $(document).ready(function() {
         });
     };
     
+    var checkProdField = function(prodField){
+        var prod = getProdById(prodField.val());
+        var prodCheck = false;
+        if (prod === undefined) {
+            prodField.addClass("invalid-input");
+        } else {
+            prodField.removeClass("invalid-input");
+            prodCheck = true;
+        }
+        
+        return prodCheck;
+    };
+    
     var checkPidField = function(pidField){
         var prod = getProdById(pidField.val());
         var prodCheck = false;
@@ -490,6 +508,20 @@ $(document).ready(function() {
     $("#salesButton").click(function(){
     	sendRequest("sale");
     });
+
+    $("body").on("focusout", ".product-input", function() {
+        console.log(this);
+        var orderLine = $(this).parents(".orderLine");
+        var prod;
+        if (checkProdField($(this)) === true) {
+            prod = getProdByName($(this).val())
+            orderLine.find(".pid-input").val(prod.id);
+            orderLine.find(".unit-cost-display").val(prod.supplierPrice);
+            orderLine.find(".line-cost-display").val(
+                    prod.supplierPrice * orderLine.find(".qty-input").val()).change();
+        }
+    });
+
     
     $("body").on("focusout", ".pid-input", function() {
         var orderLine = $(this).parents(".orderLine");
