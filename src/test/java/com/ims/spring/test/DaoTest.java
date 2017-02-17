@@ -1,4 +1,4 @@
-package com.ims.sprint.test;
+package com.ims.spring.test;
 
 import java.util.Date;
 import java.util.List;
