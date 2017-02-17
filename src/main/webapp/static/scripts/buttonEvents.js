@@ -5,6 +5,7 @@ var EVENTS = {
 $(document).ready(function() {
 
     var allProducts;
+    var productNames = [];
 
     $('.dropdown-toggle').dropdown();
     
@@ -99,12 +100,10 @@ $(document).ready(function() {
         
         orderDiv.children(".total-row").before('<div class = "btn-group orderLine" role = "group">'+
 					'<div class = "col-xs-2 btn-group" role = "group">'+
-						'<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">'+
-						'Product <span class = "caret"></span></button>'+
-						'<ul class = "dropdown-menu" role = "menu">'+
-							'<li><a href = "#">Product 1</a></li>'+
-							'<li><a href = "#">Product 2</a></li>'+
-						'</ul>'+
+					'<div class="ui-widget">' +
+			        '<label for="products">Products: </label>' +
+			        '<input class="products">' +
+			        '</div>' +
 					'</div>'+
 					'<div class = "input-group col-xs-10">'+
                                             '<div class="col-xs-11">'+
@@ -117,7 +116,11 @@ $(document).ready(function() {
 					'</div>'+
                                         
 				'</div>');
-    
+       
+       $( ".products" ).autocomplete({
+    	   source: productNames,
+    	   autoFocus: true
+       });
     };
     
     $('.makeSaleButton').click(function(){
@@ -287,19 +290,10 @@ $(document).ready(function() {
     };
     
     var loadProducts = function(data){
-    	var menu = $('.productMenu');
-    	menu.each(function(index){
-    		$.each(data, function(indexB){
-    			var name = data[indexB].name;
-    			var option = document.createElement("li");
-    			var aaa = document.createElement("a");
-    			aaa.innerHTML = name;
-    			option.append(aaa);
-    			menu[index].append(option);
-                        allProducts = data;
-    		});
-    		
-    	});
+        allProducts = data;
+        $.each(data, function(){
+        	productNames.push(this.name);
+        });
     };
     
     var preLoad = function(group){
