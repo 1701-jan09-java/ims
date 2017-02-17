@@ -57,9 +57,10 @@ $(document).ready(function() {
     });
     
     $("body").on("click", ".clearOrderForm", function(){
-        var orderDiv = $(this).parents(".MakeOrderInfo")
+        var orderDiv = $(this).parents(".MakeOrderInfo");
         orderDiv.find(".orderLine").remove();
         addOrderLine(orderDiv);
+        updateTotal(orderDiv);
     });
     
     $("body").on("click", ".makeOrderButton", function(){
