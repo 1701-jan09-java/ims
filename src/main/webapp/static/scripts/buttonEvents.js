@@ -41,23 +41,23 @@ $('.dropdown-toggle').dropdown();
     
     $('.makeOrderButton').click(function(){
         var grandparent = $(this).parent().parent();
-        
-        if(grandparent.hasClass('RetailRow')){
-            var uncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
-            var saleUncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
-        } else {
-            var uncle = $(this).parents('.RetailRowClone').find(".MakeOrderInfo");
-            var saleUncle = $(this).parents('.RetailRowClone').find(".MakeSaleInfo");
-        }
+        var uncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
+        var saleUncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
+	var ordersUncle = $(this).parents('.RetailRow').find(".orderTable");
+
         if(uncle.hasClass('hidden')){
             uncle.removeClass('hidden');
-        } else {
+        } else {f
             uncle.addClass('hidden');
         }
         
         if(!saleUncle.hasClass('hidden')){
             saleUncle.addClass('hidden');
         }
+	    
+	if(!ordersUncle.hasClass('hidden')){
+	    ordersUncle.addClass('hidden');
+	}	
     });
     
     $('.makeSaleButton').click(function(){
@@ -296,27 +296,36 @@ $('.dropdown-toggle').dropdown();
     
     $(".ordersButton").click(function(){
     	var ancestor = $(this).parent().parent();
+	var saleUncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
+	var orderUncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
+	    
+	if(!saleUncle.hasClass('hidden')){
+            saleUncle.addClass('hidden');
+        }
+	    
+	if(!orderUncle.hasClass('hidden')){
+	    orderUncle.addClass('hidden');
+	}	    
+	
     	if(!ancestor.children().hasClass("orderTable")) {
 	    	var uncle;
 	    	var id;
 	    	var grandparent;
 	    	
-	    	if(ancestor.hasClass("RetailRow")) {
-		    	uncle = $(this).parents('.RetailRow').find('.myID');
-		    	id = uncle.html();
-		    	console.log(id);
-		    	console.log(uncle);
-		    	grandparent = $(this).parents('.RetailRow');
-	    	} else {
-	    		uncle = $(this).parents('.RetailRowClone').find('.myID');
-		    	id = uncle.html();
-		    	console.log(id);
-		    	console.log(uncle);
-		    	grandparent = $(this).parents('.RetailRowClone');
-	    	}
-    	
-    	
-    		sendRequest("purchase-order-line/po", id, grandparent);
-    	}
+			uncle = $(this).parents('.RetailRow').find('.myID');
+			id = uncle.html();
+			console.log(id);
+			console.log(uncle);
+			grandparent = $(this).parents('.RetailRow');
+	    	
+	    	sendRequest("purchase-order-line/po", id, grandparent);
+    	} else {
+			var child = ancestor.children(".orderTable");
+			if(!child.hasClass("hidden")){
+				child.addClass("hidden");
+			} else {
+				child.removeClass("hidden");
+			}
+		}
     });
 });
