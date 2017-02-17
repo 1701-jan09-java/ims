@@ -34,6 +34,12 @@ public class PurchaseOrderAPI {
 		return purchaseOrder;
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="/retailer/{id}")
+	public List<PurchaseOrder> getAllPurchaseOrdersById(@PathVariable("id") Integer id) {
+		List<PurchaseOrder> purchaseOrder = poLogic.getAllPurchaseOrdersByRetailer(id);
+		return purchaseOrder;
+	}
+	
 //	@RequestMapping(method=RequestMethod.POST, value="", params={"supplierId","retailerId","cost"})
 //	public boolean createPurchaseOrder(HttpServletRequest request) {
 //		int supplierId = Integer.parseInt(request.getParameter("supplierId"));
