@@ -186,6 +186,9 @@ div#ResultsView{
   .sidenav a {font-size: 18px;}
 }
 
+
+/* retailerSales branch additions (sharang): */
+
 .hidden{
 	display:none;
 }
@@ -193,3 +196,13 @@ div#ResultsView{
 .unhidden{
     display:block;
 }
+
+.smallRetailButton{
+	margin-right : 2px;
+	padding: 3px 4px;
+}
+
+.addr{
+	font-size: 12px;
+}
+
