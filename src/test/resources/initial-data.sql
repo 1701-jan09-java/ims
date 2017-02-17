@@ -1,0 +1,11 @@
+insert into IMS_CATEGORY values(1, 'dog stuff');
+insert into IMS_PRODUCT values(1, 'dog food', 10.00, 15.00);
+insert into IMS_ADDRESS values(1, '1600 Penn Ave', 'Washi','DC', 666);
+insert into IMS_ADDRESS values(2, '100 Pen Ave', 'Tacoma','WA', 666);
+insert into IMS_RETAILER values(1, 'John Doe',  1);
+insert into IMS_SUPPLIER values(1, 'Jane Doe',  2);
+insert into IMS_PURCHASE_ORDER values(1, to_date('2003-6-1 00:00:00','yyyy-mm-dd hh24:mi:ss'),  1,1,100.00);
+insert into IMS_RETAILER_INVENTORY values(1,1,1, 100,  50);
+insert into IMS_PRODUCT_CATEGORY values(1,1);
+insert into IMS_RETAILER_SALE values(1,1,1, 200,10.00,to_date('2004-6-1 00:00:00','yyyy-mm-dd hh24:mi:ss'));
+insert into IMS_PO_LINE values(1,1,1,10,100.00);

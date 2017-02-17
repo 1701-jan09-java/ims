@@ -24,7 +24,7 @@ Define Top of Page Banner
 		Login/Logout
 -->	
 
-	<nav class = "navbar navbar-default navbar-fixed-top" id = "Banner">
+	<nav class = "navbar navbar-inverse navbar-fixed-top" id = "Banner">
 		<div class = "container-fluid" id = "main">
 			<div class = "nav navbar-header">
 				<div class="row" id="row-style">
@@ -62,18 +62,18 @@ Define Top of Page Banner
 		Page-view size when CP is Toggled Exposed
 -->
 
-	<div class = "container-fluid" id = "ResultsView">
-	
-	  <div class = "container-fluid" id = "ProductsView"></div>
-	  
-	  <div class = "container-fluid" id = "SalesView"></div>
-	
-	  <div class = "container-fluid" id = "RetailersView">
+	<div class = "container-fluid" id = "ResultsView">	
 		
-	  <div class = "container-fluid" id = "Welcome"><h3>Welcome!</h3></div>
-	  <div class = "hidden container-fluid" id = "Loading"><h3>Loading!</h3></div>
 		
-		  <div class = "hidden row RetailRow" id = "Retailers" >
+
+		<div class = "container "><h3>Welcome!</h3></div>
+		
+		<div class = "container-fluid" id = "ProductView"></div>	
+		<div class = "container-fluid" id = "RetailerView"></div>	
+		<div class = "container-fluid" id = "Orderiew"></div>	
+		<div class = "container-fluid" id = "SalesView"></div>
+		
+		<div id = "retailers" class = "hidden row RetailRow" >
 			<p class = "myID">Retailer ID<span id="ret"></span></p> 
 			<div class = "btn-group">
 				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
@@ -86,7 +86,6 @@ Define Top of Page Banner
 			</div>
 
 		</div>
-		
 		<!-- Dropdowns append here -->
 				
 			<div class = "MakeOrderInfo hidden">
@@ -147,11 +146,10 @@ Define Top of Page Banner
 		<!-- RetailRows will append here -->
 		
 			
-		</div> <!-- end ResultsView2 -->
+		</div>
 		
 	
-	
-	</div> <!-- end ResultsView -->
+	</div>
 		
 		
 		
@@ -210,11 +208,14 @@ Define Control Panel Tabs
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 	<script type="text/javascript" src="scripts/sidebarScript.js"></script>    
 			 
         <script type="text/javascript" src="scripts/buttonEvents.js"></script>
         <script type="text/javascript" src="scripts/salesByRetailer.js"></script>
+        <script type="text/javascript" src="scripts/inventoryByRetailer.js"></script>
         <script type="text/javascript" src=scripts/showRetailers.js></script>	
+
 
 	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
 </body>
