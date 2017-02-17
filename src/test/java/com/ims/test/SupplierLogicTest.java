@@ -1,6 +1,8 @@
 package com.ims.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,11 +10,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ims.dao.DAOSupplier;
+import com.ims.domain.Supplier;
+import com.ims.logic.SupplierLogic;
+
+import static com.ims.logic.SupplierLogic.*;
 import com.ims.logic.SupplierLogic;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/beans.xml"})
 public class SupplierLogicTest {
+	
+//	@Test
+//	public void testGetSupplier() {
+//		
+//		//Setup
+//		DAOSupplier mockDaoSupplier = mock(DAOSupplier.class);
+//		
+//		//Execution
+//		
+//		Supplier supplier1 = new Supplier();
+//		Supplier supplier2 = new Supplier();
+//		Supplier supplier3 = new Supplier();
+//		
+//		when(mockDaoSupplier.DISupplier.getSupplier(1)).thenReturn(supplier1);
+//		
+//		SupplierLogic supplierLogic = new SupplierLogic();
+//		supplierLogic.setDaoSup(mockDaoSupplier);
+//		
+//		assertEquals(supplier1, supplierLogic.getSupplier(1));
+//	}
+	
 	
 	@Autowired
 	private SupplierLogic supplierLogic;

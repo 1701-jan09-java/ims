@@ -27,7 +27,7 @@ public class ProductAPI {
 		return productDto;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/")
+	@RequestMapping(method=RequestMethod.GET, value="")
 	public List<ProductDTO> getAllProducts() {
 		List<Product> products = productLogic.getAllProducts();
 		List<ProductDTO> productsDto = new ArrayList<>();

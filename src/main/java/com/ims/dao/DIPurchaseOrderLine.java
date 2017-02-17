@@ -2,12 +2,12 @@ package com.ims.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ims.domain.PurchaseOrder;
 import com.ims.domain.PurchaseOrderLine;
 
 @Component
@@ -16,38 +16,57 @@ public class DIPurchaseOrderLine implements DAOPurchaseOrderLine {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	
-	
 	@Override
-	public void createPurchaseOrderLine(PurchaseOrder po) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+	public void createPurchaseOrderLine(PurchaseOrderLine pol) {
+
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(pol);	        
 		
 	}
 
 	@Override
 	public PurchaseOrderLine getPurchaseOrderLine(int poLineId) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
-	}
-
-	@Override
-	public List<PurchaseOrderLine> getAllPurchaseOrderLines() {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
-	}
-
-	@Override
-	public void updatePurchaseOrderLine(int poLineId) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+		
+		Session session = sessionFactory.getCurrentSession();
+		PurchaseOrderLine pol = (PurchaseOrderLine) session.get(PurchaseOrderLine.class, poLineId);
+				
+		return pol;
+		
 		
 	}
 
 	@Override
-	public void deletePurchaseOrderLine(int poLineId) {
-		// TODO Auto-generated method stub
-	        throw new NotYetImplementedException();
+	public List<PurchaseOrderLine> getAllPurchaseOrderLinesByPO(int poId) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query query = session.createQuery("from PurchaseOrderLine where purchaseOrder.id = :idvalue");
+		query.setInteger("idvalue", poId);
+		
+		List<PurchaseOrderLine> pOLs = query.list();
+				
+		return pOLs;
+
+	}
+
+	@Override
+	public void updatePurchaseOrderLine(PurchaseOrderLine poLineId) {
+		
+		Session session = sessionFactory.getCurrentSession();
+				
+		session.update(poLineId);
+		
+		
+	}
+
+	@Override
+	public void deletePurchaseOrderLine(PurchaseOrderLine poLineId) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		
+		session.delete(poLineId);
 		
 	}
 

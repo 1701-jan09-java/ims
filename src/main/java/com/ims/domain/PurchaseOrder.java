@@ -38,6 +38,13 @@ public class PurchaseOrder {
 		this.retailer = retailer;
 		this.cost = cost;
 	}
+	
+	public PurchaseOrder(Supplier supplier, Retailer retailer, double cost) {
+		super();
+		this.supplier = supplier;
+		this.retailer = retailer;
+		this.cost = cost;
+	}
 
 	@Override
 	public String toString() {

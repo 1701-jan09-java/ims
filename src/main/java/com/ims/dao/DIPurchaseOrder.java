@@ -2,8 +2,11 @@ package com.ims.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.NotYetImplementedException;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,35 +20,44 @@ public class DIPurchaseOrder implements DAOPurchaseOrder {
 	
 	@Override
 	public void createPurchaseOrder(PurchaseOrder po) {
-		throw new NotYetImplementedException();
-		
+		Session session = sessionFactory.getCurrentSession();
+		session.save(po);
 	}
 
 	@Override
 	public void updatePurchaseOrder(PurchaseOrder po) {
-		throw new NotYetImplementedException();
-		
+		Session session = sessionFactory.getCurrentSession();
+		session.update(po);
 	}
 
 	@Override
-	public void deleteRPurchaseOrder(PurchaseOrder po) {
-		throw new NotYetImplementedException();
-		
+	public void deletePurchaseOrder(PurchaseOrder po) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(po);
 	}
 
 	@Override
 	public PurchaseOrder getPurchaseOrder(int id) {
-		throw new NotYetImplementedException();
+		Session session = sessionFactory.getCurrentSession();
+		PurchaseOrder po = (PurchaseOrder) session.get(PurchaseOrder.class, id);
+		return po;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrders() {
-		throw new NotYetImplementedException();
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrder.class);
+		List<PurchaseOrder> poList = criteria.list();
+		return poList;
 	}
 
 	@Override
 	public List<PurchaseOrder> getAllPurchaseOrdersByRetailer(int retailerID) {
-		throw new NotYetImplementedException();
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from PurchaseOrder where retailer.id = :idvalue");
+		query.setInteger("idvalue",retailerID);
+		List<PurchaseOrder> poList = query.list();
+		return poList;
 	}
 
 }
