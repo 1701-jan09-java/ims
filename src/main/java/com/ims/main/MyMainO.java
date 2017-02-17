@@ -9,6 +9,7 @@ import com.ims.domain.PurchaseOrderLine;
 import com.ims.dto.POLineDTO;
 import com.ims.logic.PurchaseOrderLineLogic;
 import com.ims.logic.PurchaseOrderLogic;
+import com.ims.logic.ReportsLogic;
 import com.ims.logic.RetailerLogic;
 import com.ims.logic.SupplierLogic;
 
@@ -32,11 +33,11 @@ public class MyMainO {
 //		
 //		System.out.println(PurchaseOrderLogic.getAllPurchaseOrders());
 //		System.out.println(PurchaseOrderLogic.getAllPurchaseOrdersByRetailer(1));
-		POLineDTO polDTO = new POLineDTO();
-		
-		polDTO.setProdId(100);
-		polDTO.setCount(5);
-		polDTO.setCost(150);
+//		POLineDTO polDTO = new POLineDTO();
+//		
+//		polDTO.setProdId(100);
+//		polDTO.setCount(5);
+//		polDTO.setCost(150);
 		
 //		Product prod = daoProd.getProduct(num);
 //		PurchaseOrderLine pol = new PurchaseOrderLine();
@@ -45,15 +46,17 @@ public class MyMainO {
 //		pol.setId(120);
 //		pol.setCost(15);
 //		pol.setPurchaseOrder(po);
-		PurchaseOrderLineLogic polLogic = new PurchaseOrderLineLogic();
+//		PurchaseOrderLineLogic polLogic = new PurchaseOrderLineLogic();
 //		PurchaseOrderLine pol = new PurchaseOrderLine();
 //		polLogic.updatePurchaseOrderLine(pol);;
-		polLogic.createPurchaseOrderLine(polDTO, 104);
-		System.out.println(polDTO);
+//		polLogic.createPurchaseOrderLine(polDTO, 104);
+		ReportsLogic repLogic = new ReportsLogic();
+		List<PurchaseOrder> repList = repLogic.getAllPurchaseOrdersOver5k();
+//		System.out.println(repLogic);
 //		List<PurchaseOrderLine> pol = polLogic.getAllPurchaseOrderLines(104);
-//		for(PurchaseOrderLine pols : pol){
-//			System.out.println(pols);
-//		};
+		for(PurchaseOrder poS : repList){
+			System.out.println(poS);
+		};
 
 	}
 }
