@@ -30,6 +30,7 @@ $(document).ready(function() {
                     $(this).remove();
             });
             addOrderLine(uncle);
+            updateTotal(uncle);
         }
     });
     
