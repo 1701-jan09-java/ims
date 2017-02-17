@@ -51,12 +51,12 @@ public class MyMainO {
 //		polLogic.updatePurchaseOrderLine(pol);;
 //		polLogic.createPurchaseOrderLine(polDTO, 104);
 		ReportsLogic repLogic = new ReportsLogic();
-		List<PurchaseOrder> repList = repLogic.getAllPurchaseOrdersOver5k();
+//		List<PurchaseOrder> repList = repLogic.getAllPurchaseOrdersOver5k();
 //		System.out.println(repLogic);
 //		List<PurchaseOrderLine> pol = polLogic.getAllPurchaseOrderLines(104);
-		for(PurchaseOrder poS : repList){
-			System.out.println(poS);
-		};
+//		for(PurchaseOrder poS : repList){
+//			System.out.println(poS);
+//		};
 
 	}
 }
