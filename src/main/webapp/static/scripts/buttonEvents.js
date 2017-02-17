@@ -33,16 +33,7 @@ $(document).ready(function() {
     });
     
     $('.addLine').on('click',function(){
-    	
-        addOrderLine($(this).parents('.MakeOrderInfo').find(".productOrder"));
-//		var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-//		var elmnt = uncle.find(".orderLine");
-//    	var clone = elmnt.clone(true);
-//    	clone.removeClass("orderLine");
-//    	clone.addClass("orderClone");
-//
-//		uncle.append(clone);
-		
+        addOrderLine($(this).parents('.MakeOrderInfo').find(".productOrder"));		
     });
     
     $('.removeLine').on('click',function(){
@@ -54,10 +45,9 @@ $(document).ready(function() {
         }
         var orderDiv = $(this).parents(".MakeOrderInfo");
         updateTotal(orderDiv);
-//        $('.orderClone:last-child', uncle).remove();
     });
     
-    $("body").on("click", ".removeThisLine",function() {
+    $("body").on("click", ".removeThisLine", function() {
         var productOrder = $(this).parents(".productOrder");
         if (productOrder.find(".orderLine").length === 1) {
             addOrderLine(productOrder);
@@ -66,7 +56,7 @@ $(document).ready(function() {
         updateTotal(productOrder);
     });
     
-    $('.makeOrderButton').click(function(){
+    $("body").on("click", ".makeOrderButton", function(){
         
     	var grandparent = $(this).parent().parent();
         
@@ -92,7 +82,7 @@ $(document).ready(function() {
     });
     
     var getProdById = function (id) {
-        return $.grep(allProducts, function(e){ return e.id == id; })[0];
+        return $.grep(allProducts, function(e){ return e.id === Number(id); })[0];
     };
     
     var getProdByName = function (name) {
@@ -100,17 +90,15 @@ $(document).ready(function() {
     };
     
     var addOrderLine = function(orderDiv) {
-//        var retId = orderDiv.parents(".RetailRow").attr("id");
-//        var id = orderDiv.children(".orderLine").length;
         
         orderDiv.children(".total-row").before('<div class = "btn-group orderLine" role = "group">'+
 					'<div class = "input-group col-xs-12">'+
-                                 '<div class="col-xs-3"><div class="ui-widget"><input class="product-input form-control"></div></div>' +
+                                 '<div class="col-xs-3 text-box"><div class="ui-widget"><input class="product-input form-control"></div></div>' +
                                  '<div class="col-xs-2 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
                                  '<div class="col-xs-2 text-box"><input class="text-right unit-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
                                  '<div class="col-xs-2 text-box"><input class="text-right qty-input form-control" type = "number" min="1" value="1"/></div>'+
                                  '<div class="col-xs-2 text-box"><input class="text-right line-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
-                                 '<div class="col-xs-1 text-right"><button class="btn btn-danger sm-button removeThisLine">x</button></div>'+                                
+                                 '<div class="col-xs-1 text-right"><button title="Remove This Line" class="btn btn-danger sm-button removeThisLine">x</button></div>'+                                
 					'</div>'+
                                         
 				'</div>');
@@ -118,6 +106,7 @@ $(document).ready(function() {
        $( ".product-input" ).autocomplete({
     	   source: productNames,
     	   autoFocus: true
+           
        });
     };
     
@@ -343,7 +332,7 @@ $(document).ready(function() {
     };
     
     var checkProdField = function(prodField){
-        var prod = getProdById(prodField.val());
+        var prod = getProdByName(prodField.val());
         var prodCheck = false;
         if (prod === undefined) {
             prodField.addClass("invalid-input");
@@ -398,7 +387,7 @@ $(document).ready(function() {
             alert("Invalid fields marked in red.");
         }
         return pass;
-    }
+    };
     
     var createPo = function(retRow) {
         var retId = retRow.find("p").html();
@@ -445,7 +434,7 @@ $(document).ready(function() {
             total += Number($(this).val());
         });
         orderDiv.find(".total-cost-display").val(total);
-    }
+    };
     
     var sendCreatePoRequest = function (poObj) {
         var url = "/ims/purchase-order";
@@ -502,32 +491,39 @@ $(document).ready(function() {
     	sendRequest("sale");
     });
 
-    $("body").on("focusout", ".product-input", function() {
-        console.log(this);
-        var orderLine = $(this).parents(".orderLine");
+    var prodInputFunc = function(prodInput) {
+        var orderLine = $(prodInput).parents(".orderLine");
         var prod;
-        if (checkProdField($(this)) === true) {
-            prod = getProdByName($(this).val())
+        if (checkProdField($(prodInput)) === true) {
+            prod = getProdByName($(prodInput).val());
             orderLine.find(".pid-input").val(prod.id);
+            checkPidField(orderLine.find(".pid-input"));
             orderLine.find(".unit-cost-display").val(prod.supplierPrice);
             orderLine.find(".line-cost-display").val(
                     prod.supplierPrice * orderLine.find(".qty-input").val()).change();
         }
-    });
-
+    };
     
-    $("body").on("focusout", ".pid-input", function() {
+    $("body").on("change autocompleteselect focusout keypress", ".product-input", function(event) {
+        if (event.key && (event.key !== "Enter")) return;
+            setTimeout(() => prodInputFunc(this),10);
+    });
+    
+    $("body").on("focusout keypress", ".pid-input", function(event) {
+        if (event.key && (event.key !== "Enter")) return;
         var orderLine = $(this).parents(".orderLine");
         var prod;
         if (checkPidField($(this)) === true) {
-            prod = getProdById($(this).val())
+            prod = getProdById($(this).val());
+            orderLine.find(".product-input").val(prod.name);
+            checkProdField(orderLine.find(".product-input"));
             orderLine.find(".unit-cost-display").val(prod.supplierPrice);
             orderLine.find(".line-cost-display").val(
                     prod.supplierPrice * orderLine.find(".qty-input").val()).change();
         }
     });
     
-    $("body").on("change", ".qty-input", function() {
+    $("body").on("change focusout keypress", ".qty-input", function() {
         var orderLine = $(this).parents(".orderLine");
        
         if (checkQtyField($(this)) === true) {

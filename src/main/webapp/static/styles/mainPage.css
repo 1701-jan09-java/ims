@@ -21,6 +21,23 @@
 	margin : 2px;	
 }
 
+.btn.sm-button {
+    font-size: 8pt;
+    font-weight: bold;
+    height: 100%;
+}
+
+div.orderHeader {
+    margin-top: 20px;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+div.MakeOrderInfo > p {
+    margin-top: 16px;
+    font-weight: bold;
+}
+
 .text-box {
     margin:0;
     padding:0;
