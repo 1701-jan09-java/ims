@@ -11,7 +11,7 @@
 
 
 
-	<import resource="file:src/main/resources/beans.xml"/>
+	<import resource="file:src/main/webapp/WEB-INF/beans.xml"/>
 	
 	<jdbc:embedded-database id="mydataSource" type="H2"/>
 	
