@@ -28,8 +28,6 @@ public class DIReports implements DAOReports {
 //	List<PurchaseOrder> poList = criteria.list();
 //	return poList;
 	
-	@Autowired
-	Retailer ret;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -65,12 +63,15 @@ public class DIReports implements DAOReports {
 	@Override
 	public List<Retailer> sellDollarsByRetailer() {
 		
+		
 		Session session = sessionFactory.getCurrentSession();
-//		Criteria criteria = session.createCriteria(Retailer.class).setProjection(Projections.projectionList().add(PurchaseOrder.class).add(Projections.groupProperty(ret.id)));
-		Criteria criteria = session.createCriteria(Retailer.class);
-		List<Retailer> retailerList = criteria.add(Restrictions.sqlRestriction("SELECT ims_retailer.R_NAME,SUM(ims_purchase_order.po_cost) AS OrderTotal FROM ims_purchase_order LEFT JOIN ims_retailer ON ims_retailer.R_ID=ims_purchase_order.po_retailer GROUP BY r_name;")).list();
-//		List<Retailer> retailerList = criteria.list();
-		System.out.println("is it real");
+		Criteria criteria = session.createCriteria(PurchaseOrder.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("cost"))
+						.add(Projections.groupProperty("retailer")));
+		System.out.println(criteria);
+		
+		List<Retailer> retailerList = criteria.list();
 		
 		return retailerList;
 	}

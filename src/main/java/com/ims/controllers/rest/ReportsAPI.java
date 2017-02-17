@@ -26,7 +26,6 @@ public class ReportsAPI {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/dollars-by-retailer")
 	public List<Retailer> sellDollarsByRetailer() {
-		System.out.println("is it real API");
 		List<Retailer> retailers = reportsLogic.sellDollarsByRetailer();
 		return retailers;
 	}
