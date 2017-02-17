@@ -18,43 +18,49 @@
     				var item = document.getElementById(divID);
 					console.log(item);  
 					
-    				for(i=0; i<data.length; i++) {   					
+
+    				for(i=0; i<data.length; i++) {	
     					
-//    					var item = document.getElementById(divID);
-//    					console.log(item);    
-    					
-    					var ret = document.createElement("DIV");   					
-    					
-    					
-    					ret.className = "unhidden row RetailRow";
-    					
-    					document.getElementById("ResultsView").appendChild(ret);     					   	
-    					
-    					//var rowClass = item.className;
-    					//$(ret).addClass("unhidden row RetailRow");
-    					//ret.innerHTML = " - "+data[i].id+"&nbsp;&nbsp;"+data[i].name;
-    					$(ret).html(" - "+data[i].id+"&nbsp;&nbsp;"+data[i].name);
-    					
-    					
-    					
-    					item.className = "unhidden row RetailRow";
-    					
-    					
-    					var $div = $("<div>");
-    					$("#ResultsView").append(
-    							  $('<div/>')    						
+    					var $retDiv = $("<div/>")  						
     							    .addClass("unhidden row RetailRow")
-    							    .append("<p class = \"myID\">RetailerID-<span id=\"retID\">"+data[i].id+"</span> &nbsp; <span id=\"retName\">"+data[i].name+"</span></p>"+ 
+    							    .attr("id", "retailers")
+    							    .html("<p class = \"myID\">RetailerID-<span id=\"retID\">"+data[i].id+"</span> &nbsp; <span id=\"retName\">"+data[i].name+"</span>"+ 
+    							    		"&nbsp;&nbsp;<span class=\"addr\">Address: "+data[i].address.street + " " + data[i].address.city + ", " +data[i].address.state + " " + data[i].address.zip+"</span></p>"+
     							    		"<div class = \"btn-group\">"+
-    							    			"<button type = \"button\" class = \"btn RetailButton inventoryButton\">Inventory</button>" +
-    							    			"<button type = \"button\" class = \"btn RetailButton salesButton\">Sales</button>" +
-    							    			"<button type = \"button\" class = \"btn RetailButton ordersButton\">Orders</button></div>" +    							    		
+    							    			"<button onclick=\"inventoryByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-info RetailButton inventoryButton\">Inventory</button>" +
+    							    			"<button onclick=\"salesByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-warning RetailButton salesButton\">Sales</button>" +
+    							    			"<button type = \"button\" class = \"btn btn-success RetailButton ordersButton\">Orders</button></div>" +    							    		
     							    		"<div class = 'btn-group pull-right'>"+
-    							    			"<button class = \"btn RetailButton makeSaleButton\">Make Sale</button>"+
-    							    			"<button class = \"btn RetailButton makeOrderButton\">Make Order</button>'</div>')")
-    					);
-    							      
-    			
+    							    			"<button class = \"btn btn-primary RetailButton makeSaleButton\">Make Sale</button>"+
+    							    			"<button class = \"btn btn-danger RetailButton makeOrderButton\">Make Order</button></div>");
+    					
+    					$("#ResultsView").append($retDiv);
+    				
+    					
+    					//var ret = document.createElement("DIV");   					
+    					//ret.className = "unhidden row RetailRow";  
+    					//document.getElementById("ResultsView").appendChild(ret); 
+    					//ret.innerHTML = " - "+data[i].id+"&nbsp;&nbsp;"+data[i].name;
+    					
+    					//var x = document.getElementsByClassName("unhidden row RetailRow")[0].appendChild(ret);
+    					//x[0].innerHTML = " - "+data[i].id+"&nbsp;&nbsp;"+data[i].name;
+    					
+    					//var rowClass = document.getElementById(divID).className;
+    					//$(ret).addClassName(rowClass)
+    					 	
+    					//ret.className = document.getElementById(divID).className;
+    					
+    					//$("div").clone().appendTo("#ResultsView");
+    					
+    					//$(ret).addClass(rowClass);
+    					
+    					//$(ret).html(" - "+data[i].id+"&nbsp;&nbsp;"+data[i].name);   					
+    					
+    					//$("div").clone().appendTo("#ResultsView");
+    					
+    					//item.className = "unhidden row RetailRow";
+    					
+
     				}
     				
     				
@@ -63,4 +69,7 @@
     		});
  		
     		
-  }
+
+ 	}
+ 
+

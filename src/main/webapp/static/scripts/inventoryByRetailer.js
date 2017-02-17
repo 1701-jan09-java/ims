@@ -2,11 +2,11 @@
  * 
  */
 
-var global={};
-global.invObjArray=[];
-global.invProdIdArray=[];
-global.invProdNameArray=[];
-global.invProdQuantArray=[];
+var INVENTORY={};
+INVENTORY.invObjArray=[];
+INVENTORY.invProdIdArray=[];
+INVENTORY.invProdNameArray=[];
+INVENTORY.invProdQuantArray=[];
 
 
 
@@ -15,30 +15,30 @@ global.invProdQuantArray=[];
 	 
 	function clearArrays(){
 		// not sure if want to use object array or field arrays
-		global.invObjArray=[];// Inventory Object Array
+		INVENTORY.invObjArray=[];// Inventory Object Array
 		
 		// data fields arrays
-		global.invProdIdArray=[];
-		global.invProdNameArray=[];
-		global.invProdQuantArray=[];
+		INVENTORY.invProdIdArray=[];
+		INVENTORY.invProdNameArray=[];
+		INVENTORY.invProdQuantArray=[];
 	};
 	
 	function storeData(arrayInv){
 		console.log("I am a mouse");		   
 		for(ii=0; ii<(arrayInv.length); ii++){
 			console.log("no you are a mouse");
-			global.invProdIdArray[ii]=arrayInv[ii].id;
-			global.invProdNameArray[ii]=arrayInv[ii].product.name;
-			global.invProdQuantArray[ii]=arrayInv[ii].productQuantity;
+			INVENTORY.invProdIdArray[ii]=arrayInv[ii].id;
+			INVENTORY.invProdNameArray[ii]=arrayInv[ii].product.name;
+			INVENTORY.invProdQuantArray[ii]=arrayInv[ii].productQuantity;
 		}
-		displayData(global.invObjArray);
+		displayData(INVENTORY.invObjArray);
 	};
 
 	function displayData(invArray){
 		for(ii=0;ii<invArray.length;ii++){
-			console.log("Inventory Id: " +global.invObjArray[ii].id);
-			console.log("Product: "+ global.invObjArray[ii].product.name);
-			console.log("Amount: "+global.invObjArray[ii].productQuantity);
+			console.log("Inventory Id: " +INVENTORY.invObjArray[ii].id);
+			console.log("Product: "+ INVENTORY.invObjArray[ii].product.name);
+			console.log("Amount: "+INVENTORY.invObjArray[ii].productQuantity);
 		}
 	}
 	 
@@ -50,7 +50,7 @@ global.invProdQuantArray=[];
     	  url: inventURL,
     	  success: function(data){
     		  clearArrays();
-    		  global.invObjArray=(data);
+    		  INVENTORY.invObjArray=(data);
     		  storeData(data);
      	  },
     	  

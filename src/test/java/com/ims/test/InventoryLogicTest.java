@@ -21,6 +21,7 @@ public class InventoryLogicTest {
 	@Test
 	public void testViewAllInventory(){
 		
+
 		// placeholder test for now
 		boolean bool = true;
 		assertTrue(bool);
@@ -31,7 +32,7 @@ public class InventoryLogicTest {
 //		assertEquals("Inventory ID 5", stringExp, stringAct);
 		
 		
-		
+
 	}
 
 	

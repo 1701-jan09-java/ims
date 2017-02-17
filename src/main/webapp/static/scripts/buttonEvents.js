@@ -269,11 +269,8 @@ $(document).ready(function() {
     
     $("#categoriesButton").click(function(){
         sendRequest("category");
-    });
-    
-    $("#retailersButton").click(function(){
-    	sendRequest("retailer");
-    });
+    }); 
+   
     
     $("#salesButton").click(function(){
     	sendRequest("sale");
