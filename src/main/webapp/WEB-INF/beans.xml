@@ -27,8 +27,8 @@
     -->
     <!-- POSTGRESQL -->
     <bean id="mydataSource" class="org.apache.commons.dbcp.BasicDataSource">  
-        <property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"></property>  
-        <property name="url" value="#{systemEnvironment['IMS_URL']}"></property>  
+        <property name="driverClassName"  value="org.postgresql.Driver"></property>  
+        <property name="url" value="#{systemEnvironment['PG_IMS_URL']}"></property>  
         <property name="username" value="#{systemEnvironment['PG_IMS_USER']}"></property>  
         <property name="password" value="#{systemEnvironment['PG_IMS_PASS']}"></property>  
     </bean>
@@ -40,7 +40,7 @@
           
         <property name="hibernateProperties">  
             <props>  
-                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>  
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>  
                 <prop key="hibernate.show_sql">true</prop>    
             </props>  
         </property>  
