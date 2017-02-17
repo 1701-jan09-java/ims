@@ -6,7 +6,7 @@ var saleButton;
 var orderButton;
 
 $(document).ready(function() {
-
+	
     $('.dropdown-toggle').dropdown();
     
     $('.inventoryButton').on('click', function(){
@@ -198,7 +198,36 @@ $(document).ready(function() {
         	 
         }
     }
-
+    var loadProducts = function(data){
+    	var menu = $('.productMenu');
+    	menu.each(function(index){
+    		$.each(data, function(indexB){
+    			var name = data[indexB].name;
+    			var option = document.createElement("li");
+    			var aaa = document.createElement("a");
+    			aaa.innerHTML = name;
+    			option.append(aaa);
+    			console.log(name);
+    			console.log(option);
+    			console.log(menu[index]);
+    			menu[index].append(option);
+    		});
+    		
+    	});
+    };
+    
+    var preLoad = function(group){
+    	var tempUrl = "/ims/"+group+"/";
+    	$.ajax({
+            method: "GET",
+            url: tempUrl,
+            success: function(data) {
+            	loadProducts(data);
+            }
+    	})
+    };
+    
+	preLoad('product');	
     
     var sendRequest = function (group,id) {
         var tempUrl = "/ims/"+group+"/";
