@@ -37,34 +37,16 @@
     					$("#ResultsView").append($retDiv);
     				
     					
-    					//var ret = document.createElement("DIV");   					
-    					//ret.className = "unhidden row RetailRow";  
-    					//document.getElementById("ResultsView").appendChild(ret); 
-    					//ret.innerHTML = " - "+data[i].id+"&nbsp;&nbsp;"+data[i].name;
-    					
-    					//var x = document.getElementsByClassName("unhidden row RetailRow")[0].appendChild(ret);
-    					//x[0].innerHTML = " - "+data[i].id+"&nbsp;&nbsp;"+data[i].name;
-    					
-    					//var rowClass = document.getElementById(divID).className;
-    					//$(ret).addClassName(rowClass)
-    					 	
-    					//ret.className = document.getElementById(divID).className;
-    					
-    					//$("div").clone().appendTo("#ResultsView");
-    					
-    					//$(ret).addClass(rowClass);
-    					
-    					//$(ret).html(" - "+data[i].id+"&nbsp;&nbsp;"+data[i].name);   					
-    					
-    					//$("div").clone().appendTo("#ResultsView");
-    					
-    					//item.className = "unhidden row RetailRow";
     					
 
     				}
     				
     				
-    			}
+    			},
+    		
+    		  error: function(){
+        		  alert("OOPSIES! Something Went Wrong");
+        	  }
     			
     		});
  		
