@@ -56,11 +56,19 @@ $(document).ready(function() {
 //        $('.orderClone:last-child', uncle).remove();
     });
     
+    $("body").on("click", ".removeThisLine",function() {
+        var productOrder = $(this).parents(".productOrder");
+        if (productOrder.find(".orderLine").length === 1) {
+            addOrderLine(productOrder);
+        }
+        $(this).parents(".orderLine").remove();
+    });
+    
     $('.makeOrderButton').click(function(){
         
     	var grandparent = $(this).parent().parent();
         
-        addOrderLine(grandparent.find(".productOrder"));
+        grandparent.find(".orderLine").length>0 || addOrderLine(grandparent.find(".productOrder"));
         
     	if(grandparent.hasClass('RetailRow')){
 	    	var uncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
@@ -99,11 +107,15 @@ $(document).ready(function() {
 						'</ul>'+
 					'</div>'+
 					'<div class = "input-group col-xs-10">'+
-						'<div class="col-xs-3 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
+                                            '<div class="col-xs-11">'+
+                                                '<div class="col-xs-3 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
                                                 '<div class="col-xs-3 text-box"><input class="text-right unit-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
                                                 '<div class="col-xs-3 text-box"><input class="text-right qty-input form-control" type = "number" min="1" value="1"/></div>'+
                                                 '<div class="col-xs-3 text-box"><input class="text-right line-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
+                                            '</div>'+
+                                            '<div class="col-xs-1 text-right"><button class="btn btn-danger sm-button removeThisLine">x</button></div>'+                                
 					'</div>'+
+                                        
 				'</div>');
     
     };
@@ -298,7 +310,7 @@ $(document).ready(function() {
             success: function(data) {
             	loadProducts(data);
             }
-    	})
+    	});
     };
     
 	preLoad('product');	

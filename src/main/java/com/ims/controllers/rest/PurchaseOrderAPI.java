@@ -56,7 +56,6 @@ public class PurchaseOrderAPI {
 	
 	@RequestMapping(method=RequestMethod.POST, value="", consumes="application/json")
 	public boolean createPurchaseOrder(@RequestBody PurchaseOrderDTO poDTO) {
-		System.out.println(poDTO);
 		
 		PurchaseOrder po = poLogic.createPurchaseOrder(poDTO);
 		
