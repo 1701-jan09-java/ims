@@ -24,8 +24,8 @@ $(document).ready(function() {
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
     	var retRow = $(this).parents(".RetailRow");
         var poObj = createPo(retRow);
-        sendCreatePoRequest(poObj);
         if (poObj !== null) {
+            sendCreatePoRequest(poObj);
             uncle.find(".orderLine").each(function(){
                     $(this).remove();
             });
@@ -49,7 +49,6 @@ $(document).ready(function() {
     
     $('.removeLine').on('click',function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-        console.log(uncle.find(".orderLine"));
         var numRows = uncle.find(".orderLine").length;
             uncle.find(".orderLine").last().remove();
         if (numRows <= 1 ){
@@ -257,10 +256,8 @@ $(document).ready(function() {
     			var aaa = document.createElement("a");
     			aaa.innerHTML = name;
     			option.append(aaa);
-    			console.log(name);
-    			console.log(option);
-    			console.log(menu[index]);
     			menu[index].append(option);
+                        allProducts = data;
     		});
     		
     	});
@@ -486,7 +483,5 @@ $(document).ready(function() {
         var orderDiv = $(this).parents(".MakeOrderInfo");
         updateTotal(orderDiv);
     });
-    
-    sendRequest("product");
 
 });
