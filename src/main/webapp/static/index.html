@@ -21,9 +21,11 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top" id="Banner">
-		<div class="container-fluid" id="main">
-			<div class="nav navbar-header">
+
+	<nav class = "navbar navbar-inverse navbar-fixed-top" id = "Banner">
+		<div class = "container-fluid" id = "main">
+			<div class = "nav navbar-header">
+
 				<div class="row" id="row-style">
 					<div class="col-md-12">
 						<a class="btn" id="openNavBar" href="#">&#9776 Control Panel</a>
@@ -51,39 +53,36 @@
 
 	</div>
 
+<!--				 
+	Define Results View
+		Full Page when Control Panel is Toggled Reduced
+		Page-view size when CP is Toggled Exposed
+-->
 
-	<div class="container-fluid" id="ResultsView">
+	<div class = "container-fluid" id = "ResultsView">		
 
-		<div class="container-fluid" id="ProductsView"></div>
-
-		<div class="container-fluid" id="SalesView"></div>
-
-		<div class="container-fluid" id="RetailersView">
-
-			<div class="container-fluid" id="Welcome">
-				<h3>Welcome!</h3>
-			</div>
-			<div class="hidden container-fluid" id="Loading">
+		<div class = "container "><h3>Welcome!</h3></div>
+		<div class="hidden container-fluid" id="Loading">
 				<h3>Loading!</h3>
 			</div>
-
-			<div class="hidden row RetailRow" id="Retailers">
-				<p class="myID">
-					Retailer ID<span id="ret"></span>
-				</p>
-
-				<div class="btn-group">
-					<button type="button" class="btn RetailButton inventoryButton">Inventory</button>
-					<button type="button" class="btn RetailButton salesButton">Sales</button>
-					<button type="button" class="btn RetailButton ordersButton">Orders</button>
-				</div>
-				<div class="btn-group pull-right">
-					<button class="btn RetailButton makeSaleButton">Make Sale</button>
-					<button class="btn RetailButton makeOrderButton">Make
-						Order</button>
-				</div>
-
-			</div>
+		
+		<div class = "container-fluid" id = "ProductView"></div>	
+		<div class = "container-fluid" id = "RetailerView"></div>	
+		<div class = "container-fluid" id = "Orderiew"></div>	
+		<div class = "container-fluid" id = "SalesView"></div>
+		
+		<div id = "retailers" class = "hidden row RetailRow" >
+			<p class = "myID">Retailer ID<span id="ret"></span></p> 
+			<div class = "btn-group">
+				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
+				<button type = "button" class = "btn RetailButton salesButton">Sales</button>
+				<button type = "button" class = "btn RetailButton ordersButton">Orders</button>
+			<div class = "btn-group pull-right">
+                <button class = "btn RetailButton makeSaleButton">Make Sale</button>
+                <button class = "btn RetailButton makeOrderButton">Make Order</button>
+            </div>
+		</div>		
+		
 
 			<!-- Dropdowns append here -->
 
@@ -153,6 +152,7 @@
 
 		</div>
 
+
 <div id="modal" class="modal fade" role='dialog'> 
         		<div class="modal-dialog">
         		<div class="modal-content">
@@ -175,6 +175,16 @@
 
 
 	</div>
+		
+		<!-- RetailRows will append here -->
+		
+			
+		</div>
+		
+	
+	</div>
+		
+
 
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"
@@ -182,18 +192,27 @@
 		crossorigin="anonymous"></script>
 
 	<!-- bootstrap.js -->
+
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" src="scripts/sidebarScript.js"></script>
+	<script type="text/javascript" src="scripts/sidebarScript.js"></script>    
+			 
+        <script type="text/javascript" src="scripts/buttonEvents.js"></script>
+        <script type="text/javascript" src="scripts/salesByRetailer.js"></script>
+        <script type="text/javascript" src="scripts/inventoryByRetailer.js"></script>
+        <script type="text/javascript" src=scripts/showRetailers.js></script>	
 
-	<script type="text/javascript" src="scripts/buttonEvents.js"></script>
-	<script type="text/javascript" src="scripts/salesByRetailer.js"></script>
-	<script type="text/javascript" src=scripts/showRetailers.js></script>
 
+	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
 
 </body>
 </html>
