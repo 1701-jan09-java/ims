@@ -84,8 +84,6 @@ $(document).ready(function() {
     	}
     });
     
-    EVENTS.viewArea = $("#ResultsView");
-    
     var updateViewProducts = function(data){
         EVENTS.viewArea.empty();
         EVENTS.viewArea.append("<div class='col-xs-2'>Product ID</div>");
@@ -248,7 +246,11 @@ $(document).ready(function() {
         } else console.log("Invalid Entry");
     });
     
-    $("#productsButton").click(function(){
+    $("#productsButton").click(function(){       	
+    	hideOtherDivs();
+    	
+    	$("#ProductsView").removeClass("hidden");
+    	EVENTS.viewArea = $("#ProductsView");
         sendRequest("product");
     });
     
@@ -266,8 +268,26 @@ $(document).ready(function() {
     }); 
    
     
-    $("#salesButton").click(function(){
+    $("#salesButton").click(function(){    	
+    	hideOtherDivs();
+    	$("#SalesView").removeClass("hidden");
+    	EVENTS.viewArea = $("#SalesView");
     	sendRequest("sale");
     });
+    
+    function hideOtherDivs() {
+    	
+    	$("#Loading").removeClass("hidden");
+    	$("#ProductsView").addClass("hidden");
+    	$("#SalesView").addClass("hidden");
+    	$("#Retailers").addClass("hidden");
+    	$("#Welcome").addClass("hidden");
+    	//$("#SalesView").addClass("hidden");
+    	
+    	
+    	
+    	
+    	
+    }
     
 });
