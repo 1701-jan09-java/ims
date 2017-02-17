@@ -56,6 +56,12 @@ $(document).ready(function() {
         updateTotal(productOrder);
     });
     
+    $("body").on("click", ".clearOrderForm", function(){
+        var orderDiv = $(this).parents(".MakeOrderInfo")
+        orderDiv.find(".orderLine").remove();
+        addOrderLine(orderDiv);
+    });
+    
     $("body").on("click", ".makeOrderButton", function(){
         
     	var grandparent = $(this).parent().parent();
@@ -91,7 +97,7 @@ $(document).ready(function() {
     
     var addOrderLine = function(orderDiv) {
         
-        orderDiv.children(".total-row").before('<div class = "btn-group orderLine" role = "group">'+
+        orderDiv.find(".total-row").before('<div class = "btn-group orderLine" role = "group">'+
 					'<div class = "input-group col-xs-12">'+
                                  '<div class="col-xs-3 text-box"><div class="ui-widget"><input class="product-input form-control"></div></div>' +
                                  '<div class="col-xs-2 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
