@@ -80,7 +80,6 @@ public class PurchaseOrderLogic {
 	public PurchaseOrder createPurchaseOrder(PurchaseOrderDTO poDto) {
 		Supplier supplier = suppLogic.getSupplier(poDto.getSupId());
 		Retailer retailer = retLogic.viewRetailerById(poDto.getRetId());
-		System.out.println(supplier+" "+retailer+" "+poDto.getCost());
 		PurchaseOrder po = new PurchaseOrder(supplier, retailer, poDto.getCost());
 		createPurchaseOrder(po);
 		// Grab creation date from db

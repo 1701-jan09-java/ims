@@ -6,7 +6,9 @@ var saleButton;
 var orderButton;
 
 $(document).ready(function() {
-	
+
+    var allProducts;
+
     $('.dropdown-toggle').dropdown();
     
     $('.inventoryButton').on('click', function(){
@@ -20,31 +22,41 @@ $(document).ready(function() {
     
     $('.submitOrder').on('click', function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-    	uncle.find(".orderClone").each(function(){
+    	var retRow = $(this).parents(".RetailRow");
+        createPo(retRow);
+        uncle.find(".orderLine").each(function(){
     		$(this).remove();
-    	})
+    	});
+        addOrderLine(uncle);
     });
     
     $('.addLine').on('click',function(){
     	
-		var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-		var elmnt = uncle.find(".orderLine");
-    	var clone = elmnt.clone(true);
-    	clone.removeClass("orderLine");
-    	clone.addClass("orderClone");
-
-		uncle.append(clone);
+        addOrderLine($(this).parents('.MakeOrderInfo').find(".productOrder"));
+//		var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
+//		var elmnt = uncle.find(".orderLine");
+//    	var clone = elmnt.clone(true);
+//    	clone.removeClass("orderLine");
+//    	clone.addClass("orderClone");
+//
+//		uncle.append(clone);
 		
     });
     
     $('.removeLine').on('click',function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-    	$('.orderClone:last-child', uncle).remove();
+        if (uncle.find(".orderLine").length > 1 ){
+            $('.orderLine:last-child', uncle).remove();
+        }
+//        $('.orderClone:last-child', uncle).remove();
     });
     
     $('.makeOrderButton').click(function(){
+        
     	var grandparent = $(this).parent().parent();
-    	
+        
+        addOrderLine(grandparent.find(".productOrder"));
+        
     	if(grandparent.hasClass('RetailRow')){
 	    	var uncle = $(this).parents('.RetailRow').find(".MakeOrderInfo");
 	    	var saleUncle = $(this).parents('.RetailRow').find(".MakeSaleInfo");
@@ -62,6 +74,29 @@ $(document).ready(function() {
     		saleUncle.addClass('hidden');
     	}
     });
+    
+    var addOrderLine = function(orderDiv) {
+        var retId = orderDiv.parents(".RetailRow").attr("id");
+        var id = orderDiv.children(".orderLine").length;
+        var orderLineId = retId+'-POL-'+id;
+        
+        orderDiv.append('<div id="'+orderLineId+'" class = "btn-group orderLine" role = "group">'+
+					'<div class = "col-md-2 btn-group" role = "group">'+
+						'<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">'+
+						'Product <span class = "caret"></span></button>'+
+						'<ul class = "dropdown-menu" role = "menu">'+
+							'<li><a href = "#">Product 1</a></li>'+
+							'<li><a href = "#">Product 2</a></li>'+
+						'</ul>'+
+					'</div>'+
+					'<div class = "input-group col-md-10">'+
+						'<div class="col-md-3 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
+                                                '<div class="col-md-3 text-box"><input class="text-right form-control" type = "text" value = "0" disabled="disabled"/></div>'+
+                                                '<div class="col-md-3 text-box"><input class="text-right qty-input form-control" type = "text" value="0"/></div>'+
+                                                '<div class="col-md-3 text-box"><input class="text-right form-control" type = "text" value = "0" disabled="disabled"/></div>'+
+					'</div>'+
+				'</div>');
+    };
     
     $('.makeSaleButton').click(function(){
     	var grandparent = $(this).parent().parent();
@@ -196,8 +231,10 @@ $(document).ready(function() {
         	 r.html(r.html()+data[i].retailer.name);
         	 p.html(p.html()+data[i].product.name);
         	 
-        }
-    }
+        };
+
+    };
+    
     var loadProducts = function(data){
     	var menu = $('.productMenu');
     	menu.each(function(index){
@@ -243,7 +280,8 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(data);
                 if (group === "product") {
-                    updateViewProducts(data);
+                    allProducts = data;
+//                    updateViewProducts(data);
                 } else if (group === "category") {
                     updateViewCategories(data);
                 } else if(group === "retailer") {
@@ -258,6 +296,56 @@ $(document).ready(function() {
                 setTimeout(function(){productRequest(group,id);},2000);
             }
         });
+    };
+    
+    var createPo = function(retRow) {
+        var retId = retRow.attr("id").split("-")[1];
+        var supId = 123;
+        var orderLines = retRow.find(".orderLine");
+        var product;
+        var qty;
+        var cost = 500;
+        
+        var poObj = {
+            retId: retId,
+            supId: supId,
+            cost: cost,
+            lines: []
+        };
+        
+        for (let i=0;i<orderLines.length;i++) {
+            product = $($(orderLines[i]).find(".pid-input")[0]).val();
+            qty = $($(orderLines[i]).find(".qty-input")[0]).val();
+            console.log(product);
+            console.log(qty);
+            //poObj.
+        };
+       
+    };
+    
+    var sendCreatePoRequest = function (poObj) {
+        var url = "/ims/purchase-order";
+        var jsonData = JSON.stringify(poObj);
+        console.log(jsonData);
+        
+        $.ajax({
+            method: "POST",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            processData: false,
+            data: jsonData,
+            
+            success: function(data) {
+                if (data === true) {
+                    // TODO tell user it succeeded or failed
+                    console.log("successful");
+                } else console.log("failed");
+            }
+        });
+    };
+    
+    var getProdById = function (id) {
+        return $.grep(allProducts, function(e){ return e.id == id; })[0];
     };
     
     $("#prodById").click(function(){
@@ -293,4 +381,9 @@ $(document).ready(function() {
     $("#salesButton").click(function(){
     	sendRequest("sale");
     });
+    
+    sendRequest("product");
+    setTimeout(function(){
+        getProdById(100);
+    },1000);
 });
