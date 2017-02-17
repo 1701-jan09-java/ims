@@ -23,11 +23,14 @@ $(document).ready(function() {
     $('.submitOrder').on('click', function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
     	var retRow = $(this).parents(".RetailRow");
-        createPo(retRow);
-        uncle.find(".orderLine").each(function(){
-    		$(this).remove();
-    	});
-        addOrderLine(uncle);
+        var poObj = createPo(retRow);
+        sendCreatePoRequest(poObj);
+        if (poObj !== null) {
+            uncle.find(".orderLine").each(function(){
+                    $(this).remove();
+            });
+            addOrderLine(uncle);
+        }
     });
     
     $('.addLine').on('click',function(){
@@ -45,9 +48,14 @@ $(document).ready(function() {
     
     $('.removeLine').on('click',function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
-        if (uncle.find(".orderLine").length > 1 ){
-            $('.orderLine:last-child', uncle).remove();
+        console.log(uncle.find(".orderLine"));
+        var numRows = uncle.find(".orderLine").length;
+            uncle.find(".orderLine").last().remove();
+        if (numRows <= 1 ){
+            addOrderLine(uncle);
         }
+        var orderDiv = $(this).parents(".MakeOrderInfo");
+        updateTotal(orderDiv);
 //        $('.orderClone:last-child', uncle).remove();
     });
     
@@ -75,13 +83,16 @@ $(document).ready(function() {
     	}
     });
     
+    var getProdById = function (id) {
+        return $.grep(allProducts, function(e){ return e.id == id; })[0];
+    };
+    
     var addOrderLine = function(orderDiv) {
-        var retId = orderDiv.parents(".RetailRow").attr("id");
-        var id = orderDiv.children(".orderLine").length;
-        var orderLineId = retId+'-POL-'+id;
+//        var retId = orderDiv.parents(".RetailRow").attr("id");
+//        var id = orderDiv.children(".orderLine").length;
         
-        orderDiv.append('<div id="'+orderLineId+'" class = "btn-group orderLine" role = "group">'+
-					'<div class = "col-md-2 btn-group" role = "group">'+
+        orderDiv.children(".total-row").before('<div class = "btn-group orderLine" role = "group">'+
+					'<div class = "col-xs-2 btn-group" role = "group">'+
 						'<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">'+
 						'Product <span class = "caret"></span></button>'+
 						'<ul class = "dropdown-menu" role = "menu">'+
@@ -89,13 +100,14 @@ $(document).ready(function() {
 							'<li><a href = "#">Product 2</a></li>'+
 						'</ul>'+
 					'</div>'+
-					'<div class = "input-group col-md-10">'+
-						'<div class="col-md-3 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
-                                                '<div class="col-md-3 text-box"><input class="text-right form-control" type = "text" value = "0" disabled="disabled"/></div>'+
-                                                '<div class="col-md-3 text-box"><input class="text-right qty-input form-control" type = "text" value="0"/></div>'+
-                                                '<div class="col-md-3 text-box"><input class="text-right form-control" type = "text" value = "0" disabled="disabled"/></div>'+
+					'<div class = "input-group col-xs-10">'+
+						'<div class="col-xs-3 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
+                                                '<div class="col-xs-3 text-box"><input class="text-right unit-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
+                                                '<div class="col-xs-3 text-box"><input class="text-right qty-input form-control" type = "number" min="1" value="1"/></div>'+
+                                                '<div class="col-xs-3 text-box"><input class="text-right line-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
 					'</div>'+
 				'</div>');
+    
     };
     
     $('.makeSaleButton').click(function(){
@@ -267,32 +279,100 @@ $(document).ready(function() {
         });
     };
     
+    var checkPidField = function(pidField){
+        var prod = getProdById(pidField.val());
+        var prodCheck = false;
+        console.log(prod);
+        if (prod === undefined) {
+            pidField.addClass("invalid-input");
+        } else {
+            pidField.removeClass("invalid-input");
+            prodCheck = true;
+        }
+        
+        return prodCheck;
+    };
+    
+    var checkQtyField = function(qtyField) {
+        var qty = Number(qtyField.val());
+        var qtyCheck = false;
+        console.log(qty);
+        if (!Number.isInteger(qty) || qty < 1) {
+            qtyField.addClass("invalid-input");
+        } else {
+            qtyField.removeClass("invalid-input");
+            qtyCheck = true;
+        }
+        
+        return qtyCheck;
+    };
+    
+    var checkPoFields = function(orderDiv) {
+        var pass = true;
+        orderDiv.find(".pid-input").each(function(){
+            if (checkPidField($(this)) === false) {
+                pass = false;
+            }
+        });
+        orderDiv.find(".qty-input").each(function(){
+            if (checkQtyField($(this)) === false) {
+                pass = false;
+            }
+            
+        });
+        if (pass === false) {
+            alert("Invalid fields marked in red.");
+        }
+        return pass;
+    }
+    
     var createPo = function(retRow) {
         var retId = retRow.attr("id").split("-")[1];
-        var supId = 123;
+        var supId = 20;
         var orderLines = retRow.find(".orderLine");
-        var product;
-        var qty;
-        var cost = 500;
+        var orderDiv = retRow.find(".MakeOrderInfo");
+        if (!checkPoFields(orderDiv) === true){
+            console.log("invalid fields");
+            return null;
+        }
+        console.log("all fields passed");
         
         var poObj = {
             retId: retId,
             supId: supId,
-            cost: cost,
+            cost: 0,
             lines: []
         };
         
+        var PoLine = function(product, qty, cost) {
+            // constructor
+            this.prodId = product;
+            this.cost = cost;
+            this.count = qty;
+            return this;
+        };
+        
         for (let i=0;i<orderLines.length;i++) {
-            product = $($(orderLines[i]).find(".pid-input")[0]).val();
-            qty = $($(orderLines[i]).find(".qty-input")[0]).val();
-            console.log(product);
-            console.log(qty);
-            poObj.
+            let product = $($(orderLines[i]).find(".pid-input")[0]).val();
+            let qty = $($(orderLines[i]).find(".qty-input")[0]).val();
+            let cost = getProdById(product).supplierPrice;
+            poObj.cost += cost * qty;
+            poObj.lines[i] = new PoLine(product,qty,cost);
         }
         
+        console.log(poObj);
         
-        
+        return poObj;
     };
+    
+    var updateTotal = function(orderDiv) {
+        var total = 0;
+        orderDiv.find(".line-cost-display").each(function() {
+            total += Number($(this).val());
+        });
+        console.log(total);
+        orderDiv.find(".total-cost-display").val(total);
+    }
     
     var sendCreatePoRequest = function (poObj) {
         var url = "/ims/purchase-order";
@@ -313,10 +393,6 @@ $(document).ready(function() {
                 } else console.log("failed");
             }
         });
-    };
-    
-    var getProdById = function (id) {
-        return $.grep(allProducts, function(e){ return e.id == id; })[0];
     };
     
     $("#prodById").click(function(){
@@ -353,8 +429,32 @@ $(document).ready(function() {
     	sendRequest("sale");
     });
     
+    $("body").on("focusout", ".pid-input", function() {
+        var orderLine = $(this).parents(".orderLine");
+        var prod;
+        if (checkPidField($(this)) === true) {
+            prod = getProdById($(this).val())
+            orderLine.find(".unit-cost-display").val(prod.supplierPrice);
+            orderLine.find(".line-cost-display").val(
+                    prod.supplierPrice * orderLine.find(".qty-input").val()).change();
+        }
+    });
+    
+    $("body").on("change", ".qty-input", function() {
+        var orderLine = $(this).parents(".orderLine");
+       
+        if (checkQtyField($(this)) === true) {
+            orderLine.find(".line-cost-display").val(
+                    orderLine.find(".unit-cost-display").val() *
+                    $(this).val()).change();
+        }
+    });
+    
+    $("body").on("change", ".line-cost-display", function() {
+        var orderDiv = $(this).parents(".MakeOrderInfo");
+        updateTotal(orderDiv);
+    });
+    
     sendRequest("product");
-    setTimeout(function(){
-        getProdById(100);
-    },1000);
+
 });
