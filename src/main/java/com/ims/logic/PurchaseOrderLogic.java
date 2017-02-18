@@ -15,6 +15,7 @@ import com.ims.dao.DISupplier;
 import com.ims.domain.PurchaseOrder;
 import com.ims.domain.Retailer;
 import com.ims.domain.Supplier;
+import com.ims.dto.POLineDTO;
 import com.ims.dto.PurchaseOrderDTO;
 
 @Service
@@ -23,10 +24,15 @@ public class PurchaseOrderLogic {
 
 	@Autowired
 	private DAOPurchaseOrder dao;
+
 	@Autowired
 	private SupplierLogic suppLogic;
+
 	@Autowired
 	private RetailerLogic retLogic;
+	
+	@Autowired
+	private PurchaseOrderLineLogic polLogic;
 	
 	public PurchaseOrder getPurchaseOrder(int poId) {
 		
@@ -58,6 +64,7 @@ public class PurchaseOrderLogic {
 		po.setSupplier(daoSupp.getSupplier(supplierId));
 		po.setCost(cost);
 		dao.createPurchaseOrder(po);
+		// Grab creation date from db
 		po = dao.getPurchaseOrder(po.getId());
 		return po;
 	}
@@ -75,7 +82,11 @@ public class PurchaseOrderLogic {
 		Retailer retailer = retLogic.viewRetailerById(poDto.getRetId());
 		PurchaseOrder po = new PurchaseOrder(supplier, retailer, poDto.getCost());
 		createPurchaseOrder(po);
-		// stuff for lines
+		// Grab creation date from db
+		po = dao.getPurchaseOrder(po.getId());
+		for (POLineDTO polDTO : poDto.getLines()){
+			polLogic.createPurchaseOrderLine(polDTO, po.getId());
+		}
 		return po;
 	}
 }
