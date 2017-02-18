@@ -14,15 +14,28 @@ import com.ims.domain.Inventory;
 @Service
 @Transactional(readOnly=false, isolation=Isolation.READ_COMMITTED)
 public class InventoryLogic {
-	
+
 	@Autowired
 	private DAOInventory daoInv;
-		
+	
+	public void updateInventory(Inventory inventory){
+		daoInv.updateInventory(inventory);
+	}
+	
+	public Inventory getInventoryObject(int productID, int retailerID){
+		Inventory inv = daoInv.getInventoryObject(productID, retailerID);
+		return inv;
+	}
+	
+	public int getInventoryAmount(int productID, int retailerID){
+		int amt = daoInv.getInventoryAmount(productID, retailerID);
+		return amt;
+	}
+	
 	public  List<Inventory> viewAllInventory(int retailerId){
 		List<Inventory> list = daoInv.getAllInventory(retailerId);
 		return list;
 	}
-
 	
 
 }
