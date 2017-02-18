@@ -21,7 +21,7 @@ public class PurchaseOrderDTO {
 	private Integer supId;
 	
 	@JsonProperty("cost")
-	private Integer cost;
+	private Double cost;
 	
 	@JsonProperty("lines")
 	private List<POLineDTO> lines = null;
@@ -57,11 +57,11 @@ public class PurchaseOrderDTO {
 		this.supId = supId;
 	}
 	
-	public Integer getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(Integer cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 

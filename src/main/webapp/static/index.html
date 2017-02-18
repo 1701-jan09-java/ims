@@ -48,10 +48,8 @@
 	<div id="mySideNav" class="sidenav">
 
 		<a href="index.html">Home</a> <a href="#" id="productsButton">Product Catalogue</a> 
-		<a href="#" id="retailersButton"
-			onclick="unhide(this, 'RetailersView', 'ret')">Retailers</a> 
+		<a href="#" id="retailersButton" onclick="unhide(this, 'RetailersView', 'ret')">Retailers</a> 
 		<a href="#" id="productsButton">Product Catalogue</a>
-		<a href="#" id="retailersButton">Retailers</a>
 		<a href="#" id="purchaseOrderByRetailerButton">Orders</a>
 		<a href="#" id="salesButton">Sales</a>
 
@@ -68,91 +66,7 @@
 		
 		<div id = "AllRetailers" class = "hidden container-fluid"><h3>All Retailers</h3></div>
 		
-		<div id = "RetailersView" class = "hidden row RetailRow" >
-			<p class = "myID">Retailer ID<span id="ret"></span></p> 
-
-
-		<div class = "row RetailRow">
-			<p class = "myID">104</p>
-			<div class = "btn-group">
-				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
-				<button type = "button" class = "btn RetailButton salesButton">Sales</button>
-				<button type = "button" class = "btn RetailButton ordersButton">Orders</button>
-			<div class = "btn-group pull-right">
-                <button class = "btn RetailButton makeSaleButton">Make Sale</button>
-                <button class = "btn RetailButton makeOrderButton">Make Order</button>
-            </div>
-		</div>		
-		
-
-			<!-- Dropdowns append here -->
-
-			<div class="MakeOrderInfo hidden">
-				<p id="Identifier">Make an Order</p>
-				<div class="btn-group" role="group">
-					<div class="btn-group supplierDropdown" role="group">
-						<button type="button" class="btn dropdown-toggle"
-							data-toggle="dropdown">
-							Supplier <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"> Supplier 1 </a></li>
-							<li><a href="#"> Supplier 2 </a></li>
-						</ul>
-					</div>
-					<div class="btn-group pull-right" role="group">
-						<button type="button" class="btn addLine">Add Line</button>
-						<button type="button" class="btn removeLine">Remove Line</button>
-						<button type="button" class="btn pull-right submitOrder">Submit</button>
-					</div>
-				</div>
-
-				<div class="productOrder">
-					<div class="btn-group orderLine" role="group">
-						<div class="btn-group" role="group">
-							<button type="button" class="btn dropdown-toggle"
-								data-toggle="dropdown">
-								Product <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Product 1</a></li>
-								<li><a href="#">Product 2</a></li>
-							</ul>
-						</div>
-						<div class="input-group">
-							<input id="userInput" type="text" class="form-control"
-								placeholder="Quantity" />
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="MakeSaleInfo hidden">
-				<p id="Identifier">Make a Sale</p>
-				<div class="btn-group saleLine" role="group">
-					<div class="btn-group" role="group">
-						<button type="button" class="btn dropdown-toggle"
-							data-toggle="dropdown">
-							Product <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Product 1</a></li>
-							<li><a href="#">Product 2</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-4" style="padding: 0; margin-top: 2px">
-						<div class="input-group">
-							<input id="userInput" type="text" class="form-control"
-								placeholder="Quantity" />
-						</div>
-					</div>
-					<button type="button" class="btn submitSale">Submit</button>
-				</div>
-			</div>
-
-
-		</div>
-
+		<div id = "RetailersView" class = "hidden row " >
 
 <div id="modal" class="modal fade" role='dialog'> 
         		<div class="modal-dialog">
@@ -162,7 +76,7 @@
                 <h4 id="modal-title"></h4>
                 </div> 
                 <div class="modal-body" id= "modal-body">
-                </div>" 
+                </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div> 
@@ -171,12 +85,7 @@
                 </div>
 
 
-	</div>
-	
-	</div>
-
-		
-		<!-- RetailRows will append here -->
+	</div>		
 		
 			
 
@@ -187,6 +96,7 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"
 		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<!-- bootstrap.js -->
 
@@ -200,6 +110,7 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/datatables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 
 	<script type="text/javascript" src="scripts/sidebarScript.js"></script>    
 			 
@@ -207,9 +118,6 @@
         <script type="text/javascript" src="scripts/salesByRetailer.js"></script>
         <script type="text/javascript" src="scripts/inventoryByRetailer.js"></script>
         <script type="text/javascript" src=scripts/showRetailers.js></script>	
-
-
-	<!-- <script type="text/javascript" src="scripts/script.js"></script> -->
 
 </body>
 </html>
