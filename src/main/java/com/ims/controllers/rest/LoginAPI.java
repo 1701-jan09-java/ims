@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/login")
+@RequestMapping(value="/")
 public class LoginAPI {
 	
 	@Autowired
@@ -19,12 +19,32 @@ public class LoginAPI {
 	private String username = System.getenv("IMS_USER");
 	private String password = System.getenv("IMS_PASS");
 	
-	@RequestMapping(method=RequestMethod.GET, value="")
+	@RequestMapping(method=RequestMethod.POST, value="login")
 	public boolean validLogin(HttpServletRequest request, HttpServletResponse response){
-		if(this.username.equals(request.getAttribute("username")) && this.password.equals(request.getAttribute("password"))){
+		String user = request.getParameter("username");
+		String pass = request.getParameter("password");
+		if(username.equals(user) && password.equals(pass)){
+			session.setAttribute("authenticated", "true");
+			// invalidate session after 20 seconds (test)
+			session.setMaxInactiveInterval(20);
+			return true;
+		}
+		session.setAttribute("authenticated", "false");
+		return false;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="login")
+	public boolean verifyLogin(){
+		System.out.println("Update timer");
+		if(session.getAttribute("authenticated") == "true"){
 			return true;
 		}
 		return false;
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="logout")
+	public void logout(){
+		session.invalidate();
 	}
 
 }

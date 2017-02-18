@@ -2,9 +2,10 @@
 
 #ResultsView{
 	padding : 60px;
+        transition: 0.6s;
 }
 
-.RetailRow, .RetailRowClone{
+.RetailRow, .RetailRowClone {
 	padding : 20px;
 	margin-top : 10px;
 	border-style: solid;
@@ -69,11 +70,41 @@
     width : 50%;
 }
 
-div#ResultsView{
+div#ResultsView {
     display: block;
     margin-top: 60px;
 }
 
+div#login-view {
+    display: block;
+    margin-top: 100px;
+    margin-left:0;
+    padding : 20px;
+    max-width : 750px;
+    transition: 0.6s;
+}
+
+div#login-block {
+    padding: 20px;
+    padding-bottom: 0;
+    margin-left: 100px;
+    border-style: solid;
+    border-width : 2px;
+    border-color : #bdbdbd #5a5a5a #5a5a5a #bdbdbd;
+}
+
+div.login-row {
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+};
 /*
 .div #Banner{
 
@@ -162,7 +193,10 @@ div#ResultsView{
     font-size: 15px;
     color: #FFFFFF;
     display: block;
-    transition: 0.5s
+    transition: 0.5s;
+    height: 32px;
+    overflow: hidden;
+        
 }
 
 .sidenav a:hover{

@@ -1,4 +1,4 @@
-package com.ims.controllers.rest;
+package com.ims.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

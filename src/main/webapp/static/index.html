@@ -29,7 +29,7 @@ Define Top of Page Banner
 			<div class = "nav navbar-header">
 				<div class="row" id="row-style">
 					<div class="col-md-12">
-						<a class="btn" id="openNavBar" href="#">&#9776 Control Panel</a>
+						<a class="btn" id="openNavBar" href="#" disabled="disabled">&#9776 Control Panel</a>
 						<div id = "navbar" class = "navbar-collapse collapse">
 							<ul class = "nav navbar-nav" id = "minibar">
 								<li class="nav navbar-brand">ASU ~ IMS</li>
@@ -37,7 +37,7 @@ Define Top of Page Banner
 									<p>Username</p>
 								</li>
 								<li class = "nav navbar-nav" id = "Log">
-									<p>Login/Logout</p>
+									<p class="btn hidden initial-hidden" id="logout-button">Logout</p>
 								</li>
 							</ul>
 						</div>
@@ -59,8 +59,27 @@ Define Top of Page Banner
 	Define Results View
 		Full Page when Control Panel is Toggled Reduced
 		Page-view size when CP is Toggled Exposed
--->
-	<div class = "container-fluid" id = "ResultsView">
+-->     
+        <div class ="container-fluid" id="login-view">
+            <div class="container-fluid" id="login-block">
+                <div class="row login-row text-center title">IMS Login</div>
+                <div class="row login-row text-center error hidden">Invalid Username or Password!</div>
+                <div class ="row login-row">
+                    <div class="col-xs-3 text-right">Username:</div>
+                    <input id="user-input" type ="text" class="col-xs-6">
+                </div>
+                <div class ="row login-row">
+                    <div class="col-xs-3 text-right">Password:</div>
+                    <input id="pass-input" type ="password" class="col-xs-6">
+                </div>
+                <div class ="row login-row text-center">
+                    <div class="col-md-4"></div>
+                    <button class="btn col-md-4" id="login-button">Submit</button>
+                </div>
+            </div>    
+        </div>
+	
+        <div class = "container-fluid hidden initial-hidden" id = "ResultsView">
 
 		<div class = "row RetailRow">
 			<p class = "myID">104</p>

@@ -1,6 +1,9 @@
-var EVENTS = {
-    
+var EVENTS_INITIALIZE = {
+    timeout: 20, // seconds (for testing, will be minutes eventually)
+    authenticated: false    
 };
+
+var EVENTS = $.extend(true, {}, EVENTS_INITIALIZE);
 
 $(document).ready(function() {
     
@@ -223,7 +226,7 @@ $('.dropdown-toggle').dropdown();
         	 
         }
         myRow.append(newRow);
-    }
+    };
 
     
     var sendRequest = function (group,id,row) {
@@ -259,6 +262,61 @@ $('.dropdown-toggle').dropdown();
             }
         });
     };
+    
+    var updateTimeout = () => EVENTS.lastActionTimeStamp = Date.now();
+    
+    var checkIdle = function() {
+        console.log(Date.now() - EVENTS.lastActionTimeStamp);
+        if (Date.now() - EVENTS.lastActionTimeStamp > EVENTS.timeout*1000) {
+            EVENTS.authenticated = false;
+            logout("Session timeout.");
+        }
+            
+    };
+    
+    var login = function() {
+        $("#login-button").val("Authenticating...");
+        var loginObj = {};
+        loginObj.username = $("#user-input").val();
+        loginObj.password = $("#pass-input").val();
+//        sendLoginRequest(loginObj);
+        $.post("/ims/login/",loginObj).done(function(data){
+            console.log(data);
+            if (data === true) {
+                $("#login-view").addClass("hidden");
+                $("#logout-button").removeClass("hidden");
+                $("#ResultsView").removeClass("hidden");
+                $("#openNavBar").removeAttr("disabled");
+                EVENTS.authenticated = true;
+                EVENTS.timerInterval = setInterval(checkIdle,1000);
+                updateTimeout();
+            } else $(".error").removeClass("hidden");
+        });
+    };
+    
+    var logout = function(cause) {
+        $.post("/ims/logout");
+        $(".initial-hidden").addClass("hidden");
+        $("#login-view").removeClass("hidden");
+        $("#openNavBar").attr("disabled","disabled");
+        if(global.toggleRight === true) $("sidebarScript#openNavBar").trigger("click");
+        clearInterval(EVENTS.timerInterval);
+        EVENTS = jQuery.extend(true, {}, EVENTS_INITIALIZE);
+        console.log("logged out");
+        if (cause !== undefined) {
+            alert(cause);
+        }
+    };
+//    this doesn't work right now
+//    var checkLogin = function() {
+//        var result;
+//        $.when($.get("/ims/login")).done(function(data){
+//            result = data;
+//            
+//        console.log(result);
+//        return result;
+//        });
+//    };
     
     $("#prodById").click(function(){
         var input = $("#idInput").val();
@@ -319,4 +377,15 @@ $('.dropdown-toggle').dropdown();
     		sendRequest("purchase-order-line/po", id, grandparent);
     	}
     });
+    
+    $("#login-button").on("click",function(){
+        console.log("login submit");
+        login();
+    });
+    
+    $("#logout-button").on("click",function(){
+        logout();
+    });
+    
+    
 });
