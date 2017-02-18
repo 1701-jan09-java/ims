@@ -48,6 +48,7 @@ div.orderHeader {
 }
 
 div.MakeOrderInfo > p {
+    font-size: 16pt;
     margin-top: 16px;
     font-weight: bold;
 }
