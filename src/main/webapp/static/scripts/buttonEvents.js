@@ -145,7 +145,8 @@ $(document).ready(function() {
     	EVENTS.viewArea.append("<div class='col-md-2'>Retailer ID</div>");
     	EVENTS.viewArea.append("<div class='col-md-2'>Name</div>");
     	EVENTS.viewArea.append("<div class='col-md-2'>View Sales</div>");
-        EVENTS.viewArea.append("<div class='col-md-6'>Address</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>View Inventory</div>");
+        EVENTS.viewArea.append("<div class='col-md-4'>Address</div>");
         EVENTS.viewArea.append("</div>");
         
         var i = 0;
