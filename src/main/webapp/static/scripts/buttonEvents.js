@@ -248,10 +248,10 @@ $(document).ready(function() {
         } else console.log("Invalid Entry");
     });
     
-    $("#productsButton").click(function(){       	
-    	hideOtherDivs();
-    	
-    	$("#ProductsView").removeClass("hidden");
+    $("#productsButton").click(function(){   
+    	hideOtherDivs(); 
+    	$("#ProductsView").removeClass("hidden");  
+    	$("#Loading").addClass("hidden");
     	EVENTS.viewArea = $("#ProductsView");
         sendRequest("product");
     });
@@ -273,21 +273,18 @@ $(document).ready(function() {
     $("#salesButton").click(function(){    	
     	hideOtherDivs();
     	$("#SalesView").removeClass("hidden");
+    	$("#Loading").addClass("hidden");
     	EVENTS.viewArea = $("#SalesView");
     	sendRequest("sale");
     });
     
     function hideOtherDivs() {
     	
-    	$("#Loading").removeClass("hidden");
+    	$("#Loading").removeClass("hidden");    	    	
     	$("#ProductsView").addClass("hidden");
     	$("#SalesView").addClass("hidden");
-    	$("#Retailers").addClass("hidden");
+    	$("#RetailersView").addClass("hidden");
     	$("#Welcome").addClass("hidden");
-    	//$("#SalesView").addClass("hidden");
-    	
-    	
-    	
     	
     	
     }

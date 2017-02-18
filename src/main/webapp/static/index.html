@@ -46,25 +46,25 @@
 		</div>
 	</nav>
 	<div id="mySideNav" class="sidenav">
-		<a href="index.html">Home</a> <a href="#" id="productsButton">Product
-			Catalogue</a> <a href="#" id="retailersButton"
-			onclick="unhide(this, 'Retailers', 'ret')">Retailers</a> <a href="#">Orders</a>
+		<a href="index.html">Home</a> <a href="#" id="productsButton">Product Catalogue</a> 
+		<a href="#" id="retailersButton"
+			onclick="unhide(this, 'RetailersView', 'ret')">Retailers</a> 
+		<a href="#">Orders</a>
 		<a href="#" id="salesButton">Sales</a>
 
 	</div>
 
 	<div class = "container-fluid" id = "ResultsView">
-	<div class = "container "><h3>Welcome!</h3></div>
-		<div class="hidden container-fluid" id="Loading">
-				<h3>Loading!</h3>
-			</div>
+		<div class = "container-fluid" id = "Welcome"><h3>Welcome!</h3></div>
+		<div class = "hidden container-fluid" id = "Loading"><h3>Loading...</h3></div>
 		
-		<div class = "container-fluid" id = "ProductView"></div>	
-		<div class = "container-fluid" id = "RetailerView"></div>	
-		<div class = "container-fluid" id = "Orderiew"></div>	
+		<div class = "container-fluid" id = "ProductsView"></div>	
+		<div class = "container-fluid" id = "OrderView"></div>	
 		<div class = "container-fluid" id = "SalesView"></div>
 		
-		<div id = "retailers" class = "hidden row RetailRow" >
+		<div id = "AllRetailers" class = "hidden container-fluid"><h3>All Retailers</h3></div>
+		
+		<div id = "RetailersView" class = "hidden row RetailRow" >
 			<p class = "myID">Retailer ID<span id="ret"></span></p> 
 			<div class = "btn-group">
 				<button type = "button" class = "btn RetailButton inventoryButton">Inventory</button>
@@ -165,17 +165,11 @@
 
 	</div>
 
-
-
-	</div>
 		
 		<!-- RetailRows will append here -->
 		
 			
-		</div>
-		
-	
-	</div>
+
 		
 
 

@@ -26,8 +26,8 @@
     					var $retDiv = $("<div/>")  	
     								
     							    .addClass("unhidden row RetailRow")
-    							    .attr("id", "Retailers")
-    							    .html("<p class = \"myID\">RetailerID-<span id=\"retID\">"+data[i].id+"</span> &nbsp; <span id=\"retName\">"+data[i].name+"</span>"+ 
+    							    .attr("id", "RetailersView")
+    							    .html("<p class = \"myID\">RetailerID-<span id=\"ret\">"+data[i].id+"</span> &nbsp; <span id=\"retName\">"+data[i].name+"</span>"+ 
     							    		"&nbsp;&nbsp;<span class=\"addr\">Address: "+data[i].address.street + " " + data[i].address.city + ", " +data[i].address.state + " " + data[i].address.zip+"</span></p>"+
     							    		"<div class = \"btn-group\">" +    							    		
 
@@ -57,10 +57,11 @@
  function hideOtherViews(){
 	 
 	 
+	 $("#Welcome").addClass("hidden");
 	 $("#Loading").addClass("hidden");
 	 $("#ProductsView").addClass("hidden");
 	 $("#SalesView").addClass("hidden");
-	 
+	 $("#AllRetailers").removeClass("hidden");
 	 
 	 
  }
