@@ -145,7 +145,8 @@ $(document).ready(function() {
     	EVENTS.viewArea.append("<div class='col-md-2'>Retailer ID</div>");
     	EVENTS.viewArea.append("<div class='col-md-2'>Name</div>");
     	EVENTS.viewArea.append("<div class='col-md-2'>View Sales</div>");
-        EVENTS.viewArea.append("<div class='col-md-6'>Address</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>View Inventory</div>");
+        EVENTS.viewArea.append("<div class='col-md-4'>Address</div>");
         EVENTS.viewArea.append("</div>");
         
         var i = 0;
@@ -157,7 +158,7 @@ $(document).ready(function() {
         	 EVENTS.viewArea.append("<div class='row'>");
         	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
              EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
-             EVENTS.viewArea.append("<div class='col-md-2'><button onclick=\"salesByRetButton('"+data[i].id+"')\">Sales</button></div>");             
+             EVENTS.viewArea.append("<div class='col-md-2'><button class=\"btn btn-primary open-modal\"  onclick=\"salesByRetButton('"+data[i].id+"');\">Sales</button></div>");             
              EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-6'></div>");
              EVENTS.viewArea.append("</div");
              
@@ -172,7 +173,8 @@ $(document).ready(function() {
             	a.html(a.html() + fullAddr);
             	 
              };
-        }    	
+        }
+
     };
     
     var updateViewSales = function(data) {
@@ -246,10 +248,10 @@ $(document).ready(function() {
         } else console.log("Invalid Entry");
     });
     
-    $("#productsButton").click(function(){       	
-    	hideOtherDivs();
-    	
-    	$("#ProductsView").removeClass("hidden");
+    $("#productsButton").click(function(){   
+    	hideOtherDivs(); 
+    	$("#ProductsView").removeClass("hidden");  
+    	$("#Loading").addClass("hidden");
     	EVENTS.viewArea = $("#ProductsView");
         sendRequest("product");
     });
@@ -271,21 +273,18 @@ $(document).ready(function() {
     $("#salesButton").click(function(){    	
     	hideOtherDivs();
     	$("#SalesView").removeClass("hidden");
+    	$("#Loading").addClass("hidden");
     	EVENTS.viewArea = $("#SalesView");
     	sendRequest("sale");
     });
     
     function hideOtherDivs() {
     	
-    	$("#Loading").removeClass("hidden");
+    	$("#Loading").removeClass("hidden");    	    	
     	$("#ProductsView").addClass("hidden");
     	$("#SalesView").addClass("hidden");
-    	$("#Retailers").addClass("hidden");
+    	$("#RetailersView").addClass("hidden");
     	$("#Welcome").addClass("hidden");
-    	//$("#SalesView").addClass("hidden");
-    	
-    	
-    	
     	
     	
     }
