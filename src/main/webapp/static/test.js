@@ -3,6 +3,46 @@ var TEST = {
 };
 
 $(document).ready(function() {
+    
+    var sendCreatePoRequest = function (poObj) {
+        var url = "/ims/purchase-order";
+        var jsonData = JSON.stringify(poObj);
+        console.log(jsonData);
+        
+        $.ajax({
+            method: "POST",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            processData: false,
+            data: jsonData,
+            
+            success: function(data) {
+                if (data === true) {
+                    console.log("successful");
+                } else console.log("failed");
+            }
+        });
+    };
+    
+    var testPo = {
+        "retId":5,
+        "supId":100,
+        "cost": 550,
+        "lines":
+                [{
+                    "prodId":100,
+                    "count":10,
+                    "cost":500
+                },
+                {
+                    "cost":50,
+                    "count":1,
+                    "prodId":200
+                }]
+    };
+    
+    sendCreatePoRequest(testPo);
+    
     var sendRequest = function (group,id) {
         var tempUrl = "/ims/"+group+"/";
         

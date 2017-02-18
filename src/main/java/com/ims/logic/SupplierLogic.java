@@ -30,4 +30,6 @@ public class SupplierLogic {
 			List<Supplier> supList = dao.getAllSuppliers();
 			return supList;
 		}
+
+
 }
