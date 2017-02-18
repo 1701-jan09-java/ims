@@ -25,13 +25,14 @@ public class DIInventory implements DAOInventory {
 	@Autowired
 	private DAORetailer daoRet; // needed to match retailer in get methods
 	
+	
+	
 	@Override
 	public void updateInventory(Inventory inventory) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(inventory);
 	}
 
-	
 	
 	/**
 	 * 
@@ -44,8 +45,6 @@ public class DIInventory implements DAOInventory {
 		try{
 			Session session = sessionFactory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Inventory.class);	
-//			DAOProduct daoProd = new DIProduct();
-//			DAORetailer daoRet = new DIRetailer();
 			criteria.add(Restrictions.eq("product", daoProd.getProduct(productID)));
 			criteria.add(Restrictions.eq("retailer", daoRet.getRetailer(retailerID)));
 			Inventory inventory = (Inventory) criteria.uniqueResult();
@@ -58,7 +57,7 @@ public class DIInventory implements DAOInventory {
 	
 	
 	@Override
-	public int getInventory(int productID, int retailerID) {
+	public int getInventoryAmount(int productID, int retailerID) {
 		try{
 			Session session = sessionFactory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Inventory.class);	

@@ -136,3 +136,25 @@ start with 100
 increment by 1;
 
 COMMIT;
+
+
+
+insert into ims_retailer_sale 
+(RS_ID,rs_retailer,rs_product,rs_product_quantity, RS_COST)
+values (1, 3, 200, 100, 100.00); 
+
+create or replace trigger RET_SALE_TIME
+  before insert on IMS_RETAILER_SALE
+  for each row
+  begin
+      select systimestamp into :new.RS_TS from dual;
+  end;
+
+create or replace trigger PURCH_ORDER_TIME
+  before insert on IMS_PURCHASE_ORDER
+  for each row
+  begin
+      select systimestamp into :new.PO_TS from dual;
+  end;
+
+commit;

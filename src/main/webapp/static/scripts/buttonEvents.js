@@ -81,8 +81,10 @@ $('.dropdown-toggle').dropdown();
         }
     });
     
-	EVENTS.viewArea = $("#ResultsView");
+
+	//EVENTS.viewArea = $("#ResultsView");
     
+
     var updateViewProducts = function(data){
         EVENTS.viewArea.empty();
         EVENTS.viewArea.append("<div class='col-xs-2'>Product ID</div>");
@@ -140,17 +142,26 @@ $('.dropdown-toggle').dropdown();
     var updateViewRetailers = function(data) {
     	
     	EVENTS.viewArea.empty();
-    	EVENTS.viewArea.append("<div class='col-xs-2'>Retailer ID</div>");
-    	EVENTS.viewArea.append("<div class='col-xs-4'>Retailer Name</div>");
-        EVENTS.viewArea.append("<div class='col-xs-6'>Address</div>");
+    	EVENTS.viewArea.append("<div class='row'>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>Retailer ID</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>Name</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>View Sales</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>View Inventory</div>");
+        EVENTS.viewArea.append("<div class='col-md-4'>Address</div>");
+        EVENTS.viewArea.append("</div>");
+        
         var i = 0;
         var n = 0;
         var fullAddr = "";
         
         for (i=0; i<data.length; i++) {
-        	 EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
-             EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
-             EVENTS.viewArea.append("<div id='address"+i+"' class='col-xs-6'></div>");
+        	
+        	 EVENTS.viewArea.append("<div class='row'>");
+        	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
+             EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
+             EVENTS.viewArea.append("<div class='col-md-2'><button class=\"btn btn-primary open-modal\"  onclick=\"salesByRetButton('"+data[i].id+"');\">Sales</button></div>");             
+             EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-6'></div>");
+             EVENTS.viewArea.append("</div");
              
              var a = $("#address"+i);
              console.log(a);
@@ -158,12 +169,13 @@ $('.dropdown-toggle').dropdown();
             	 a.html("&ltNone&gt");            	 
              } else {
             	
-            	fullAddr = data[i].address.street + " " + data[i].address.city + " " +
+            	fullAddr = data[i].address.street + " " + data[i].address.city + ", " +
             		 	   data[i].address.state + " " + data[i].address.zip;
             	a.html(a.html() + fullAddr);
             	 
              };
-        }    	
+        }
+
     };
     
     var updateViewSales = function(data) {
@@ -269,7 +281,11 @@ $('.dropdown-toggle').dropdown();
         } else console.log("Invalid Entry");
     });
     
-    $("#productsButton").click(function(){
+    $("#productsButton").click(function(){   
+    	hideOtherDivs(); 
+    	$("#ProductsView").removeClass("hidden");  
+    	$("#Loading").addClass("hidden");
+    	EVENTS.viewArea = $("#ProductsView");
         sendRequest("product");
     });
     
@@ -284,16 +300,30 @@ $('.dropdown-toggle').dropdown();
     
     $("#categoriesButton").click(function(){
         sendRequest("category");
-    });
+    }); 
+   
     
-    $("#retailersButton").click(function(){
-    	sendRequest("retailer");
-    });
-    
-    $("#salesButton").click(function(){
+    $("#salesButton").click(function(){    	
+    	hideOtherDivs();
+    	$("#SalesView").removeClass("hidden");
+    	$("#Loading").addClass("hidden");
+    	EVENTS.viewArea = $("#SalesView");
     	sendRequest("sale");
     });
     
+
+    function hideOtherDivs() {
+    	
+    	$("#Loading").removeClass("hidden");    	    	
+    	$("#ProductsView").addClass("hidden");
+    	$("#SalesView").addClass("hidden");
+    	$("#RetailersView").addClass("hidden");
+    	$("#Welcome").addClass("hidden");
+    	
+    	
+    }
+    
+
     $(".ordersButton").click(function(){
     	var ancestor = $(this).parent().parent();
     	if(!ancestor.children().hasClass("orderTable")) {
@@ -319,4 +349,5 @@ $('.dropdown-toggle').dropdown();
     		sendRequest("purchase-order-line/po", id, grandparent);
     	}
     });
+
 });

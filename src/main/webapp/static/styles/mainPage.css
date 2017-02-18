@@ -13,6 +13,20 @@
 	max-width : 750px;
 }
 
+.modal-dialog {
+  width: 100%;
+  height: 80%;
+  margin: 0;
+  padding:0;
+  text-align:center;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
 #ID, #Identifier{
 	font-size:20px;
 }
@@ -74,50 +88,6 @@ div#ResultsView{
     margin-top: 60px;
 }
 
-/*
-.div #Banner{
-
-	background: set color of navbar Banner 
-	
-}
-
-.div.PanelTop{
-	
-}
-
-.div.UserProfile{
-	
-}
-
-.div.Log{
-	
-}
-
-.div.ControlPanel{
-	
-}
-
-.ControlPanel > #Tab{
-	
-}
-
-.div.Products{
-	
-}
-
-.div.Retailers{
-	
-}
-
-.div.Orders{
-	
-}
-
-.div.Sales{
-	
-}
-
-*/
 
 #openNavBar {
 	color: #5a5a5a;
@@ -185,3 +155,24 @@ div#ResultsView{
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+/* retailerSales branch additions (sharang): */
+
+.hidden{
+	display:none;
+}
+
+.unhidden{
+    display:block;
+}
+
+.smallRetailButton{
+	margin-right : 2px;
+	padding: 3px 4px;
+}
+
+.addr{
+	font-size: 12px;
+}
+
