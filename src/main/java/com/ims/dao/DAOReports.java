@@ -14,8 +14,8 @@ public interface DAOReports {
 	List<Product> sellDollarsByProduct();
 	List<Product> sellQuantityByProduct();
 	
-	List<Category> sellDollarsByCategory();
-	List<Category> sellQuantityByCategory();
+	List<Product> avgSellDollarsByProduct();
+	List<Product> avgQuantityByProduct();
 	
 	List<Retailer> sellDollarsByRetailer();
 	List<Retailer> sellQuantityByRetailer();
@@ -24,9 +24,10 @@ public interface DAOReports {
 	List<Supplier> sellQuantityBySupplier();
 	
 	List<Product> inventoryByProductByRetailer();
-	List<Product> inventoryByProductBySupplier();
+	List<Product> avgInventoryByProductByRetailer();
 	
-	List<Product> inventoryByCategory();
+	List<Product> inventoryThresholdByProduct();
+	List<Product> inventoryThresholdByProductByRetailer();
 	
 	List<Product> inventoryByProduct();
 	

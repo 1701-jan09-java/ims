@@ -20,14 +20,7 @@ import com.ims.domain.Sale;
 import com.ims.domain.Supplier;
 
 @Component
-public class DIReports implements DAOReports {
-	
-//	Session session = sessionFactory.getCurrentSession();
-//	Criteria criteria = session.createCriteria(PurchaseOrder.class);
-//	criteria.add(Restrictions.gt("po_cost", 5000));
-//	List<PurchaseOrder> poList = criteria.list();
-//	return poList;
-	
+public class DIReports implements DAOReports {	
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -36,40 +29,63 @@ public class DIReports implements DAOReports {
 	public List<Product> sellDollarsByProduct() {
 		
 		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Product.class);
+		Criteria criteria = session.createCriteria(PurchaseOrderLine.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("cost"))
+						.add(Projections.groupProperty("product")));
 		
 		List<Product> productList = criteria.list();
-		return null;
+		return productList;
 	}
 
 	@Override
 	public List<Product> sellQuantityByProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrderLine.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("quantity"))
+						.add(Projections.groupProperty("product")));
+		
+		List<Product> productList = criteria.list();
+		return productList;
+		
 	}
 
 	@Override
-	public List<Category> sellDollarsByCategory() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> avgSellDollarsByProduct() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrderLine.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.avg("cost"))
+						.add(Projections.groupProperty("product")));
+		
+		List<Product> productList = criteria.list();
+		return productList;
 	}
 
 	@Override
-	public List<Category> sellQuantityByCategory() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> avgQuantityByProduct() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrderLine.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.avg("quantity"))
+						.add(Projections.groupProperty("product")));
+		
+		List<Product> productList = criteria.list();
+		return productList;
 	}
 
 	@Override
 	public List<Retailer> sellDollarsByRetailer() {
-		
 		
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(PurchaseOrder.class);
 		criteria.setProjection(Projections.projectionList()
 						.add(Projections.sum("cost"))
 						.add(Projections.groupProperty("retailer")));
-		System.out.println(criteria);
 		
 		List<Retailer> retailerList = criteria.list();
 		
@@ -78,44 +94,119 @@ public class DIReports implements DAOReports {
 
 	@Override
 	public List<Retailer> sellQuantityByRetailer() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrder.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("retailer"))
+						.add(Projections.groupProperty("retailer")));
+		
+		List<Retailer> retailerList = criteria.list();
+		
+		return retailerList;
 	}
 
 	@Override
 	public List<Supplier> sellDollarsBySupplier() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrder.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("cost"))
+						.add(Projections.groupProperty("supplier")));
+		
+		List<Supplier> supplierList = criteria.list();
+		
+		return supplierList;
 	}
 
 	@Override
 	public List<Supplier> sellQuantityBySupplier() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PurchaseOrder.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("supplier"))
+						.add(Projections.groupProperty("supplier")));
+		
+		List<Supplier> supplierList = criteria.list();
+		
+		return supplierList;
 	}
 
 	@Override
 	public List<Product> inventoryByProductByRetailer() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Inventory.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("productQuantity"))
+						.add(Projections.groupProperty("product"))
+						.add(Projections.groupProperty("retailer")));
+		
+		List<Product> productList = criteria.list();
+		
+		return productList;
 	}
 
 	@Override
-	public List<Product> inventoryByProductBySupplier() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> avgInventoryByProductByRetailer() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Inventory.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("product"))
+						.add(Projections.groupProperty("product"))
+						.add(Projections.groupProperty("retailer")));
+		
+		List<Product> productList = criteria.list();
+		
+		return productList;
 	}
 
 	@Override
-	public List<Product> inventoryByCategory() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> inventoryThresholdByProduct() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Inventory.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("productQuantity"))
+						.add(Projections.groupProperty("product"))
+						.add(Projections.groupProperty("productThreshold")));
+		
+		List<Product> productList = criteria.list();
+		
+		return productList;
+	}
+	
+	@Override
+	public List<Product> inventoryThresholdByProductByRetailer() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Inventory.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("productQuantity"))
+						.add(Projections.groupProperty("product"))
+						.add(Projections.groupProperty("retailer"))
+						.add(Projections.groupProperty("productThreshold")));
+		
+		List<Product> productList = criteria.list();
+		
+		return productList;
 	}
 
 	@Override
 	public List<Product> inventoryByProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Inventory.class);
+		criteria.setProjection(Projections.projectionList()
+						.add(Projections.sum("productQuantity"))
+						.add(Projections.groupProperty("product")));
+		
+		List<Product> productList = criteria.list();
+		
+		return productList;
 	}
 
 
