@@ -16,18 +16,24 @@ function salesByRetButton(input) {
 	});
 
 	$.when(ajax1).done(function(data){
+
 		EVENTS.updateTimeout();
                 
+
+		 
+		console.log(data);
+		
+
   	 	global.retailData = data.slice();
-  	 	console.log(global.retailData);
+  	 	//console.log(global.retailData);
   	 	global.modalBody = document.getElementById("modal-body");
-  	 	console.log(global.modalBody);
+  	 	//console.log(global.modalBody);
   	 	global.modalHeader = document.getElementById("modal-title");
   	 	
   	 	var saleRow = document.createElement("div");
   	 	saleRow.className = "row";
   	 	global.modalBody.appendChild(saleRow);
-  	 	console.log(global.modalBody);
+  	 	//console.log(global.modalBody);
   	 	
   	 	var saleHeader = document.createElement("div");
   	 	saleHeader.className = "col-md-12";
@@ -105,7 +111,7 @@ function salesByRetButton(input) {
   	 	 
   	     $('#modal').modal('show');
   	     $("#modal").on("hidden.bs.modal", function(){
-  		    $(".modal-body").html("");
+  	    	 $(".modal-body").html("");
   		});
 	});
 }		
