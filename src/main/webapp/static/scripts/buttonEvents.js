@@ -7,8 +7,60 @@ $(document).ready(function() {
     var allProducts;
     var productNames = [];
     var appendSups = false;
+    var notice = "";
     
     $('.dropdown-toggle').dropdown();
+    
+    
+    // To notify user when a retailer has a product below a certain threshold on welcome page 
+    $(function() {
+    	
+    	 $.ajax({
+    	        method: "GET",
+    	        url: "/ims/retailer",
+    	        success: function(data) {
+    	        	
+    	        	for (i = 0; i < data.length+1; i++) {
+    	        		checkInventory(i);
+    	        	}
+    	        	
+    	        }
+    	 });
+    	 	    	
+    });    
+ 
+    
+    function checkInventory(input) {
+    	
+    	$.ajax({
+    		
+    		method: "GET",
+            url: "/ims/inventory/"+input,
+    		success: function(data) {
+    			
+    			console.log(data);
+    			
+    			for (i = 0; i < data.length; i++) {
+    				
+    				if(data[i].productQuantity < data[i].productThreshold) {   					
+    					
+    					console.log("checking");
+    					notice = data[i].retailer.name + "'s product: '" + data[i].product.name + "'" +
+    							", with quantity: " + data[i].productQuantity + ",  is below the threshold: " 
+    							+ data[i].productThreshold + ".";
+    					var alert = $("#Notification");
+    					alert.html(alert.html()+ notice);
+    					alert.html(alert.html()+"<br/>");
+    					$("#Notification").removeClass("hidden");
+    				}
+    				
+    			}
+    			
+    		}
+    	});
+    	
+    }    	
+   
     
     $('body').on('click', '.supplierDropdown', function() {
     	
@@ -16,15 +68,6 @@ $(document).ready(function() {
     		
     		showingSups();    		
     	}    	
-    });
-    
-    $('body').on('click','.inventoryButton', function(){
-        var view = $('#ResultsView');
-        var row = $('.RetailRow');
-        var clone = row.clone(true);
-        clone.removeClass('RetailRow');
-        clone.addClass('RetailRowClone');
-        view.append(clone);
     });
     
     $('body').on('click','.submitOrder', function(){
@@ -413,8 +456,7 @@ $(document).ready(function() {
                 	updateViewSales(data);
                 } else if(group === "purchase-order-line/po") {
                 	updateViewPurchaseOrderByRetailer(data,myRow);
-                } 
-
+                }
             },
 
             failure: function() {
@@ -673,4 +715,5 @@ $(document).ready(function() {
     $("#retailersButton").on("click",function(){
         $("#RetailersView").removeClass("hidden");
     });
+  
 });

@@ -36,6 +36,7 @@
                         "<div class = 'btn-group pull-right'>"+
                             "<button class = \"btn btn-primary RetailButton makeSaleButton\">Make Sale</button>"+
                             "<button class = \"btn btn-danger RetailButton makeOrderButton\">Make Order</button></div>"+
+                        '<div class = "hidden">Heyyy</div>'+
                         '<div class = "MakeOrderInfo hidden">'+
 			'<p>Make an Order</p>'+
 			'<div class = "btn-group" role = "group">'+
@@ -43,7 +44,7 @@
 					'<input type="TextBox" ID="datebox" Class="form-control"></input>'+
 					'<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">'+
 					'Supplier <span class = "caret"></span></button>'+
-					'<ul class = "dropdown-menu" role = "menu" id = "test">'+
+					'<ul class = "dropdown-menu" role = "menu">'+
 					'</ul>'+
 				'</div>'+ 
 				'<div class = "btn-group pull-right" role = "group">'+
@@ -135,7 +136,9 @@
         $("#Loading").addClass("hidden");
         $("#ProductsView").addClass("hidden");
         $("#SalesView").addClass("hidden");
+        $("#Notification").addClass("hidden");
         $("#AllRetailers").removeClass("hidden");
+        
 
 
  }
