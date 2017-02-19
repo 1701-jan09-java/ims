@@ -33,7 +33,7 @@
 							<ul class="nav navbar-nav" id="minibar">
 								<li class="nav navbar-brand">ASU ~ IMS</li>
 								<li class="nav navbar-nav" id="UserProfile">
-									<p>Username</p>
+									<p class="hidden" id="username"></p>
 								</li>
 								<li class="nav navbar-nav" id="Log">
 									<p class="btn hidden initial-hidden" id="logout-button">Logout</p>
@@ -47,11 +47,11 @@
 	</nav>
 	<div id="mySideNav" class="sidenav">
 
-		<a href="index.html">Home</a> <a href="#" id="productsButton">Product Catalogue</a> 
-		<a href="#" id="retailersButton" onclick="unhide(this, 'RetailersView', 'ret')">Retailers</a> 
-		<a href="#" id="productsButton">Product Catalogue</a>
-		<a href="#" id="purchaseOrderByRetailerButton">Orders</a>
-		<a href="#" id="salesButton">Sales</a>
+		<p id="home-button">Home</p>
+		<p id="retailersButton">Retailers</p> 
+		<p id="productsButton">Product Catalogue</p>
+		<p id="purchaseOrderByRetailerButton">Orders</p>
+		<p id="salesButton">Sales</p>
 
 	</div>
 <!--				 
@@ -59,29 +59,29 @@
 		Full Page when Control Panel is Toggled Reduced
 		Page-view size when CP is Toggled Exposed
 -->     
-        <div class ="container-fluid" id="login-view">
-            <div class="container-fluid" id="login-block">
-                <div class="row login-row text-center title">IMS Login</div>
-                <div class="row login-row text-center error hidden">Invalid Username or Password!</div>
-                <div class ="row login-row">
-                    <div class="col-xs-3 text-right">Username:</div>
-                    <input id="user-input" type ="text" class="col-xs-6">
-                </div>
-                <div class ="row login-row">
-                    <div class="col-xs-3 text-right">Password:</div>
-                    <input id="pass-input" type ="password" class="col-xs-6">
-                </div>
-                <div class ="row login-row text-center">
-                    <div class="col-md-4"></div>
-                    <button class="btn col-md-4" id="login-button">Submit</button>
-                </div>
-            </div>    
-        </div>
 	
-        <div class="container-fluid hidden initial-hidden" id="ResultsView">
+        <div class="container-fluid" id="ResultsView">
+            
+            <div class ="container-fluid hidden initial-hidden" id="login-view">
+                <div class="container-fluid" id="login-block">
+                    <div class="row login-row text-center title">IMS Login</div>
+                    <div class="row login-row text-center error hidden">Invalid Username or Password!</div>
+                    <div class ="row login-row">
+                        <div class="col-xs-3 text-right">Username:</div>
+                        <input id="user-input" type ="text" class="col-xs-6">
+                    </div>
+                    <div class ="row login-row">
+                        <div class="col-xs-3 text-right">Password:</div>
+                        <input id="pass-input" type ="password" class="col-xs-6">
+                    </div>
+                    <div class ="row login-row text-center">
+                        <div class="col-md-4"></div>
+                        <button class="btn btn-primary col-md-4" id="login-button">Login using our "secure" server</button>
+                    </div>
+                </div>    
+            </div>
 
-
-		<div class = "container-fluid" id = "Welcome"><h3>Welcome!</h3></div>
+		<div class = "container-fluid hidden initial-hidden" id = "Welcome"><h3>Welcome!</h3></div>
 		<div class = "hidden container-fluid" id = "Loading"><h3>Loading...</h3></div>
 		
 		<div class = "container-fluid" id = "ProductsView"></div>	

@@ -1,6 +1,6 @@
 var EVENTS_INITIALIZE = {
-    timeout: 20, // seconds (for testing, will be minutes eventually)
-    authenticated: false    
+    timeout: 20, // minutes
+    authenticated: false,
 };
 
 var EVENTS = $.extend(true, {}, EVENTS_INITIALIZE);
@@ -9,7 +9,17 @@ $(document).ready(function() {
 
     var allProducts;
     var productNames = [];
-
+    
+    $.get("login").done(function(data){
+        if (data === true) {
+            loginEvent();
+        } else {
+            EVENTS.authenticated = false;
+            $("#login-view").removeClass("hidden");
+            EVENTS.currentView = "#login-view";
+        }
+    });
+    
     $('.dropdown-toggle').dropdown();
     
     $('body').on('click','.inventoryButton', function(){
@@ -312,9 +322,7 @@ $(document).ready(function() {
             	loadProducts(data);
             }
     	});
-    };
-    
-	preLoad('product');	
+    };	
     
     var sendRequest = function (group,id,row) {
         var tempUrl = "/ims/"+group+"/";
@@ -355,14 +363,37 @@ $(document).ready(function() {
     
     var checkIdle = function() {
         console.log(Date.now() - EVENTS.lastActionTimeStamp);
-        if (Date.now() - EVENTS.lastActionTimeStamp > EVENTS.timeout*1000) {
+        if (Date.now() - EVENTS.lastActionTimeStamp > EVENTS.timeout*60000) {
             EVENTS.authenticated = false;
-            logout("Session timeout.");
+            EVENTS.logout("Session timeout.");
         }
             
     };
     
-    var login = function() {
+    var loginEvent = function () {
+        EVENTS.authenticated = true;
+        EVENTS.timerInterval = setInterval(checkIdle,1000);
+        updateTimeout();
+        preLoad('product');
+        changeView("#Welcome");
+        $("#username").html(EVENTS.user);
+        $("#logout-button, #username").removeClass("hidden");
+        $("#openNavBar").removeAttr("disabled");
+    };
+    
+    var changeView = function(newViewId) {
+        var exists = false;
+        for (let value of pageMap.values()) {
+            value === newViewId && (exists = true);
+        }
+        if (exists) {
+            $(EVENTS.currentView).addClass("hidden");
+            EVENTS.currentView = newViewId;
+            $(EVENTS.currentView).removeClass("hidden");
+        } else throw "Error: Page does not exist in pageMap.";
+    };
+    
+    EVENTS.login = function() {
         $("#login-button").val("Authenticating...");
         var loginObj = {};
         loginObj.username = $("#user-input").val();
@@ -371,23 +402,15 @@ $(document).ready(function() {
         $.post("/ims/login/",loginObj).done(function(data){
             console.log(data);
             if (data === true) {
-                $("#login-view").addClass("hidden");
-                $("#logout-button").removeClass("hidden");
-                $("#ResultsView").removeClass("hidden");
-                $("#openNavBar").removeAttr("disabled");
-                EVENTS.authenticated = true;
-                EVENTS.timerInterval = setInterval(checkIdle,1000);
-                updateTimeout();
+                EVENTS.user = loginObj.username;
+                loginEvent();
             } else $(".error").removeClass("hidden");
         });
     };
     
-    var logout = function(cause) {
+    EVENTS.logout = function(cause) {
         $.post("/ims/logout");
-        $(".initial-hidden").addClass("hidden");
-        $("#login-view").removeClass("hidden");
-        $("#openNavBar").attr("disabled","disabled");
-        if(global.toggleRight === true) $("sidebarScript#openNavBar").trigger("click");
+        location.reload();
         clearInterval(EVENTS.timerInterval);
         EVENTS = jQuery.extend(true, {}, EVENTS_INITIALIZE);
         console.log("logged out");
@@ -396,15 +419,16 @@ $(document).ready(function() {
         }
     };
 //    this doesn't work right now
-//    var checkLogin = function() {
-//        var result;
-//        $.when($.get("/ims/login")).done(function(data){
-//            result = data;
-//            
-//        console.log(result);
-//        return result;
-//        });
-//    };
+    EVENTS.checkLogin = function() {
+        var result;
+        $.when($.get("/ims/login")).done(function(data){
+            result = data;
+            
+        console.log(result);
+        EVENTS.authenticated = result;
+        if (!EVENTS.authenticated) EVENTS.logout();
+        });
+    };
 
     var checkProdField = function(prodField){
         var prod = getProdByName(prodField.val());
@@ -473,7 +497,7 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.find(".retId").html();
-        var supId = 20;
+        var supId = 4;
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
         if (!checkPoFields(orderDiv) === true){
@@ -649,16 +673,33 @@ $(document).ready(function() {
     	}
     });
     
+    $("body").on("click","#mySideNav p", function(){
+        var divId = pageMap.get($(this).attr("id"));
+        changeView(divId);
+        if (divId === "#AllRetailers") {
+            unhide(divId);
+        }
+    });
+    
     $("#login-button").on("click",function(){
         console.log("login submit");
-        login();
+        EVENTS.login();
     });
     
     $("#logout-button").on("click",function(){
-        logout();
+        EVENTS.logout();
     });
 
     $("#retailersButton").on("click",function(){
         $("#RetailersView").removeClass("hidden");
     });
+    
+    var pageMap = new Map([
+        [ "home-button", "#Welcome" ],
+        [ "retailersButton", "#AllRetailers" ],
+        [ "productsButton", null ],
+        [ "purchaseOrderByRetailerButton", null ],
+        [ "salesButton", "#SalesView" ]
+    ]);
+
 });

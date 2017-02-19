@@ -16,17 +16,18 @@ public class LoginAPI {
 	@Autowired
 	private HttpSession session;
 	
-	private String username = System.getenv("IMS_USER");
-	private String password = System.getenv("IMS_PASS");
+	private final String username = System.getenv("IMS_USER");
+	private final String password = System.getenv("IMS_PASS");
 	
 	@RequestMapping(method=RequestMethod.POST, value="login")
 	public boolean validLogin(HttpServletRequest request, HttpServletResponse response){
 		String user = request.getParameter("username");
 		String pass = request.getParameter("password");
+                System.out.println("com.ims.controllers.rest.LoginAPI.validLogin()");
 		if(username.equals(user) && password.equals(pass)){
 			session.setAttribute("authenticated", "true");
 			// invalidate session after 20 seconds (test)
-			session.setMaxInactiveInterval(20);
+			session.setMaxInactiveInterval(20*60);
 			return true;
 		}
 		session.setAttribute("authenticated", "false");
@@ -36,10 +37,7 @@ public class LoginAPI {
 	@RequestMapping(method=RequestMethod.GET, value="login")
 	public boolean verifyLogin(){
 		System.out.println("Update timer");
-		if(session.getAttribute("authenticated") == "true"){
-			return true;
-		}
-		return false;
+		return session.getAttribute("authenticated") == "true";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="logout")

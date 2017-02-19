@@ -2,13 +2,9 @@
  * 
  */
 
- function unhide(clickedButton, divID, ret) {
+ function unhide(divID) {
 
-    hideOtherViews();	 		
-
-    console.log("here");
-    console.log(divID); 
-
+    hideOtherViews();
 
     $.ajax({
         method: "GET",
@@ -120,7 +116,8 @@
 
         },
 
-      error: function(){
+      error: function(data){
+          console.log(data); 	
               alert("OOPSIES! Something Went Wrong");
       }
 
