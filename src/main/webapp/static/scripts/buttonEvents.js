@@ -520,6 +520,10 @@ $(document).ready(function() {
     	EVENTS.viewArea = $("#SalesView");
     	sendRequest("sale");
     });
+    
+    $("#purchaseOrderByRetailerButton").on("click",function(){
+        $("#OrderView").removeClass("hidden");
+    });
 
     var prodInputFunc = function(prodInput) {
         var orderLine = $(prodInput).parents(".orderLine");
