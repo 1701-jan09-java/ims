@@ -32,13 +32,12 @@
 			'<p>Make an Order</p>'+
 			'<div class = "btn-group" role = "group">'+
 				'<div class = "btn-group supplierDropdown" role = "group" >'+
+					'<input type="TextBox" ID="datebox" Class="form-control"></input>'+
 					'<button type = "button" class = "btn dropdown-toggle" data-toggle="dropdown">'+
 					'Supplier <span class = "caret"></span></button>'+
-					'<ul class = "dropdown-menu" role = "menu">'+
-						'<li><a href = "#"> Supplier 1 </a></li>'+
-						'<li><a href = "#"> Supplier 2 </a></li>'+
+					'<ul class = "dropdown-menu" role = "menu" id = "test">'+
 					'</ul>'+
-				'</div>'+
+				'</div>'+ 
 				'<div class = "btn-group pull-right" role = "group">'+
 					'<button type = "button" class = "btn addLine">Add Line</button>'+
 					'<button type = "button" class = "btn removeLine">Remove Line</button>'+
