@@ -1,8 +1,5 @@
 package com.ims.main;
 
-import com.ims.logic.CategoryLogic;
-import com.ims.logic.ProductLogic;
-
 public class YannickMain {
 	public static void main (String[] args){
 		

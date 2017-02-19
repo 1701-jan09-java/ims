@@ -3,7 +3,6 @@ package com.ims.dao;
 import java.util.List;
 
 import com.ims.domain.Category;
-import com.ims.domain.Product;
 
 public interface DAOCategory {
 

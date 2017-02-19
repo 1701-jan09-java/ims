@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ims.dao.DAOSupplier;
-import com.ims.dao.DISupplier;
 import com.ims.domain.Supplier;
 
 @Service

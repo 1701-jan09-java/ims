@@ -2,8 +2,6 @@ package com.ims.dao;
 
 import java.util.List;
 
-import com.ims.domain.Category;
-import com.ims.domain.Inventory;
 import com.ims.domain.Product;
 import com.ims.domain.Retailer;
 import com.ims.domain.Supplier;

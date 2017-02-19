@@ -6,17 +6,14 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ims.domain.Category;
 import com.ims.domain.Inventory;
 import com.ims.domain.Product;
 import com.ims.domain.PurchaseOrder;
 import com.ims.domain.PurchaseOrderLine;
 import com.ims.domain.Retailer;
-import com.ims.domain.Sale;
 import com.ims.domain.Supplier;
 
 @Component
