@@ -16,7 +16,8 @@ function salesByRetButton(input) {
 	});
 
 	$.when(ajax1).done(function(data){
-		 
+		EVENTS.updateTimeout();
+                
   	 	global.retailData = data.slice();
   	 	console.log(global.retailData);
   	 	global.modalBody = document.getElementById("modal-body");

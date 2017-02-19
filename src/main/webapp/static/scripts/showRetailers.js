@@ -2,19 +2,15 @@
  * 
  */
 
- function unhide(divID) {
-
-    hideOtherViews();
+ function unhide() {
 
     $.ajax({
         method: "GET",
         url: "/ims/retailer",
         success: function(data) {
+            EVENTS.updateTimeout();
 
-            console.log(data); 				
-
-            var item = document.getElementById(divID);
-                console.log(item);  
+            console.log(data); 				 
 
 
             for(i=0; i<data.length; i++) {	
@@ -126,15 +122,4 @@
 
 }
 
-    function hideOtherViews(){
-
-
-        $("#Welcome").addClass("hidden");
-        $("#Loading").addClass("hidden");
-        $("#ProductsView").addClass("hidden");
-        $("#SalesView").addClass("hidden");
-        $("#AllRetailers").removeClass("hidden");
-
-
- }
 
