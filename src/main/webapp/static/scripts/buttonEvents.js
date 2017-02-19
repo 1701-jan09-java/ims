@@ -18,14 +18,6 @@ $(document).ready(function() {
     	}    	
     });
     
-    $('body').on('click','.inventoryButton', function(){
-        var view = $('#ResultsView');
-        var row = $('.RetailRow');
-        var clone = row.clone(true);
-        clone.removeClass('RetailRow');
-        clone.addClass('RetailRowClone');
-        view.append(clone);
-    });
     
     $('body').on('click','.submitOrder', function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
