@@ -6,8 +6,17 @@ $(document).ready(function() {
 
     var allProducts;
     var productNames = [];
-
+    var appendSups = false;
+    
     $('.dropdown-toggle').dropdown();
+    
+    $('body').on('click', '.supplierDropdown', function() {
+    	
+    	if (appendSups === false) {
+    		
+    		showingSups();    		
+    	}    	
+    });
     
     $('body').on('click','.inventoryButton', function(){
         var view = $('#ResultsView');
@@ -314,6 +323,71 @@ $(document).ready(function() {
     
 	preLoad('product');	
     
+	function showingSups() {
+		
+		$.ajax({
+			
+            method: "GET",
+            url: "/ims/supplier",
+            
+            success: function(data) {
+            	
+            	var allSuppliers = '';
+        		$.each(data, function(index, value) {
+        		    allSuppliers += '<li><a href = "#">' + value.name + '</a></li>';
+        		});
+
+        		$('.dropdown-menu').append(allSuppliers);
+            	
+        		appendSups = true;
+        		
+            	} 
+		});
+		
+	}
+	
+	$(document).on('click', '.dropdown-menu li a', function() {
+	   
+		$('#datebox').val($(this).html());
+		var supName = $(this).html();		
+		console.log(supName);
+		
+		//var x = getSupId(supName);
+		//console.log(x);
+	});
+	
+	function getSupId(supName) {
+		
+		var x = 0;
+		
+		$.ajax({
+		
+			async: false,
+            method: "GET",
+            url: "/ims/supplier",
+            
+            success: function(data) {
+            	
+            	for (i = 0; i < data.length; i++) {
+            		
+            		if(data[i].name === supName) {
+            			
+            			console.log(data[i].id);            			
+            		
+            			x = data[i].id
+            		}
+            	}
+            	
+            }
+            
+		});
+		
+		return x;
+		
+	}
+	
+	
+	
     var sendRequest = function (group,id,row) {
         var tempUrl = "/ims/"+group+"/";
         var myRow = row;
@@ -339,7 +413,7 @@ $(document).ready(function() {
                 	updateViewSales(data);
                 } else if(group === "purchase-order-line/po") {
                 	updateViewPurchaseOrderByRetailer(data,myRow);
-                }
+                } 
 
             },
 
@@ -416,7 +490,10 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.find(".retId").html();
-        var supId = 20;
+        var supName = document.getElementById('datebox').value;
+        console.log(supName);
+        console.log(getSupId(supName));
+        var supId = getSupId(supName);
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
         if (!checkPoFields(orderDiv) === true){
@@ -574,6 +651,7 @@ $(document).ready(function() {
     	$("#ProductsView").addClass("hidden");
     	$("#SalesView").addClass("hidden");
     	$("#RetailersView").addClass("hidden");
+    	$("#AllRetailers").addClass("hidden");
     	$("#Welcome").addClass("hidden");
 
     }
