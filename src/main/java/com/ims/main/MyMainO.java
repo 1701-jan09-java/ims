@@ -50,7 +50,7 @@ public class MyMainO {
 //		PurchaseOrderLine pol = new PurchaseOrderLine();
 //		polLogic.updatePurchaseOrderLine(pol);;
 //		polLogic.createPurchaseOrderLine(polDTO, 104);
-		ReportsLogic repLogic = new ReportsLogic();
+//		ReportsLogic repLogic = new ReportsLogic();
 //		List<PurchaseOrder> repList = repLogic.getAllPurchaseOrdersOver5k();
 //		System.out.println(repLogic);
 //		List<PurchaseOrderLine> pol = polLogic.getAllPurchaseOrderLines(104);
