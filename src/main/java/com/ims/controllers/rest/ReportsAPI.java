@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ims.domain.Product;
-import com.ims.domain.PurchaseOrder;
 import com.ims.domain.Retailer;
 import com.ims.domain.Supplier;
 import com.ims.logic.ReportsLogic;
