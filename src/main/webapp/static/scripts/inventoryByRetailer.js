@@ -50,6 +50,7 @@ INVENTORY.invProdQuantArray=[];
     	  url: inventURL,
        });
        $.when(inventoryAjax).done(function(data){
+           EVENTS.updateTimeout();
     	   console.log(data);
     	   INVENTORY.invObjArray= data.slice();
     	   INVENTORY.modalBody = document.getElementById("modal-body");

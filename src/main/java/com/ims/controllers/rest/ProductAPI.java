@@ -1,5 +1,6 @@
 package com.ims.controllers.rest;
 
+import com.example.controllers.rest.FlashCard;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ims.domain.Product;
 import com.ims.dto.ProductDTO;
 import com.ims.logic.ProductLogic;
+import java.util.Arrays;
+import javax.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping(value="/product")
@@ -19,6 +24,8 @@ public class ProductAPI {
 	
 	@Autowired
 	private ProductLogic productLogic;
+        @Autowired
+        private HttpSession session;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
 	public ProductDTO getProduct(@PathVariable("id") Integer id) {
@@ -29,12 +36,14 @@ public class ProductAPI {
 	
 	@RequestMapping(method=RequestMethod.GET, value="")
 	public List<ProductDTO> getAllProducts() {
-		List<Product> products = productLogic.getAllProducts();
-		List<ProductDTO> productsDto = new ArrayList<>();
-		for (Product product: products) {
-			productsDto.add(new ProductDTO(product));
-		}
-		return productsDto;
+
+            List<Product> products = productLogic.getAllProducts();
+            List<ProductDTO> productsDto = new ArrayList<>();
+            products.forEach((product) -> {
+                productsDto.add(new ProductDTO(product));
+            });
+
+            return productsDto;
 	}
 	
 //	@RequestMapping(method=RequestMethod.GET, value="/", params={"limit","offset"})

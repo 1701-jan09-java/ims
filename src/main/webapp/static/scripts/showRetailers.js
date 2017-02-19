@@ -2,23 +2,15 @@
  * 
  */
 
- function unhide(clickedButton, divID, ret) {
-
-    hideOtherViews();	 		
-
-    console.log("here");
-    console.log(divID); 
-
+ function unhide() {
 
     $.ajax({
         method: "GET",
         url: "/ims/retailer",
         success: function(data) {
+            EVENTS.updateTimeout();
 
-            console.log(data); 				
-
-            var item = document.getElementById(divID);
-                console.log(item);  
+            console.log(data); 				 
 
 
             for(i=0; i<data.length; i++) {	
@@ -120,7 +112,8 @@
 
         },
 
-      error: function(){
+      error: function(data){
+          console.log(data); 	
               alert("OOPSIES! Something Went Wrong");
       }
 
@@ -129,15 +122,4 @@
 
 }
 
-    function hideOtherViews(){
-
-
-        $("#Welcome").addClass("hidden");
-        $("#Loading").addClass("hidden");
-        $("#ProductsView").addClass("hidden");
-        $("#SalesView").addClass("hidden");
-        $("#AllRetailers").removeClass("hidden");
-
-
- }
 
