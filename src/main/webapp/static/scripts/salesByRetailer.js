@@ -61,43 +61,7 @@ function salesByRetButton(input) {
  	 	var saleProductQuantityHeader = document.createElement("th");
  	 	saleProductQuantityHeader.innerHTML = "Quantity";
  	 	saleHeadRow.appendChild(saleProductQuantityHeader);
- 	 	
- 	 	/*	 	
- 	 	var saleRow = document.createElement("div");
-  	 	saleRow.className = "row";
-  	 	global.modalBody.appendChild(saleRow);
-  	 	//console.log(global.modalBody);
-  	 	
-  	 	var saleHeader = document.createElement("div");
-  	 	saleHeader.className = "col-md-12";
-  	 	saleRow.appendChild(saleHeader);
-  	 	
-  	 	var saleIdHeader = document.createElement("div");
-  	 	saleIdHeader.innerHTML = '<b>'+"Sale ID"+'</b>';
-  	 	saleIdHeader.className = "col-md-2";
-  	 	saleHeader.appendChild(saleIdHeader);
-  	 	
-  	 	var productNameHeader = document.createElement("div");
-  	 	productNameHeader.innerHTML = '<b>'+"Product Name"+'</b>';
-  	 	productNameHeader.className = "col-md-4";
-  	 	saleHeader.appendChild(productNameHeader);
-  	 	
-  	 	var productCostHeader = document.createElement("div");
-  	 	productCostHeader.innerHTML = '<b>'+"Cost"+'</b>';
-  	 	productCostHeader.className = "col-md-2";
-  	 	saleHeader.appendChild(productCostHeader);
-  	 	
-  	 	var productIdHeader = document.createElement("div");
-  	 	productIdHeader.innerHTML = '<b>'+"Product ID"+'</b>';
-  	 	productIdHeader.className = "col-md-2";
-  	 	saleHeader.appendChild(productIdHeader);
-  	 	
-  	 	var quantitySoldHeader = document.createElement("div");
-  	 	quantitySoldHeader.innerHTML = '<b>'+"Quantity"+'</b>';
-  	 	quantitySoldHeader.className = "col-md-2";
-  	 	saleHeader.appendChild(quantitySoldHeader);
-  	 	*/
- 	 	
+ 	 
   	 	global.modalHeader.innerHTML = global.retailData[0].retailer.name;
   	 	
   	 	 for(let index = 0; index < global.retailData.length; index++){
@@ -131,40 +95,6 @@ function salesByRetButton(input) {
  	 		 prodQuantity.innerHTML = quantitySold;
  	 		 newTableRow.appendChild(prodQuantity);
  	 		 
-  	 		 /*
-  	 		 var newRow = document.createElement("div");
-  	 		 newRow.className="row";
-  	 		 global.modalBody.appendChild(newRow);
-  	 		 
-  	 		var newInnerRow = document.createElement("div");
-  	 		newInnerRow.className="col-md-12";
- 	 		newRow.appendChild(newInnerRow);
- 	 		
- 	 		var sale = document.createElement("div");
- 	 		sale.innerHTML = saleID;
-  	 		sale.className="col-md-2";
-  	 		newInnerRow.appendChild(sale);
-  	 		
-  	 		var prodName = document.createElement("div");
-  	 		prodName.innerHTML = productName;
-  	 		prodName.className="col-md-4";
-  	 		newInnerRow.appendChild(prodName);
-  	 		
-  	 		var prodCost = document.createElement("div");
-  	 		prodCost.innerHTML = productCost;
-  	 		prodCost.className="col-md-2";
-  	 		newInnerRow.appendChild(prodCost);
-  	 		
-  	 		var prodID = document.createElement("div");
-  	 		prodID.innerHTML = productID;
-  	 		prodID.className="col-md-2";
-  	 		newInnerRow.appendChild(prodID);
-  	 		
-  	 		var prodQuantity = document.createElement("div");
-  	 		prodQuantity.innerHTML = quantitySold;
-  	 		prodQuantity.className="col-md-2";
-  	 		newInnerRow.appendChild(prodQuantity); 
- 	 		 */
   	 	 }
   	 	 
   	     $('#modal').modal('show');
