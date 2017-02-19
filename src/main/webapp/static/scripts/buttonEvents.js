@@ -69,7 +69,7 @@ $(document).ready(function() {
     		showingSups();    		
     	}    	
     });
-    
+   
     $('body').on('click','.submitOrder', function(){
     	var uncle = $(this).parents('.MakeOrderInfo').find(".productOrder");
     	var retRow = $(this).parents(".RetailRow");
