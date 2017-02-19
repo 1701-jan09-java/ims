@@ -1,5 +1,5 @@
 var EVENTS_INITIALIZE = {
-    timeout: 3, // minutes
+    timeout: 20, // minutes
     authenticated: false
 };
 

@@ -26,7 +26,7 @@ public class LoginAPI {
                 System.out.println("com.ims.controllers.rest.LoginAPI.validLogin()");
 		if(username.equals(user) && password.equals(pass)){
 			session.setAttribute("authenticated", "true");
-			// invalidate session after 20 seconds (test)
+			// invalidate session after 20 minutes
 			session.setMaxInactiveInterval(20*60);
 			return true;
 		}
