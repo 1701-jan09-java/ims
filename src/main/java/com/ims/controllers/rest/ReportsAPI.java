@@ -16,6 +16,7 @@ import com.ims.logic.ReportsLogic;
 @RequestMapping(value="/reports")
 public class ReportsAPI {
 	
+	
 	@Autowired
 	private ReportsLogic reportsLogic;
 	
