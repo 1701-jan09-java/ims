@@ -20,6 +20,23 @@
   padding:0;
   text-align:center;
 }
+td
+{
+    height: 50px; 
+    width:50px;
+    text-align:center; 
+    vertical-align:middle;
+}
+
+th { 
+    text-align: center;
+}
+
+
+table {
+	width: 100%;
+}
+
 
 .modal-content {
   height: auto;
