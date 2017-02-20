@@ -123,18 +123,18 @@
 }
 
 
-    function hideOtherViews(){
-
-
-        $("#Welcome").addClass("hidden");
-        $("#Loading").addClass("hidden");
-        $("#ProductsView").addClass("hidden");
-        $("#SalesView").addClass("hidden");
-        $("#Notification").addClass("hidden");
-        $("#AllRetailers").removeClass("hidden");
-        
-
-
- }
+//    function hideOtherViews(){
+//
+//
+//        $("#Welcome").addClass("hidden");
+//        $("#Loading").addClass("hidden");
+//        $("#ProductsView").addClass("hidden");
+//        $("#SalesView").addClass("hidden");
+//        $("#Notification").addClass("hidden");
+//        $("#AllRetailers").removeClass("hidden");
+//        
+//
+//
+// }
 
 

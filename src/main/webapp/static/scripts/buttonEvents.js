@@ -471,6 +471,7 @@ $(document).ready(function() {
     };
     
     var changeView = function(newViewId) {
+    	
         var exists = false;
         for (let value of pageMap.values()) {
             value === newViewId && (exists = true);
@@ -731,6 +732,7 @@ $(document).ready(function() {
     $("body").on("click","#mySideNav p", function(){
         var divId = pageMap.get($(this).attr("id"));
         changeView(divId);
+        $("#Notification").addClass("hidden");
         console.log(divId);
         if (divId === "#RetailersView") {
             unhide();
