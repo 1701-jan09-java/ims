@@ -25,7 +25,7 @@ $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
     
     // To notify user when a retailer has a product below a certain threshold on welcome page 
-    $(function() {
+    function inventoryCheck() {
     	
     	 $.ajax({
     	        method: "GET",
@@ -39,7 +39,7 @@ $(document).ready(function() {
     	        }
     	 });
     	 	    	
-    });    
+    }    
  
     
     function checkInventory(input) {
@@ -484,6 +484,7 @@ $(document).ready(function() {
         $("#username").html(EVENTS.user);
         $("#logout-button, #username").removeClass("hidden");
         $("#openNavBar").removeAttr("disabled");
+        inventoryCheck();
     };
     
     var changeView = function(newViewId) {
