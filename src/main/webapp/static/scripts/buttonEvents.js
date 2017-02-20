@@ -57,11 +57,20 @@ $(document).ready(function() {
     				if(data[i].productQuantity < data[i].productThreshold) {   					
     					
     					console.log("checking");
-    					notice = data[i].retailer.name + "'s product: '" + data[i].product.name + "'" +
-    							", with quantity: " + data[i].productQuantity + ",  is below the threshold: " 
-    							+ data[i].productThreshold + ".";
+    					// this notice for more verbose alert display
+//    					notice = "INVENTORY ALERT--RETAILER: " + data[i].retailer.name + "--PRODUCT: " + data[i].product.name + " " +
+//    							"--STOCK AMT: " + data[i].productQuantity + "--THRESHOLD: " 
+//    							+ data[i].productThreshold + ". ------ ORDER NEEDED: " + (data[i].productThreshold-data[i].productQuantity)+" units." ;
+    					
+    					alerter = (("INVENTORY ALERT! ").bold()).big();
+    					retailer = "Retailer: " + ((data[i].retailer.name).bold()).big();
+    					product = "-- Product: " + ((data[i].product.name).bold()).big() + "-- STOCK AMT: " + data[i].productQuantity + " --- ";
+    					minOrderAmount = (((data[i].productThreshold-data[i].productQuantity).toString()).bold()).big();
+    					notice = " UNITS BELOW THRESHOLD";
     					var alert = $("#Notification");
-    					alert.html(alert.html()+ notice);
+    					alert.html(alert.html()+ alerter + retailer + product + minOrderAmount + notice);
+    					
+//    					alert.html(alert.html()+ notice); used with longer notice above			
     					alert.html(alert.html()+"<br/>");
     					$("#Notification").removeClass("hidden");
     				}
