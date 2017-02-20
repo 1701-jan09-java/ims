@@ -28,15 +28,15 @@
 			<div class="nav navbar-header">
 				<div class="row" id="row-style">
 					<div class="col-md-12">
-						<a class="btn" id="openNavBar" href="#" disabled="disabled">&#9776 Control Panel</a>
+						<a class="btn" id="openNavBar" href="#" disabled="disabled" style="color:white">&#9776 Control Panel</a>
 						<div id = "navbar" class = "navbar-collapse collapse">
 							<ul class="nav navbar-nav" id="minibar">
 								<li class="nav navbar-brand">ASU ~ IMS</li>
-								<li class="nav navbar-nav" id="UserProfile">
+								<li class="nav navbar-nav" id="UserProfile" style="color:white">
 									<p class="hidden" id="username"></p>
 								</li>
 								<li class="nav navbar-nav" id="Log">
-									<p class="btn hidden initial-hidden" id="logout-button">Logout</p>
+									<p class="btn hidden initial-hidden" id="logout-button" style="color:white">Logout</p>
 								</li>
 							</ul>
 						</div>
@@ -52,6 +52,8 @@
 		<p id="productsButton">Product Catalogue</p>
 		<p id="purchaseOrderByRetailerButton">Orders</p>
 		<p id="salesButton">Sales</p>
+
+
 
 	</div>
 <!--				 
@@ -82,15 +84,18 @@
             </div>
 
 		<div class = "container-fluid hidden initial-hidden" id = "Welcome"><h3>Welcome!</h3></div>
+		<div class = "container-fluid hidden initial-hidden" id = "Notification" style = "color:red"><h4></h4></div>
 		<div class = "hidden container-fluid" id = "Loading"><h3>Loading...</h3></div>
 		
 		<div class = "container-fluid" id = "ProductsView"></div>	
 		<div class = "container-fluid" id = "OrderView"></div>	
 		<div class = "container-fluid" id = "SalesView"></div>
 		
+
                 <div id="RetailersView" class="container-fluid hidden">
                     <div id="AllRetailers" class="row"><h3>All Retailers</h3></div>
                 </div>		
+
 
 
 <div id="modal" class="modal fade" role='dialog'> 
@@ -109,10 +114,12 @@
                 </div> 
                 </div>
 
+		</div>
 
-	</div>		
+
 		
-			
+
+	
 
 		
 

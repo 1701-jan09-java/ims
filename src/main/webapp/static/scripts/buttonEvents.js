@@ -9,6 +9,8 @@ $(document).ready(function() {
 
     var allProducts;
     var productNames = [];
+    var appendSups = false;
+    var notice = "";
     
     $.get("login").done(function(data){
         if (data === true) {
@@ -22,13 +24,62 @@ $(document).ready(function() {
     
     $('.dropdown-toggle').dropdown();
     
-    $('body').on('click','.inventoryButton', function(){
-        var view = $('#ResultsView');
-        var row = $('.RetailRow');
-        var clone = row.clone(true);
-        clone.removeClass('RetailRow');
-        clone.addClass('RetailRowClone');
-        view.append(clone);
+    // To notify user when a retailer has a product below a certain threshold on welcome page 
+    $(function() {
+    	
+    	 $.ajax({
+    	        method: "GET",
+    	        url: "/ims/retailer",
+    	        success: function(data) {
+    	        	
+    	        	for (i = 0; i < data.length+1; i++) {
+    	        		checkInventory(i);
+    	        	}
+    	        	
+    	        }
+    	 });
+    	 	    	
+    });    
+ 
+    
+    function checkInventory(input) {
+    	
+    	$.ajax({
+    		
+    		method: "GET",
+            url: "/ims/inventory/"+input,
+    		success: function(data) {
+    			
+    			console.log(data);
+    			
+    			for (i = 0; i < data.length; i++) {
+    				
+    				if(data[i].productQuantity < data[i].productThreshold) {   					
+    					
+    					console.log("checking");
+    					notice = data[i].retailer.name + "'s product: '" + data[i].product.name + "'" +
+    							", with quantity: " + data[i].productQuantity + ",  is below the threshold: " 
+    							+ data[i].productThreshold + ".";
+    					var alert = $("#Notification");
+    					alert.html(alert.html()+ notice);
+    					alert.html(alert.html()+"<br/>");
+    					$("#Notification").removeClass("hidden");
+    				}
+    				
+    			}
+    			
+    		}
+    	});
+    	
+    }    	
+   
+    
+    $('body').on('click', '.supplierDropdown', function() {
+    	
+    	if (appendSups === false) {
+    		
+    		showingSups();    		
+    	}    	
     });
     
     $('body').on('click','.submitOrder', function(){
@@ -297,6 +348,70 @@ $(document).ready(function() {
     	});
     };	
     
+    function showingSups() {
+		
+		$.ajax({
+			
+            method: "GET",
+            url: "/ims/supplier",
+            
+            success: function(data) {
+            	
+            	var allSuppliers = '';
+        		$.each(data, function(index, value) {
+        		    allSuppliers += '<li><a href = "#">' + value.name + '</a></li>';
+        		});
+
+        		$('.dropdown-menu').append(allSuppliers);
+            	
+        		appendSups = true;
+        		
+            	} 
+		});
+		
+	}
+	
+	$(document).on('click', '.dropdown-menu li a', function() {
+	   
+		$('#datebox').val($(this).html());
+		var supName = $(this).html();		
+		console.log(supName);
+		
+		//var x = getSupId(supName);
+		//console.log(x);
+	});
+	
+	function getSupId(supName) {
+		
+		var x = 0;
+		
+		$.ajax({
+		
+			async: false,
+            method: "GET",
+            url: "/ims/supplier",
+            
+            success: function(data) {
+            	
+            	for (i = 0; i < data.length; i++) {
+            		
+            		if(data[i].name === supName) {
+            			
+            			console.log(data[i].id);            			
+            		
+            			x = data[i].id
+            		}
+            	}
+            	
+            }
+            
+		});
+		
+		return x;
+		
+	}
+
+    
     var sendRequest = function (group,id,row) {
         var tempUrl = "/ims/"+group+"/";
         var myRow = row;
@@ -356,6 +471,7 @@ $(document).ready(function() {
     };
     
     var changeView = function(newViewId) {
+    	
         var exists = false;
         for (let value of pageMap.values()) {
             value === newViewId && (exists = true);
@@ -473,7 +589,10 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.find(".retId").html();
-        var supId = 4;
+        var supName = document.getElementById('datebox').value;
+        console.log(supName);
+        console.log(getSupId(supName));
+        var supId = getSupId(supName);
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
         if (!checkPoFields(orderDiv) === true){
@@ -613,6 +732,7 @@ $(document).ready(function() {
     $("body").on("click","#mySideNav p", function(){
         var divId = pageMap.get($(this).attr("id"));
         changeView(divId);
+        $("#Notification").addClass("hidden");
         console.log(divId);
         if (divId === "#RetailersView") {
             unhide();
