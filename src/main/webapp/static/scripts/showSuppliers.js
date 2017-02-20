@@ -2,7 +2,7 @@
  * 
  */
 
- function unhide(clickedButton, divID) {
+ function unhideSup(clickedButton, divID) {
 
     hideOtherViews();	 		
 
