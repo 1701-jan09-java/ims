@@ -20,7 +20,7 @@ public class ReportsAPI {
 	private ReportsLogic reportsLogic;
 	
 	//Fongi
-	//Pie
+	//Pie localhost:8080/ims/reports/dollars-by-product
 	@RequestMapping(method=RequestMethod.GET, value="/dollars-by-product")
 	public List<Product> sellDollarsByProduct() {
 		List<Product> productList = reportsLogic.sellDollarsByProduct();
@@ -36,7 +36,7 @@ public class ReportsAPI {
 	}
 	
 	//Fongi
-	//Bar
+	//Bar localhost:8080/ims/reports/avg-dollars-by-product
 	@RequestMapping(method=RequestMethod.GET, value="/avg-dollars-by-product")
 	public List<Product> avgSellDollarsByProduct() {
 		List<Product> productList = reportsLogic.avgSellDollarsByProduct();
@@ -68,7 +68,7 @@ public class ReportsAPI {
 	}
 	
 	//Fongi
-	//Bar
+	//Bar localhost:8080/ims/reports/dollars-by-supplier
 	@RequestMapping(method=RequestMethod.GET, value="/dollars-by-supplier")
 	public List<Supplier> sellDollarsBySupplier() {
 		List<Supplier> suppliers = reportsLogic.sellDollarsBySupplier();
@@ -76,7 +76,7 @@ public class ReportsAPI {
 	}
 	
 	//Fongi
-	//Radar
+	//Radar localhost:8080/ims/reports/quantity-by-supplier
 	@RequestMapping(method=RequestMethod.GET, value="/quantity-by-supplier")
 	public List<Supplier> sellQuantityBySupplier() {
 		List<Supplier> suppliers = reportsLogic.sellQuantityBySupplier();
@@ -84,7 +84,7 @@ public class ReportsAPI {
 	}
 	
 	//bubble chart
-	//Fongi
+	//Fongi  localhost:8080/ims/reports/inventory-by-product-by-retailer
 	@RequestMapping(method=RequestMethod.GET, value="/inventory-by-product-by-retailer")
 	public List<Product> inventoryByProductByRetailer() {
 		List<Product> productList = reportsLogic.inventoryByProductByRetailer();
@@ -100,7 +100,7 @@ public class ReportsAPI {
 	}
 	
 	//Fongi
-	//Polar
+	//Polar localhost:8080/ims/reports/inventory-threshold-by-product
 	@RequestMapping(method=RequestMethod.GET, value="/inventory-threshold-by-product")
 	public List<Product> inventoryThresholdByProduct() {
 		List<Product> productList = reportsLogic.inventoryThresholdByProduct();

@@ -65,8 +65,8 @@
 -->     
 	
         <div class="container-fluid" id="ResultsView">
-            
-            <div class ="container-fluid hidden initial-hidden" id="login-view">
+        
+        	<div class ="container-fluid hidden initial-hidden" id="login-view">
                 <div class="container-fluid" id="login-block">
                     <div class="row login-row text-center title">IMS Login</div>
                     <div class="row login-row text-center error hidden">Invalid Username or Password!</div>
@@ -84,69 +84,70 @@
                     </div>
                 </div>    
             </div>
+               
 
-		<div class = "container-fluid hidden initial-hidden" id = "Welcome"><h3>Welcome!</h3></div>
-		<div class = "container-fluid hidden initial-hidden" id = "Notification" style = "color:red"><h4></h4></div>
-		<div class = "hidden container-fluid" id = "Loading"><h3>Loading...</h3></div>
+			<div class = "container-fluid hidden initial-hidden" id = "Welcome"><h3>Welcome!</h3></div>
+			<div class = "container-fluid hidden initial-hidden" id = "Notification" style = "color:red"><h4></h4></div>
+			<div class = "hidden container-fluid" id = "Loading"><h3>Loading...</h3></div>
+			
+			<div class = "container-fluid" id = "ProductsView"></div>	
+			<div class = "container-fluid" id = "OrderView"></div>	
+			<div class = "container-fluid" id = "SalesView"></div>
+			<div class = "container-fluid" id = "ReportsView"></div>
 		
-		<div class = "container-fluid" id = "ProductsView"></div>	
-		<div class = "container-fluid" id = "OrderView"></div>	
-		<div class = "container-fluid" id = "SalesView"></div>
-		<div class = "container-fluid" id = "ReportsView"></div>
+			<div id = "AllRetailers" class = "hidden container-fluid"><h3>All Retailers</h3></div>
 		
-		<div id = "AllRetailers" class = "hidden container-fluid"><h3>All Retailers</h3></div>
-		
-		<div id = "RetailersView" class = "hidden row " >
-		
-
-                <div id="RetailersView" class="container-fluid hidden">
-                    <div id="AllRetailers" class="row"><h3>All Retailers</h3></div>
-                </div>		
-
-
-
-			<div id="modal" class="modal fade" role='dialog'> 
-        		<div class="modal-dialog">
-	        		<div class="modal-content">
-		        		<div class="modal-header"> 
-			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button> 
-			                <h4 id="modal-title"></h4>
-		                </div> 
-		                <div class="modal-body" id= "modal-body">
-		                </div>
-		                <div class="modal-footer">
-		                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<div id = "RetailersView" class = "hidden row " >
+			
+	
+	                <div id="RetailersView" class="container-fluid hidden">
+	                    <div id="AllRetailers" class="row"><h3>All Retailers</h3></div>
+	                </div>		
+	
+	
+	
+				<div id="modal" class="modal fade" role='dialog'> 
+	        		<div class="modal-dialog">
+		        		<div class="modal-content">
+			        		<div class="modal-header"> 
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button> 
+				                <h4 id="modal-title"></h4>
+			                </div> 
+			                <div class="modal-body" id= "modal-body">
+			                </div>
+			                <div class="modal-footer">
+			                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                </div> 
 		                </div> 
 	                </div> 
-                </div> 
-             </div>
+	             </div>
+	
+			</div>
 
-		</div>
 
-
-		</div>
-			
-		<div id = "AllSuppliers" class = "hidden container-fluid"><h3>All Suppliers</h3></div>
 		
-		<div id = "SuppliersView" class = "hidden row " >
-			<div id="modal" class="modal fade" role='dialog'> 
-        		<div class="modal-dialog">
-	        		<div class="modal-content">
-		        		<div class="modal-header"> 
-			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button> 
-			                <h4 id="modal-title"></h4>
-		                </div> 
-		                <div class="modal-body" id= "modal-body">
-		                </div>
-		                <div class="modal-footer">
-		                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			
+			<div id = "AllSuppliers" class = "hidden container-fluid"><h3>All Suppliers</h3></div>
+		
+			<div id = "SuppliersView" class = "hidden row " >
+				<div id="modal" class="modal fade" role='dialog'> 
+	        		<div class="modal-dialog">
+		        		<div class="modal-content">
+			        		<div class="modal-header"> 
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button> 
+				                <h4 id="modal-title"></h4>
+			                </div> 
+			                <div class="modal-body" id= "modal-body">
+			                </div>
+			                <div class="modal-footer">
+			                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                </div> 
 		                </div> 
 	                </div> 
-                </div> 
-             </div>
-		</div>
+	             </div>
+			</div>
 			
-
+		</div>
 		
 
 
