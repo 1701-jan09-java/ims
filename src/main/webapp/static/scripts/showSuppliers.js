@@ -2,7 +2,7 @@
  * 
  */
 
- function unhide(clickedButton, divID, sup) {
+ function unhide(clickedButton, divID) {
 
     hideOtherViews();	 		
 
@@ -12,7 +12,7 @@
 
     $.ajax({
         method: "GET",
-        url: "/ims/retailer",
+        url: "/ims/suppliers",
         success: function(data) {
 
             console.log(data); 				
@@ -23,19 +23,18 @@
 
             for(i=0; i<data.length; i++) {	
 
-                var $retDiv = $("<div/>")  	
-                    .addClass("row RetailRow")
-                    .html("<p class = \"useless\">RetailerID-<span class=\"retId\">"+data[i].id+"</span> &nbsp; <span class=\"retName\">"+data[i].name+"</span>"+ 
+                var $supDiv = $("<div/>")  	
+                    .addClass("row SupplyRow")
+                    .html("<p class = \"useless\">SupplierID-<span class=\"supId\">"+data[i].id+"</span> &nbsp; <span class=\"supName\">"+data[i].name+"</span>"+ 
                         "&nbsp;&nbsp;<span class=\"addr\">Address: "+data[i].address.street + " " + data[i].address.city + ", " +data[i].address.state + " " + data[i].address.zip+"</span></p>"+
                         "<div class = \"btn-group\">" +    							    		
 
-                            "<button onclick=\"inventoryByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-info RetailButton inventoryButton\">Inventory</button>" +
-                            "<button onclick=\"salesByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-warning RetailButton salesButton\">Sales</button>" +
-                            "<button type = \"button\" class = \"btn btn-success RetailButton ordersButton\">Orders</button></div>" +    							    		
+                            "<button onclick=\"salesBySupButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-warning SupplyButton salesButton\">Sales</button>" +
+                            "<button type = \"button\" class = \"btn btn-success SupplyButton ordersButton\">Orders</button></div>" +    							    		
 
                         "<div class = 'btn-group pull-right'>"+
-                            "<button class = \"btn btn-primary RetailButton makeSaleButton\">Make Sale</button>"+
-                            "<button class = \"btn btn-danger RetailButton makeOrderButton\">Make Order</button></div>"+
+                            "<button class = \"btn btn-primary SupplyButton makeSaleButton\">Make Sale</button>"+
+                            "<button class = \"btn btn-danger SupplyButton makeOrderButton\">Make Order</button></div>"+
                         '<div class = "MakeOrderInfo hidden">'+
 			'<p>Make an Order</p>'+
 			'<div class = "btn-group" role = "group">'+
@@ -114,7 +113,7 @@
 		'</div> '   
                         );
 
-                $("#RetailersView").append($retDiv);				
+                $("#SuppliersView").append($supDiv);				
 
             } 				
 
@@ -136,7 +135,9 @@
         $("#Loading").addClass("hidden");
         $("#ProductsView").addClass("hidden");
         $("#SalesView").addClass("hidden");
-        $("#AllRetailers").removeClass("hidden");
+        $("#AllRetailers").addClass("hidden");
+        $("#AllSuppliers").removeClass("hidden");
+        $("#SuppliersView").removeClass("hidden");
 
 
  }

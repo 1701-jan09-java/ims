@@ -234,6 +234,46 @@ $(document).ready(function() {
 
     };
     
+    var updateViewSuppliers = function(data) {
+    	
+    	if(data == null) {
+    		console.log("null")
+    	}
+    	console.log(data);
+    	EVENTS.viewArea.empty();
+    	EVENTS.viewArea.append("<div class='row'>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>Supplier ID</div>");
+    	EVENTS.viewArea.append("<div class='col-md-2'>Name</div>");
+        EVENTS.viewArea.append("<div class='col-md-4'>Address</div>");
+        EVENTS.viewArea.append("</div>");
+        
+        var i = 0;
+        var n = 0;
+        var fullAddr = "";
+        
+        for (i=0; i<data.length; i++) {
+        	
+        	 EVENTS.viewArea.append("<div class='row'>");
+        	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
+             EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
+             EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-6'></div>");
+             EVENTS.viewArea.append("</div");
+             
+             var a = $("#address"+i);
+             console.log(a);
+             if(data[i].address.length === 0) {
+            	 a.html("&ltNone&gt");            	 
+             } else {
+            	
+            	fullAddr = data[i].address.street + " " + data[i].address.city + ", " +
+            		 	   data[i].address.state + " " + data[i].address.zip;
+            	a.html(a.html() + fullAddr);
+            	 
+             };
+        }
+
+    };
+    
     var updateViewSales = function(data) {
     	
     	EVENTS.viewArea.empty();
@@ -339,6 +379,8 @@ $(document).ready(function() {
                 	updateViewSales(data);
                 } else if(group === "purchase-order-line/po") {
                 	updateViewPurchaseOrderByRetailer(data,myRow);
+                } else if(group === "suppliers") {
+                	updateViewSuppliers(data);
                 }
 
             },
@@ -598,5 +640,9 @@ $(document).ready(function() {
 
     $("#retailersButton").on("click",function(){
         $("#RetailersView").removeClass("hidden");
+    });
+    
+    $("#suppliersButton").on("click",function(){
+        $("#SuppliersView").removeClass("hidden");
     });
 });

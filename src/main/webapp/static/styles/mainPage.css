@@ -4,7 +4,7 @@
 	padding : 60px;
 }
 
-.RetailRow, .RetailRowClone{
+.RetailRow, .RetailRowClone, .SupplyRow {
 	padding : 20px;
 	margin-top : 10px;
 	border-style: solid;
