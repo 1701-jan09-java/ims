@@ -162,6 +162,7 @@ $(document).ready(function() {
     });
     
     getSupByName = function (name) {
+        if (!EVENTS.allSuppliers) return undefined;
         return $.grep(EVENTS.allSuppliers, function(e){ return e.name === name; })[0];
     };
     
@@ -178,9 +179,9 @@ $(document).ready(function() {
 					'<div class = "input-group col-xs-12">'+
                                  '<div class="col-xs-3 text-box"><div class="ui-widget"><input class="product-input form-control"></div></div>' +
                                  '<div class="col-xs-2 text-box"><input class="text-right pid-input form-control" type = "text" /></div>'+
-                                 '<div class="col-xs-2 text-box"><input class="text-right unit-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
+                                 '<div class="col-xs-2 text-box"><input class="text-right unit-cost-display form-control" type = "text" value = "$0" readonly="true"/></div>'+
                                  '<div class="col-xs-2 text-box"><input class="text-right qty-input form-control" type = "number" min="1" value="1"/></div>'+
-                                 '<div class="col-xs-2 text-box"><input class="text-right line-cost-display form-control" type = "text" value = "0" readonly="true"/></div>'+
+                                 '<div class="col-xs-2 text-box"><input class="text-right line-cost-display form-control" type = "text" value = "$0" readonly="true"/></div>'+
                                  '<div class="col-xs-1 text-right"><button title="Remove This Line" class="btn btn-danger sm-button removeThisLine">x</button></div>'+                                
 					'</div>'+
                                         
@@ -390,7 +391,8 @@ $(document).ready(function() {
                 console.log(retRow);
 		$(retRow.find('#datebox')).val($(this).html());
                 
-		var supName = $(this).html();		
+		var supName = $(this).html();
+        checkSupField($(retRow.find('#datebox')));
 		console.log(supName);
 		
 		//var x = getSupId(supName);
@@ -552,6 +554,19 @@ $(document).ready(function() {
         return prodCheck;
     };
     
+    var checkSupField = function(supField){
+        var sup = getSupByName(supField.val());
+        var supCheck = false;
+        if (sup === undefined) {
+            supField.addClass("invalid-input");
+        } else {
+            supField.removeClass("invalid-input");
+            supCheck = true;
+        }
+        
+        return supCheck;
+    };
+    
     var checkPidField = function(pidField){
         var prod = getProdById(pidField.val());
         var prodCheck = false;
@@ -596,6 +611,9 @@ $(document).ready(function() {
             }
             
         });
+        if (!checkSupField(orderDiv.find("#datebox"))){
+            pass = false;
+        }
         if (pass === false) {
             setTimeout(function(){
                 alert("Invalid fields marked in red.");
@@ -606,14 +624,20 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.find(".retId").html();
-        var supName = retRow.find('#datebox').val();
-        var supId = getSupByName(supName).id;
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
+        
         if (!checkPoFields(orderDiv) === true){
             console.log("invalid fields");
             return null;
         }
+        
+        
+        var supName = retRow.find('#datebox').val();
+        var supId = getSupByName(supName).id;
+        
+        
+        
         console.log("all fields passed");
         
         var poObj = {
@@ -649,7 +673,8 @@ $(document).ready(function() {
         orderDiv.find(".line-cost-display").each(function() {
             total += Number($(this).val());
         });
-        orderDiv.find(".total-cost-display").val(total);
+        total = total || "0";
+        orderDiv.find(".total-cost-display").val("$"+total);
     };
     
     var sendCreatePoRequest = function (poObj) {
@@ -669,7 +694,7 @@ $(document).ready(function() {
                 if (data === true) {
                     // TODO tell user it succeeded or failed
                     console.log("successful");
-                } else console.log("failed");
+                } else alert("Order submission failed.");
             }
         });
     };
@@ -701,6 +726,13 @@ $(document).ready(function() {
             setTimeout(() => prodInputFunc(this),10);
     });
     
+    $("body").on("change autocompleteselect focusout keypress", "#datebox", function(event) {
+        if (event.key && (event.key !== "Enter")) return;
+            setTimeout(() => {
+            checkSupField($(this));
+        },10);
+    });
+    
     $("body").on("focusout keypress", ".pid-input", function(event) {
         if (event.key && (event.key !== "Enter")) return;
         var orderLine = $(this).parents(".orderLine");
@@ -709,9 +741,9 @@ $(document).ready(function() {
             prod = getProdById($(this).val());
             orderLine.find(".product-input").val(prod.name);
             checkProdField(orderLine.find(".product-input"));
-            orderLine.find(".unit-cost-display").val(prod.supplierPrice);
-            orderLine.find(".line-cost-display").val(
-                    prod.supplierPrice * orderLine.find(".qty-input").val()).change();
+            orderLine.find(".unit-cost-display").val("$"+prod.supplierPrice);
+            orderLine.find(".line-cost-display").val("$"+
+            prod.supplierPrice * orderLine.find(".qty-input").val()).change();
         }
     });
     
@@ -774,7 +806,6 @@ $(document).ready(function() {
         [ "home-button", "#Welcome" ],
         [ "retailersButton", "#RetailersView" ],
         [ "productsButton", "#ProductsView" ],
-        [ "purchaseOrderByRetailerButton", null ],
         [ "salesButton", "#SalesView" ]
     ]);
 
