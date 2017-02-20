@@ -109,24 +109,24 @@
 			
 			<div id = "AllReports" class = "hidden container-fluid"><h3>All Reports</h3></div>
 				<div class="ReportsRow">
-					<button class=" col-xs-3">Dollars By Product</button>
-					<button class=" col-xs-3">Quantity By Product</button>
-					<button class=" col-xs-3">Avg Dollars By Product</button>
-					<button class=" col-xs-3">Avg Quantity By Product</button>
+					<button class="btn btn-primary col-xs-3" id="dollarsByProduct">Dollars By Product</button>
+					<button class="btn btn-success col-xs-3">Quantity By Product</button>
+					<button class="btn btn-info col-xs-3">Avg Dollars By Product</button>
+					<button class="btn btn-warning col-xs-3">Avg Quantity By Product</button>
 				</div>
 				
 				<div class="ReportsRow">
-					<button class=" col-xs-3">Sales Dollars By Retailer</button>
-					<button class=" col-xs-3">Sales Quantity By Retailer</button>
-					<button class=" col-xs-3">Sales Dollars By Supplier</button>
-					<button class=" col-xs-3">Sales Quantity By Supplier</button>
+					<button class="btn btn-primary col-xs-3">Sales Dollars By Retailer</button>
+					<button class="btn btn-warning col-xs-3">Sales Quantity By Retailer</button>
+					<button class="btn btn-info col-xs-3">Sales Dollars By Supplier</button>
+					<button class="btn btn-warning col-xs-3">Sales Quantity By Supplier</button>
 				</div>
 				
 				<div class="ReportsRow">
-					<button class=" col-xs-3">Inventory By Product By Retailer</button>
-					<button class=" col-xs-3">Avg Inventory By Product By Retailer</button>
-					<button class=" col-xs-3">Inventory Threshold By Product</button>
-					<button class=" col-xs-3">Inventory Threshold By Product By Retailer</button>
+					<button class="btn btn-primary col-xs-3">Inventory By Product By Retailer</button>
+					<button class="btn btn-success col-xs-3">Avg Inventory By Product By Retailer</button>
+					<button class="btn btn-info col-xs-3">Inventory Threshold By Product</button>
+					<button class="btn btn-success col-xs-3">Inventory Threshold By Product By Retailer</button>
 				</div>
 		
 			<div id = "ReportsView" class = "hidden row " >
@@ -135,7 +135,7 @@
 	
 	
 	
-			<div id="modal" class="modal fade" role='dialog'> 
+			<div id="modal" class="modal fade" role='dialog' tabindex='-1'> 
         		<div class="modal-dialog">
 	        		<div class="modal-content">
 		        		<div class="modal-header"> 
@@ -143,6 +143,12 @@
 			                <h4 id="modal-title"></h4>
 		                </div> 
 		                <div class="modal-body" id= "modal-body">
+		                <div class="row">
+		                	<div class="col-md-6">
+		                	<canvas id="myChart" width="400" height="400"></canvas>
+		                	</div>
+		                </div>
+		                		
 		                </div>
 		                <div class="modal-footer">
 		                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -178,14 +184,14 @@
     <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 
 	<script type="text/javascript" src="resources/scripts/sidebarScript.js"></script>    
-			 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>		 
         <script type="text/javascript" src="resources/scripts/buttonEvents.js"></script>
         <script type="text/javascript" src="resources/scripts/salesByRetailer.js"></script>
         <script type="text/javascript" src="resources/scripts/inventoryByRetailer.js"></script>
         <script type="text/javascript" src="resources/scripts/showRetailers.js"></script>
         <script type="text/javascript" src="resources/scripts/showSuppliers.js"></script>
         <script type="text/javascript" src="resources/scripts/showReports.js"></script>
-        <script src="Chart.js"></script>
+        
 
 </body>
 </html>

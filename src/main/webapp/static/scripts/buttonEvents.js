@@ -202,10 +202,6 @@ $(document).ready(function() {
         }
     });
     
-
-	//EVENTS.viewArea = $("#ResultsView");
-    
-
     var updateViewProducts = function(data){
         var viewArea = $("#ProductsView");
         viewArea.empty();
@@ -239,32 +235,7 @@ $(document).ready(function() {
         
     };
     
-//    var updateViewCategories = function(data){
-//        EVENTS.viewArea.empty();
-//        EVENTS.viewArea.append("<div class='col-xs-2'>Category ID</div>");
-//        EVENTS.viewArea.append("<div class='col-xs-4'>Category Name</div>");
-//        EVENTS.viewArea.append("<div class='col-xs-6'>Products</div>");
-//        var i = 0;
-//        var n = 0;
-//        for (i=0; i<data.length; i++) {
-//            EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
-//            EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
-//            EVENTS.viewArea.append("<div id='products"+i+"' class='col-xs-6'></div>");
-//            var a = $("#products"+i);
-//            console.log(a); 
-//            if (data[i].products.length === 0) {
-//                a.html("&ltNone&gt");
-//            } else {
-//                for (n=0; n<data[i].products.length; n++) {
-//                    a.html(a.html()+data[i].products[n].name);
-//                    if (n<data[i].products.length-1) {
-//                        a.html(a.html()+", ");
-//                    }
-//            }
-//            };
-//        }
-//        
-//    };
+
     
     var updateViewSuppliers = function(data) {
     	
@@ -418,9 +389,6 @@ $(document).ready(function() {
 		$('#datebox').val($(this).html());
 		var supName = $(this).html();		
 		console.log(supName);
-		
-		//var x = getSupId(supName);
-		//console.log(x);
 	});
 	
 	function getSupId(supName) {
@@ -493,7 +461,7 @@ $(document).ready(function() {
     EVENTS.updateTimeout = () => EVENTS.lastActionTimeStamp = Date.now();
     
     var checkIdle = function() {
-        console.log(Date.now() - EVENTS.lastActionTimeStamp);
+       
         if (Date.now() - EVENTS.lastActionTimeStamp > EVENTS.timeout*60000) {
             EVENTS.authenticated = false;
             EVENTS.logout("Session timeout.");
