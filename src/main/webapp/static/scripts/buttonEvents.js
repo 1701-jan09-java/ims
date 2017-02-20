@@ -49,7 +49,7 @@ $(document).ready(function() {
     		method: "GET",
             url: "/ims/inventory/"+input,
     		success: function(data) {
-    			
+    			EVENTS.updateTimeout();
     			console.log(data);
     			
     			for (i = 0; i < data.length; i++) {
@@ -160,6 +160,10 @@ $(document).ready(function() {
     	}
 
     });
+    
+    getSupByName = function (name) {
+        return $.grep(EVENTS.allSuppliers, function(e){ return e.name === name; })[0];
+    };
     
     var getProdById = function (id) {
         return $.grep(allProducts, function(e){ return e.id === Number(id); })[0];
@@ -365,7 +369,8 @@ $(document).ready(function() {
             url: "/ims/supplier",
             
             success: function(data) {
-            	
+            	EVENTS.updateTimeout();
+                EVENTS.allSuppliers = data;
             	var allSuppliers = '';
         		$.each(data, function(index, value) {
         		    allSuppliers += '<li><a href = "#">' + value.name + '</a></li>';
@@ -381,8 +386,10 @@ $(document).ready(function() {
 	}
 	
 	$(document).on('click', '.dropdown-menu li a', function() {
-	   
-		$('#datebox').val($(this).html());
+                var retRow = $(this).parents(".RetailRow");
+                console.log(retRow);
+		$(retRow.find('#datebox')).val($(this).html());
+                
 		var supName = $(this).html();		
 		console.log(supName);
 		
@@ -401,7 +408,7 @@ $(document).ready(function() {
             url: "/ims/supplier",
             
             success: function(data) {
-            	
+            	EVENTS.updateTimeout();
             	for (i = 0; i < data.length; i++) {
             		
             		if(data[i].name === supName) {
@@ -598,10 +605,8 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.find(".retId").html();
-        var supName = document.getElementById('datebox').value;
-        console.log(supName);
-        console.log(getSupId(supName));
-        var supId = getSupId(supName);
+        var supName = retRow.find('#datebox').val();
+        var supId = getSupByName(supName).id;
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
         if (!checkPoFields(orderDiv) === true){
