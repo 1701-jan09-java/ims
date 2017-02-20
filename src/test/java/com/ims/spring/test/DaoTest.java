@@ -92,7 +92,7 @@ public class DaoTest {
 	
 	/* Test PurchaseOrder: (DIPurchaseOrder Implementation has not been pulled into this branch... )*/
 
-	/*
+	
 	@Test
 	public void testCreatePurchaseOrder() {
 		
@@ -125,11 +125,11 @@ public class DaoTest {
 		System.out.println(allPOrders);
 		
 	}
-	*/
+	
 	
 	/* Test PurchaseOrderLine (DIPurchaseOrderLine Implementation has not been pulled into this branch... ) */
 
-	/*
+	
 	@Test
 	public void testGetPurchaseOrderLine() {
 		
@@ -139,11 +139,11 @@ public class DaoTest {
 	
 	@Test
 	public void testGetAllPurchaseOrderLines() {
+		List<PurchaseOrderLine> allPoLines = daoPoLine.getAllPurchaseOrderLinesByPO(1);
 		
-		List<PurchaseOrderLine> allPoLines = daoPoLine.getAllPurchaseOrderLines();
 		System.out.println(allPoLines);
 	}
-	*/
+	
 	
 	/* Test Retailer: */
 	
