@@ -364,7 +364,7 @@ $(document).ready(function() {
         	console.log(data[i].product.name);
         	newRow.append("<div class='col-sm-3'>"+data[i].product.name+"</div>");
         	newRow.append("<div class='col-sm-2'>"+data[i].quantity+"</div>");
-        	newRow.append("<div class='col-sm-1'>"+data[i].cost+"</div>");
+        	newRow.append("<div class='col-sm-1'>"+'$'+data[i].cost+"</div>");
         	 
         }
         myRow.append(newRow);
@@ -828,6 +828,10 @@ $(document).ready(function() {
     $("#suppliersButton").on("click",function(){
         $("#SuppliersView").removeClass("hidden");
     });
+    
+    $("#reportsButton").on("click",function(){
+    	$("#ReportsView").removeClass("hidden");
+    });
 
     $("#login-button").on("click",function(){
         console.log("login submit");
@@ -842,8 +846,8 @@ $(document).ready(function() {
         [ "home-button", "#Welcome" ],
         [ "retailersButton", "#RetailersView" ],
         [ "productsButton", "#ProductsView" ],
-        [ "purchaseOrderByRetailerButton", null ],
         [ "salesButton", "#SalesView" ],
-        [ "suppliersButton", "#SuppliersView" ]
+        [ "suppliersButton", "#SuppliersView" ],
+        [ "reportsButton", "#ReportsView"]
     ]);
 });

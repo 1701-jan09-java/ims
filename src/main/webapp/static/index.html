@@ -51,9 +51,8 @@
 		<p id="productsButton">Product Catalogue</p> 
 		<p id="retailersButton" onclick="unhide(this, 'RetailersView')">Retailers</p> 
 		<p id="suppliersButton" onclick="unhideSup(this, 'SuppliersView')">Suppliers</p>
-		<p id="purchaseOrderByRetailerButton">Orders</p>
 		<p id="salesButton">Sales</p>
-		<p id="reportsButton">Reports</p>
+		<p id="reportsButton" onclick="unhideReports(this, 'ReportsView')">Reports</p>
 
 
 
@@ -91,7 +90,6 @@
 			<div class = "hidden container-fluid" id = "Loading"><h3>Loading...</h3></div>
 			
 			<div class = "container-fluid" id = "ProductsView"></div>	
-			<div class = "container-fluid" id = "OrderView"></div>	
 			<div class = "container-fluid" id = "SalesView"></div>
 			<div class = "container-fluid" id = "ReportsView"></div>
 		
@@ -101,7 +99,39 @@
 			
 	
                 <div id="AllRetailers" class="row"><h3>All Retailers</h3></div>
-            </div>		
+            </div>
+            
+            <div id = "AllSuppliers" class = "hidden container-fluid"><h3>All Suppliers</h3></div>
+		
+			<div id = "SuppliersView" class = "hidden row " >
+				
+			</div>
+			
+			<div id = "AllReports" class = "hidden container-fluid"><h3>All Reports</h3></div>
+				<div class="ReportsRow">
+					<button class=" col-xs-3">Dollars By Product</button>
+					<button class=" col-xs-3">Quantity By Product</button>
+					<button class=" col-xs-3">Avg Dollars By Product</button>
+					<button class=" col-xs-3">Avg Quantity By Product</button>
+				</div>
+				
+				<div class="ReportsRow">
+					<button class=" col-xs-3">Sales Dollars By Retailer</button>
+					<button class=" col-xs-3">Sales Quantity By Retailer</button>
+					<button class=" col-xs-3">Sales Dollars By Supplier</button>
+					<button class=" col-xs-3">Sales Quantity By Supplier</button>
+				</div>
+				
+				<div class="ReportsRow">
+					<button class=" col-xs-3">Inventory By Product By Retailer</button>
+					<button class=" col-xs-3">Avg Inventory By Product By Retailer</button>
+					<button class=" col-xs-3">Inventory Threshold By Product</button>
+					<button class=" col-xs-3">Inventory Threshold By Product By Retailer</button>
+				</div>
+		
+			<div id = "ReportsView" class = "hidden row " >
+				
+			</div>
 	
 	
 	
@@ -120,31 +150,7 @@
 	                </div> 
                 </div> 
              </div>
-	
-			
 
-
-		
-			
-			<div id = "AllSuppliers" class = "hidden container-fluid"><h3>All Suppliers</h3></div>
-		
-			<div id = "SuppliersView" class = "hidden row " >
-				<div id="modal" class="modal fade" role='dialog'> 
-	        		<div class="modal-dialog">
-		        		<div class="modal-content">
-			        		<div class="modal-header"> 
-				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button> 
-				                <h4 id="modal-title"></h4>
-			                </div> 
-			                <div class="modal-body" id= "modal-body">
-			                </div>
-			                <div class="modal-footer">
-			                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			                </div> 
-		                </div> 
-	                </div> 
-	             </div>
-			</div>
 			
 		</div>
 		
@@ -177,7 +183,9 @@
         <script type="text/javascript" src="resources/scripts/salesByRetailer.js"></script>
         <script type="text/javascript" src="resources/scripts/inventoryByRetailer.js"></script>
         <script type="text/javascript" src="resources/scripts/showRetailers.js"></script>
-        <script type="text/javascript" src="resources/scripts/showSuppliers.js"></script>	
+        <script type="text/javascript" src="resources/scripts/showSuppliers.js"></script>
+        <script type="text/javascript" src="resources/scripts/showReports.js"></script>
+        <script src="Chart.js"></script>
 
 </body>
 </html>
