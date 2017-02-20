@@ -65,7 +65,7 @@ SHOWRET.loopable=true; //used to keep button from repeat appending of retialers
                                 '<div class="col-xs-2 text-right sm-button"><button title="Add Line" class="btn btn-success addLine">+</button></div>'+
                                 '<div class="col-xs-10 input-group">'+
                                     '<div class="col-xs-7 text-right">Order Total:</div>'+
-                                    '<div class="col-xs-3 text-box"><input class="text-right total-cost-display form-control" type="text" value = "0" readonly="true"/></div>'+
+                                    '<div class="col-xs-3 text-box"><input class="text-right total-cost-display form-control" type="text" value = "$0" readonly="true"/></div>'+
                                 '</div>'+
                             '</div>'+
 			'</div>'+
