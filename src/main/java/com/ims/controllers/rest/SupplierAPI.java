@@ -24,6 +24,8 @@ public class SupplierAPI {
 		Supplier supplier = supplierLogic.getSupplier(id);
 		
 		return supplier;
+
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="")
@@ -32,6 +34,8 @@ public class SupplierAPI {
 		List<Supplier> suppliers = supplierLogic.getAllSuppliers();
 		
 		return suppliers;
+		
 	}
-
+	
+	
 }

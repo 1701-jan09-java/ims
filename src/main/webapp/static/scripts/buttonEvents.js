@@ -1,21 +1,85 @@
-var EVENTS = {
-    
+var EVENTS_INITIALIZE = {
+    timeout: 20, // minutes
+    authenticated: false
 };
+
+var EVENTS = $.extend(true, {}, EVENTS_INITIALIZE);
 
 $(document).ready(function() {
 
     var allProducts;
     var productNames = [];
-
+    var appendSups = false;
+    var notice = "";
+    
+    $.get("login").done(function(data){
+        if (data === true) {
+            loginEvent();
+        } else {
+            EVENTS.authenticated = false;
+            $("#login-view").removeClass("hidden");
+            EVENTS.currentView = "#login-view";
+        }
+    });
+    
     $('.dropdown-toggle').dropdown();
     
-    $('body').on('click','.inventoryButton', function(){
-        var view = $('#ResultsView');
-        var row = $('.RetailRow');
-        var clone = row.clone(true);
-        clone.removeClass('RetailRow');
-        clone.addClass('RetailRowClone');
-        view.append(clone);
+    // To notify user when a retailer has a product below a certain threshold on welcome page 
+    $(function() {
+    	
+    	 $.ajax({
+    	        method: "GET",
+    	        url: "/ims/retailer",
+    	        success: function(data) {
+    	        	
+    	        	for (i = 0; i < data.length+1; i++) {
+    	        		checkInventory(i);
+    	        	}
+    	        	
+    	        }
+    	 });
+    	 	    	
+    });    
+ 
+    
+    function checkInventory(input) {
+    	
+    	$.ajax({
+    		
+    		method: "GET",
+            url: "/ims/inventory/"+input,
+    		success: function(data) {
+    			
+    			console.log(data);
+    			
+    			for (i = 0; i < data.length; i++) {
+    				
+    				if(data[i].productQuantity < data[i].productThreshold) {   					
+    					
+    					console.log("checking");
+    					notice = data[i].retailer.name + "'s product: '" + data[i].product.name + "'" +
+    							", with quantity: " + data[i].productQuantity + ",  is below the threshold: " 
+    							+ data[i].productThreshold + ".";
+    					var alert = $("#Notification");
+    					alert.html(alert.html()+ notice);
+    					alert.html(alert.html()+"<br/>");
+    					$("#Notification").removeClass("hidden");
+    				}
+    				
+    			}
+    			
+    		}
+    	});
+    	
+    }    	
+   
+    
+    $('body').on('click', '.supplierDropdown', function() {
+    	
+    	if (appendSups === false) {
+    		
+    		showingSups();    		
+    	}    	
     });
     
     $('body').on('click','.submitOrder', function(){
@@ -142,18 +206,24 @@ $(document).ready(function() {
     
 
     var updateViewProducts = function(data){
-        EVENTS.viewArea.empty();
-        EVENTS.viewArea.append("<div class='col-xs-2'>Product ID</div>");
-        EVENTS.viewArea.append("<div class='col-xs-4'>Product Name</div>");
-        EVENTS.viewArea.append("<div class='col-xs-6'>Categories</div>");
+        var viewArea = $("#ProductsView");
+        viewArea.empty();
+        viewArea.append(
+            "<div class='row'>"+
+                "<div class='col-xs-2'>Product ID</div>"+
+                "<div class='col-xs-4'>Product Name</div>"+
+                "<div class='col-xs-6'>Categories</div>"+
+            "</div>");
         var i = 0;
         var n = 0;
         for (i=0; i<data.length; i++) {
-            EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
-            EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
-            EVENTS.viewArea.append("<div id='categories"+i+"' class='col-xs-6'></div>");
+            viewArea.append(
+                "<div class='row'>"+
+                    "<div class='col-xs-2'>"+data[i].id+"</div>"+
+                    "<div class='col-xs-4'>"+data[i].name+"</div>"+
+                    "<div id='categories"+i+"' class='col-xs-6'></div>"+
+                "</div>");
             var a = $("#categories"+i);
-            console.log(a); 
             if (data[i].categories.length === 0) {
                 a.html("&ltNone&gt");
             } else {
@@ -168,71 +238,32 @@ $(document).ready(function() {
         
     };
     
-    var updateViewCategories = function(data){
-        EVENTS.viewArea.empty();
-        EVENTS.viewArea.append("<div class='col-xs-2'>Category ID</div>");
-        EVENTS.viewArea.append("<div class='col-xs-4'>Category Name</div>");
-        EVENTS.viewArea.append("<div class='col-xs-6'>Products</div>");
-        var i = 0;
-        var n = 0;
-        for (i=0; i<data.length; i++) {
-            EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
-            EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
-            EVENTS.viewArea.append("<div id='products"+i+"' class='col-xs-6'></div>");
-            var a = $("#products"+i);
-            console.log(a); 
-            if (data[i].products.length === 0) {
-                a.html("&ltNone&gt");
-            } else {
-                for (n=0; n<data[i].products.length; n++) {
-                    a.html(a.html()+data[i].products[n].name);
-                    if (n<data[i].products.length-1) {
-                        a.html(a.html()+", ");
-                    }
-            }
-            };
-        }
-        
-    };
-    
-    var updateViewRetailers = function(data) {
-    	
-    	EVENTS.viewArea.empty();
-    	EVENTS.viewArea.append("<div class='row'>");
-    	EVENTS.viewArea.append("<div class='col-md-2'>Retailer ID</div>");
-    	EVENTS.viewArea.append("<div class='col-md-2'>Name</div>");
-    	EVENTS.viewArea.append("<div class='col-md-2'>View Sales</div>");
-    	EVENTS.viewArea.append("<div class='col-md-2'>View Inventory</div>");
-        EVENTS.viewArea.append("<div class='col-md-4'>Address</div>");
-        EVENTS.viewArea.append("</div>");
-        
-        var i = 0;
-        var n = 0;
-        var fullAddr = "";
-        
-        for (i=0; i<data.length; i++) {
-        	
-        	 EVENTS.viewArea.append("<div class='row'>");
-        	 EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].id+"</div>");
-             EVENTS.viewArea.append("<div class='col-md-2'>"+data[i].name+"</div>");
-             EVENTS.viewArea.append("<div class='col-md-2'><button class=\"btn btn-primary open-modal\"  onclick=\"salesByRetButton('"+data[i].id+"');\">Sales</button></div>");             
-             EVENTS.viewArea.append("<div id='address"+i+"' class='col-md-6'></div>");
-             EVENTS.viewArea.append("</div");
-             
-             var a = $("#address"+i);
-             console.log(a);
-             if(data[i].address.length === 0) {
-            	 a.html("&ltNone&gt");            	 
-             } else {
-            	
-            	fullAddr = data[i].address.street + " " + data[i].address.city + ", " +
-            		 	   data[i].address.state + " " + data[i].address.zip;
-            	a.html(a.html() + fullAddr);
-            	 
-             };
-        }
-
-    };
+//    var updateViewCategories = function(data){
+//        EVENTS.viewArea.empty();
+//        EVENTS.viewArea.append("<div class='col-xs-2'>Category ID</div>");
+//        EVENTS.viewArea.append("<div class='col-xs-4'>Category Name</div>");
+//        EVENTS.viewArea.append("<div class='col-xs-6'>Products</div>");
+//        var i = 0;
+//        var n = 0;
+//        for (i=0; i<data.length; i++) {
+//            EVENTS.viewArea.append("<div class='col-xs-2'>"+data[i].id+"</div>");
+//            EVENTS.viewArea.append("<div class='col-xs-4'>"+data[i].name+"</div>");
+//            EVENTS.viewArea.append("<div id='products"+i+"' class='col-xs-6'></div>");
+//            var a = $("#products"+i);
+//            console.log(a); 
+//            if (data[i].products.length === 0) {
+//                a.html("&ltNone&gt");
+//            } else {
+//                for (n=0; n<data[i].products.length; n++) {
+//                    a.html(a.html()+data[i].products[n].name);
+//                    if (n<data[i].products.length-1) {
+//                        a.html(a.html()+", ");
+//                    }
+//            }
+//            };
+//        }
+//        
+//    };
     
     var updateViewSuppliers = function(data) {
     	
@@ -275,23 +306,28 @@ $(document).ready(function() {
     };
     
     var updateViewSales = function(data) {
-    	
-    	EVENTS.viewArea.empty();
-    	EVENTS.viewArea.append("<div class='col-sm-2'>Sale ID</div>");
-    	EVENTS.viewArea.append("<div class='col-sm-3'>Retailer Name</div>");
-        EVENTS.viewArea.append("<div class='col-sm-3'>Product Name</div>");
-        EVENTS.viewArea.append("<div class='col-sm-1'>Quantity</div>");
-        EVENTS.viewArea.append("<div class='col-sm-1'>Cost</div>");
-        EVENTS.viewArea.append("<div class='col-sm-2'>Sale Date</div>");
+    	var viewArea = $("#SalesView");
+    	viewArea.empty();
+        viewArea.append(
+            "<div class='row'>"+
+                "<div class='col-sm-2'>Sale ID</div>"+
+                "<div class='col-sm-3'>Retailer Name</div>"+
+                "<div class='col-sm-3'>Product Name</div>"+
+                "<div class='col-sm-1'>Quantity</div>"+
+                "<div class='col-sm-1'>Cost</div>"+
+                "<div class='col-sm-2'>Sale Date</div>"+
+            "</div>");
     	
         for (i=0; i<data.length; i++) {
-        	
-        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].id+"</div>");
-        	 EVENTS.viewArea.append("<div id='retailer"+i+"' class='col-sm-3'></div>");
-        	 EVENTS.viewArea.append("<div id='product"+i+"' class='col-sm-3'></div>");
-        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].productQuantity+"</div>");
-        	 EVENTS.viewArea.append("<div class='col-sm-1'>"+data[i].cost+"</div>");
-        	 EVENTS.viewArea.append("<div class='col-sm-2'>"+data[i].saleDate+"</div>");
+            viewArea.append(
+                "<div class='row'>"+
+                    "<div class='col-sm-2'>"+data[i].id+"</div>"+
+                    "<div id='retailer"+i+"' class='col-sm-3'></div>"+
+                    "<div id='product"+i+"' class='col-sm-3'></div>"+
+                    "<div class='col-sm-1'>"+data[i].productQuantity+"</div>"+
+                    "<div class='col-sm-1'>"+data[i].cost+"</div>"+
+                    "<div class='col-sm-2'>"+data[i].saleDate+"</div>"+
+                "</div>");
         	 
         	 var r = $("#retailer"+i);
         	 console.log(r);
@@ -331,7 +367,6 @@ $(document).ready(function() {
         	 
         }
         myRow.append(newRow);
-
     };
     
     var loadProducts = function(data){
@@ -347,12 +382,75 @@ $(document).ready(function() {
             method: "GET",
             url: tempUrl,
             success: function(data) {
+                EVENTS.updateTimeout();
             	loadProducts(data);
             }
     	});
-    };
+    };	
     
-	preLoad('product');	
+    function showingSups() {
+		
+		$.ajax({
+			
+            method: "GET",
+            url: "/ims/supplier",
+            
+            success: function(data) {
+            	
+            	var allSuppliers = '';
+        		$.each(data, function(index, value) {
+        		    allSuppliers += '<li><a href = "#">' + value.name + '</a></li>';
+        		});
+
+        		$('.dropdown-menu').append(allSuppliers);
+            	
+        		appendSups = true;
+        		
+            	} 
+		});
+		
+	}
+	
+	$(document).on('click', '.dropdown-menu li a', function() {
+	   
+		$('#datebox').val($(this).html());
+		var supName = $(this).html();		
+		console.log(supName);
+		
+		//var x = getSupId(supName);
+		//console.log(x);
+	});
+	
+	function getSupId(supName) {
+		
+		var x = 0;
+		
+		$.ajax({
+		
+			async: false,
+            method: "GET",
+            url: "/ims/supplier",
+            
+            success: function(data) {
+            	
+            	for (i = 0; i < data.length; i++) {
+            		
+            		if(data[i].name === supName) {
+            			
+            			console.log(data[i].id);            			
+            		
+            			x = data[i].id
+            		}
+            	}
+            	
+            }
+            
+		});
+		
+		return x;
+		
+	}
+
     
     var sendRequest = function (group,id,row) {
         var tempUrl = "/ims/"+group+"/";
@@ -367,14 +465,15 @@ $(document).ready(function() {
             url: tempUrl,
 
             success: function(data) {
+                EVENTS.updateTimeout();
                 console.log(data);
                 if (group === "product") {
                     allProducts = data;
-//                    updateViewProducts(data);
+                    updateViewProducts(data);
                 } else if (group === "category") {
                     updateViewCategories(data);
                 } else if(group === "retailer") {
-                	updateViewRetailers(data);
+//                	updateViewRetailers(data);
                 } else if(group === "sale") {
                 	updateViewSales(data);
                 } else if(group === "purchase-order-line/po") {
@@ -385,12 +484,86 @@ $(document).ready(function() {
 
             },
 
-            failure: function() {
-                setTimeout(function(){productRequest(group,id);},2000);
-            }
+        });
+    };
+
+    EVENTS.updateTimeout = () => EVENTS.lastActionTimeStamp = Date.now();
+    
+    var checkIdle = function() {
+        console.log(Date.now() - EVENTS.lastActionTimeStamp);
+        if (Date.now() - EVENTS.lastActionTimeStamp > EVENTS.timeout*60000) {
+            EVENTS.authenticated = false;
+            EVENTS.logout("Session timeout.");
+        } else if (Date.now() - EVENTS.lastActionTimeStamp > EVENTS.timeout*60000-120000) {
+            alert("2 Minutes Until Idle Logout.")
+            EVENTS.checkLogin();
+        }
+            
+    };
+    
+    var loginEvent = function () {
+        EVENTS.authenticated = true;
+        EVENTS.timerInterval = setInterval(checkIdle,1000);
+        EVENTS.updateTimeout();
+        preLoad('product');
+        changeView("#Welcome");
+        $("#username").html(EVENTS.user);
+        $("#logout-button, #username").removeClass("hidden");
+        $("#openNavBar").removeAttr("disabled");
+    };
+    
+    var changeView = function(newViewId) {
+    	
+        var exists = false;
+        for (let value of pageMap.values()) {
+            value === newViewId && (exists = true);
+        }
+        if (exists) {
+            $(EVENTS.currentView).addClass("hidden");
+            EVENTS.currentView = newViewId;
+            $(EVENTS.currentView).removeClass("hidden");
+        } else throw "Error: Page does not exist in pageMap.";
+    };
+    
+    EVENTS.login = function() {
+        $("#login-button").val("Authenticating...");
+        var loginObj = {};
+        loginObj.username = $("#user-input").val();
+        loginObj.password = $("#pass-input").val();
+//        sendLoginRequest(loginObj);
+        $.post("/ims/login/",loginObj).done(function(data){
+            console.log(data);
+            if (data === true) {
+                EVENTS.user = loginObj.username;
+                loginEvent();
+            } else $(".error").removeClass("hidden");
         });
     };
     
+    EVENTS.logout = function(cause) {
+        $.post("/ims/logout");
+        location.reload();
+        clearInterval(EVENTS.timerInterval);
+        EVENTS = jQuery.extend(true, {}, EVENTS_INITIALIZE);
+        console.log("logged out");
+        if (cause !== undefined) {
+            alert(cause);
+        }
+    };
+//    this doesn't work right now
+    EVENTS.checkLogin = function() {
+        var result;
+        $.when($.get("/ims/login")).done(function(data){
+            result = data;
+        
+            EVENTS.updateTimeout();
+            console.log(result);
+            EVENTS.authenticated = result;
+
+            if (!EVENTS.authenticated) EVENTS.logout();
+        });
+    };
+
     var checkProdField = function(prodField){
         var prod = getProdByName(prodField.val());
         var prodCheck = false;
@@ -458,7 +631,10 @@ $(document).ready(function() {
     
     var createPo = function(retRow) {
         var retId = retRow.find(".retId").html();
-        var supId = 20;
+        var supName = document.getElementById('datebox').value;
+        console.log(supName);
+        console.log(getSupId(supName));
+        var supId = getSupId(supName);
         var orderLines = retRow.find(".orderLine");
         var orderDiv = retRow.find(".MakeOrderInfo");
         if (!checkPoFields(orderDiv) === true){
@@ -516,6 +692,7 @@ $(document).ready(function() {
             data: jsonData,
             
             success: function(data) {
+                EVENTS.updateTimeout();
                 if (data === true) {
                     // TODO tell user it succeeded or failed
                     console.log("successful");
@@ -567,6 +744,7 @@ $(document).ready(function() {
         $("#OrderView").removeClass("hidden");
     });
 
+
     var prodInputFunc = function(prodInput) {
         var orderLine = $(prodInput).parents(".orderLine");
         var prod;
@@ -614,16 +792,6 @@ $(document).ready(function() {
         updateTotal(orderDiv);
     });
 
-    function hideOtherDivs() {
-    	
-    	$("#Loading").removeClass("hidden");    	    	
-    	$("#ProductsView").addClass("hidden");
-    	$("#SalesView").addClass("hidden");
-    	$("#RetailersView").addClass("hidden");
-    	$("#Welcome").addClass("hidden");
-
-    }
-
     $('body').on('click','.ordersButton',function(){
     	var ancestor = $(this).parent().parent();
     	if(!ancestor.children().hasClass("orderTable")) {
@@ -637,12 +805,39 @@ $(document).ready(function() {
     		sendRequest("purchase-order-line/po", id, grandparent);
     	}
     });
-
-    $("#retailersButton").on("click",function(){
-        $("#RetailersView").removeClass("hidden");
+    
+    $("body").on("click","#mySideNav p", function(){
+        var divId = pageMap.get($(this).attr("id"));
+        changeView(divId);
+        $("#Notification").addClass("hidden");
+        console.log(divId);
+        if (divId === "#RetailersView") {
+            unhide();
+        } else if (divId === "#SalesView") {
+            sendRequest("sale");
+        } else if (divId === "#ProductsView") {
+            sendRequest("product");
+        }
     });
     
     $("#suppliersButton").on("click",function(){
         $("#SuppliersView").removeClass("hidden");
     });
+
+    $("#login-button").on("click",function(){
+        console.log("login submit");
+        EVENTS.login();
+    });
+    
+    $("#logout-button").on("click",function(){
+        EVENTS.logout();
+    });
+    
+    var pageMap = new Map([
+        [ "home-button", "#Welcome" ],
+        [ "retailersButton", "#RetailersView" ],
+        [ "productsButton", "#ProductsView" ],
+        [ "purchaseOrderByRetailerButton", null ],
+        [ "salesButton", "#SalesView" ]
+    ]);
 });
