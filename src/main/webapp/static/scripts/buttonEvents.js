@@ -740,7 +740,10 @@ $(document).ready(function() {
             sendRequest("sale");
         } else if (divId === "#ProductsView") {
             sendRequest("product");
+        } else if (divId === "#Welcome"){
+        	$("#Notification").removeClass("hidden")
         }
+        
     });
     
     $("#login-button").on("click",function(){
