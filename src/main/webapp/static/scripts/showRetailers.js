@@ -3,7 +3,7 @@
  */
 
 var SHOWRET={};
-SHOWRET.loopable=true;
+SHOWRET.loopable=true; //used to keep button from repeat appending of retialers 
 
  function unhide() {
 
@@ -20,7 +20,7 @@ SHOWRET.loopable=true;
 
                 var $retDiv = $("<div/>")  	
                     .addClass("row RetailRow")
-                    .html("<p class = \"useless\">RetailerID-<span class=\"retId\">"+data[i].id+"</span> &nbsp; <span class=\"retName\">"+data[i].name+"</span>"+ 
+                    .html("<p class = \"useless\">RetailerID-<span class=\"retId\">"+data[i].id+"</span> &nbsp; <span class=\"retName\">"+((data[i].name).bold()).big()+"</span>"+ 
                         "&nbsp;&nbsp;<span class=\"addr\">Address: "+data[i].address.street + " " + data[i].address.city + ", " +data[i].address.state + " " + data[i].address.zip+"</span></p>"+
                         "<div class = \"btn-group\">" +    							    		
 

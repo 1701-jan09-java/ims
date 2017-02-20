@@ -57,7 +57,7 @@ $(document).ready(function() {
     				if(data[i].productQuantity < data[i].productThreshold) {   					
     					
     					console.log("checking");
-    					// this notice for more verbose alert display
+    					// this notice variable is for more verbose alert display
 //    					notice = "INVENTORY ALERT--RETAILER: " + data[i].retailer.name + "--PRODUCT: " + data[i].product.name + " " +
 //    							"--STOCK AMT: " + data[i].productQuantity + "--THRESHOLD: " 
 //    							+ data[i].productThreshold + ". ------ ORDER NEEDED: " + (data[i].productThreshold-data[i].productQuantity)+" units." ;
@@ -219,9 +219,9 @@ $(document).ready(function() {
         viewArea.empty();
         viewArea.append(
             "<div class='row'>"+
-                "<div class='col-xs-2'>Product ID</div>"+
-                "<div class='col-xs-4'>Product Name</div>"+
-                "<div class='col-xs-6'>Categories</div>"+
+                "<div class='col-xs-2'><b>Product ID</b></div>"+
+                "<div class='col-xs-4'><b>Product Name</b></div>"+
+                "<div class='col-xs-6'><b>Category</b></div>"+
             "</div>");
         var i = 0;
         var n = 0;
@@ -279,22 +279,22 @@ $(document).ready(function() {
     	viewArea.empty();
         viewArea.append(
             "<div class='row'>"+
-                "<div class='col-sm-2'>Sale ID</div>"+
-                "<div class='col-sm-3'>Retailer Name</div>"+
-                "<div class='col-sm-3'>Product Name</div>"+
-                "<div class='col-sm-1'>Quantity</div>"+
-                "<div class='col-sm-1'>Cost</div>"+
-                "<div class='col-sm-2'>Sale Date</div>"+
+//                "<div class='col-sm-1'><b>Sale ID</b></div>"+
+                "<div class='col-sm-3'><b>Retailer Name</b></div>"+
+                "<div class='col-sm-3'><b>Product Name</b></div>"+
+                "<div class='col-sm-2'><b>Quantity</b></div>"+
+                "<div class='col-sm-1'><b>Cost</b></div>"+
+                "<div class='col-sm-2'><b>Sale Date</b></div>"+
             "</div>");
     	
         for (i=0; i<data.length; i++) {
             viewArea.append(
                 "<div class='row'>"+
-                    "<div class='col-sm-2'>"+data[i].id+"</div>"+
+//                    "<div class='col-sm-1'>"+data[i].id+"</div>"+
                     "<div id='retailer"+i+"' class='col-sm-3'></div>"+
                     "<div id='product"+i+"' class='col-sm-3'></div>"+
-                    "<div class='col-sm-1'>"+data[i].productQuantity+"</div>"+
-                    "<div class='col-sm-1'>"+data[i].cost+"</div>"+
+                    "<div class='col-sm-2'>"+data[i].productQuantity+"</div>"+
+                    "<div class='col-sm-1'>$"+((data[i].cost)/100).toString()+"</div>"+
                     "<div class='col-sm-2'>"+data[i].saleDate+"</div>"+
                 "</div>");
         	 
