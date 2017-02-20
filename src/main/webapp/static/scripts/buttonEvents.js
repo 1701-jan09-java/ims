@@ -32,6 +32,7 @@ $(document).ready(function() {
     	        url: "/ims/retailer",
     	        success: function(data) {
     	        	
+    	        	EVENTS.updateTimeout();
     	        	for (i = 0; i < data.length+1; i++) {
     	        		checkInventory(i);
     	        	}
@@ -51,7 +52,7 @@ $(document).ready(function() {
     		success: function(data) {
     			
     			console.log(data);
-    			
+    			EVENTS.updateTimeout();
     			for (i = 0; i < data.length; i++) {
     				
     				if(data[i].productQuantity < data[i].productThreshold) {   					
@@ -397,6 +398,7 @@ $(document).ready(function() {
             
             success: function(data) {
             	
+            	EVENTS.updateTimeout();
             	var allSuppliers = '';
         		$.each(data, function(index, value) {
         		    allSuppliers += '<li><a href = "#">' + value.name + '</a></li>';
@@ -433,6 +435,7 @@ $(document).ready(function() {
             
             success: function(data) {
             	
+            	EVENTS.updateTimeout();
             	for (i = 0; i < data.length; i++) {
             		
             		if(data[i].name === supName) {
