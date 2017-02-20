@@ -11,6 +11,7 @@ $(document).ready(function() {
     var productNames = [];
     var appendSups = false;
     var notice = "";
+    var hideAlert = false;
     
     $.get("login").done(function(data){
         if (data === true) {
@@ -73,7 +74,12 @@ $(document).ready(function() {
 //    					alert.html(alert.html()+ notice); used with longer notice above			
     					alert.html(alert.html()+"<br/>");
     					$("#Notification").removeClass("hidden");
+    					
     				}
+//    				} else {
+//    					
+//    					alert.html(alert.html()+"You have no alerts");
+//    				}
     				
     			}
     			
@@ -82,6 +88,19 @@ $(document).ready(function() {
     	
     }    	
    
+    $('body').on('click', '#hideAlertsbutton', function() {
+    
+    	if ($('#Notification').is(":hidden")) {
+    		
+    		$("#Notification").removeClass("hidden");
+    	
+    	} else {
+    		
+    		$("#Notification").addClass("hidden");
+    		hideAlert = true;
+    	}
+    	
+    });
     
     $('body').on('click', '.supplierDropdown', function() {
     	
@@ -748,6 +767,7 @@ $(document).ready(function() {
         var divId = pageMap.get($(this).attr("id"));
         changeView(divId);
         $("#Notification").addClass("hidden");
+        $("#hideAlertsbutton").addClass("hidden");
         console.log(divId);
         if (divId === "#RetailersView") {
             unhide();
@@ -756,7 +776,13 @@ $(document).ready(function() {
         } else if (divId === "#ProductsView") {
             sendRequest("product");
         } else if (divId === "#Welcome"){
-        	$("#Notification").removeClass("hidden")
+        	if (hideAlert === false) {
+        		
+        		$("#Notification").removeClass("hidden");        		
+        		
+        	}
+        	$("#Notification").addClass("hidden");
+        	$("#hideAlertsbutton").removeClass("hidden");
         }
         
     });
