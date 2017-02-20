@@ -1,0 +1,33 @@
+SELECT SUM(po_cost) FROM ims_purchase_order;
+--total purchase amount by retailer
+SELECT ims_retailer.R_NAME,SUM(ims_purchase_order.po_cost)
+AS OrderTotal
+FROM ims_purchase_order
+LEFT JOIN ims_retailer
+ON ims_retailer.R_ID=ims_purchase_order.po_retailer
+GROUP BY r_name;
+--
+SELECT ims_supplier.s_NAME,SUM(ims_purchase_order.po_cost)
+AS OrderTotal
+FROM ims_purchase_order
+LEFT JOIN ims_supplier
+ON ims_supplier.s_ID=ims_purchase_order.po_supplier
+GROUP BY s_name;
+--
+SELECT SUM(po_cost) FROM ims_purchase_order;
+--total purchase amount by retailer
+SELECT ims_retailer.R_NAME,SUM(ims_purchase_order.po_cost)
+AS OrderTotal
+FROM ims_purchase_order
+LEFT JOIN ims_retailer
+ON ims_retailer.R_ID=ims_purchase_order.po_retailer
+GROUP BY r_name;
+--
+SELECT ims_supplier.s_NAME,SUM(ims_purchase_order.po_cost)
+AS OrderTotal
+FROM ims_purchase_order
+LEFT JOIN ims_supplier
+ON ims_supplier.s_ID=ims_purchase_order.po_supplier
+GROUP BY s_name;
+--
+delete from IMS_product_category;

@@ -480,7 +480,7 @@ $(document).ready(function() {
                 } else if(group === "sale") {
                 	updateViewSales(data);
                 } else if(group === "purchase-order-line/po") {
-                	updateViewPurchaseOrderByRetailer(data,myRow);
+//                	updateViewPurchaseOrderByRetailer(data,myRow);
                 } else if(group === "suppliers") {
                 	updateViewSuppliers(data);
                 }

@@ -1,0 +1,10 @@
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (1, 'Obao Frescura Floral', 78, 156);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (2, 'Glucotrol XL', 100, 138);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (3, 'PediaCare Childrens Fever Reducer Pain Reliever Cherry', 56, 103);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (4, 'SHISEIDO THE MAKEUP PERFECT SMOOTHING COMPACT FOUNDATION (Refill)', 68, 108);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (5, 'Pepto-Bismol', 77, 107);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (6, 'Hydroxyzine Hydrochloride', 76, 133);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (7, 'Simply Right Mucus Relief', 85, 137);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (8, 'Total Comfort Fresh Blast', 85, 149);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (9, 'Topiramate', 92, 145);
+insert into IMS_PRODUCT (P_ID, P_NAME, P_SUPPLIER_PRICE, P_RETAILER_PRICE) values (10, 'Homeopathic Fear and Anxiety Formula', 75, 115);

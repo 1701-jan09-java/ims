@@ -24,7 +24,8 @@
 
                             "<button onclick=\"inventoryByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-info RetailButton inventoryButton\">Inventory</button>" +
                             "<button onclick=\"salesByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-warning RetailButton salesButton\">Sales</button>" +
-                            "<button type = \"button\" class = \"btn btn-success RetailButton ordersButton\">Orders</button></div>" +    							    		
+                            "<button onclick=\"ordersByRetButton('"+data[i].id+"')\" type = \"button\" class = \"btn btn-success RetailButton ordersButton\">Orders</button></div>" +
+//                            "<button type = \"button\" class = \"btn btn-success RetailButton ordersButton\">Orders</button></div>" +    							    		
 
                         "<div class = 'btn-group pull-right'>"+
                             "<button class = \"btn btn-primary RetailButton makeSaleButton\">Make Sale</button>"+

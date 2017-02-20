@@ -1,0 +1,10 @@
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (1, 4);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (2, 1);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (3, 3);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (4, 1);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (5, 4);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (6, 4);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (7, 1);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (8, 3);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (9, 3);
+insert into IMS_PRODUCT_CATEGORY (P_ID, C_ID) values (10, 1);

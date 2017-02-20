@@ -1,0 +1,10 @@
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (1, '6 Pearson Avenue', 'San Diego', 'CA', '92132');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (2, '82 Rieder Street', 'Omaha', 'NE', '68124');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (3, '035 Morningstar Hill', 'Wichita', 'KS', '67215');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (4, '86 Bellgrove Place', 'Riverside', 'CA', '92513');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (5, '1590 7th Street', 'Oakland', 'CA', '94605');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (6, '777 American Ash Drive', 'Jamaica', 'NY', '11499');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (7, '1 Mesta Avenue', 'Tyler', 'TX', '75799');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (8, '375 Mcbride Place', 'Houston', 'TX', '77299');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (9, '176 Northland Park', 'Indianapolis', 'IN', '46226');
+insert into IMS_ADDRESS (A_ID, A_STREET, A_CITY, A_STATE, A_ZIP) values (10, '8 Meadow Vale Junction', 'El Paso', 'TX', '79945');

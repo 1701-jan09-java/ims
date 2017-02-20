@@ -55,7 +55,7 @@ ORDER.orderPurchaseDate=[];
        $.when(orderAjax).done(function(data){
            EVENTS.updateTimeout();
     	   console.log(data);
-//    	   ORDER.ordObjArray= data.slice();
+    	   ORDER.ordObjArray= data.slice();
     	   ORDER.modalBody = document.getElementById("modal-body");
      	 	console.log(ORDER.modalBody);
      	 	
@@ -77,13 +77,13 @@ ORDER.orderPurchaseDate=[];
      	 	orderIdHeader.innerHTML = "Order ID";
      	 	orderHeadRow.appendChild(orderIdHeader);
      	 	
-     	 	var orderSupplierNameHeader = document.createElement("th");
-     	 	orderSupplierNameHeader.innerHTML = "Supplier Name";
-     	 	orderHeadRow.appendChild(orderSupplierNameHeader);
+     	 	var orderProductNameHeader = document.createElement("th");
+     	 	orderProductNameHeader.innerHTML = "Product Name";
+     	 	orderHeadRow.appendChild(orderProductNameHeader);
      	 	
      	 	var orderCostHeader = document.createElement("th");
      	 	orderCostHeader.innerHTML = "Order Cost";
-     	 	orderHeadRow.appendChild(orderCostHeader);
+     	 	OrderHeadRow.appendChild(orderCostHeader);
      	 	
      	 	var orderPurchaseDateHeader = document.createElement("th");
      	 	orderPurchaseDateHeader.innerHTML = "Date";
@@ -97,17 +97,16 @@ ORDER.orderPurchaseDate=[];
 //     	 	productThresholdHeader.innerHTML = "Product Threshold";
 //     	 	orderHeadRow.appendChild(productThresholdHeader);
     
-//     	 	ORDER.modalHeader.innerHTML = data[0].retailer.name;
-       console.log("why");
-       console.log(data);
-     	 	for(var index = 0; index < data.length; index++){
-     	 		console.log("is it real");
-     	 		 let orderID = data[index].id;
-     	 		 let supplierName = data[index].supplier.name;
-     	 		 let orderCost = data[index].cost;
-     	 		 let orderPurchaseDate = data[index].purchaseDate;
-     	 		 //let productQuantity = data[index].productQuantity;
-     	 		 //let productThreshold = data[index].productThreshold
+     	 	ORDER.modalHeader.innerHTML = ORDER.ordObjArray[0].retailer.name;
+       
+     	 	for(let index = 0; index < ORDER.ordObjArray.length; index++){
+     	 		
+     	 		 let orderID = ORDER.ordObjArray[index].id;
+     	 		 let supplierName = ORDER.ordObjArray[index].supplier.name;
+     	 		 let orderCost = ORDER.ordObjArray[index].cost;
+     	 		 let orderPurchaseDate = ORDER.ordObjArray[index].purchaseDate;
+     	 		 //let productQuantity = ORDER.ordObjArray[index].productQuantity;
+     	 		 //let productThreshold = ORDER.ordObjArray[index].productThreshold
      	 		 
      	 		var newTableRow = document.createElement("tr");
      	 		ordTableBody.appendChild(newTableRow);     	 		
@@ -135,7 +134,6 @@ ORDER.orderPurchaseDate=[];
 //    	 		var prodThreshold = document.createElement("td");
 //    	 		prodThreshold.innerHTML = productThreshold;
 //    	 		newTableRow.appendChild(prodThreshold);
-    	 		console.log(ORDER.modalBody);
     	 
      	 	 }
      	 	 $('#modal').modal('show');
