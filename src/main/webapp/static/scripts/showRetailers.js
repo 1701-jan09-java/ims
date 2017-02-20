@@ -2,6 +2,9 @@
  * 
  */
 
+var SHOWRET={};
+SHOWRET.loopable=true;
+
  function unhide() {
 
     $.ajax({
@@ -12,7 +15,7 @@
 
             console.log(data); 				 
 
-
+            if(SHOWRET.loopable){
             for(i=0; i<data.length; i++) {	
 
                 var $retDiv = $("<div/>")  	
@@ -108,7 +111,8 @@
 
                 $("#RetailersView").append($retDiv);				
 
-            } 				
+            } }
+            SHOWRET.loopable = false;
 
         },
 
