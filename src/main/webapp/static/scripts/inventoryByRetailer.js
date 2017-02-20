@@ -66,28 +66,28 @@ INVENTORY.invProdQuantArray=[];
      	 	var inventHeadRow = document.createElement("tr");
      	 	inventHeader.appendChild(inventHeadRow);
      	 	
-     	 	var inventoryIdHeader = document.createElement("th");
-     	 	inventoryIdHeader.innerHTML = "Inventory ID";
-     	 	inventHeadRow.appendChild(inventoryIdHeader);
+//     	 	var inventoryIdHeader = document.createElement("th");
+//     	 	inventoryIdHeader.innerHTML = "Inventory ID";
+//     	 	inventHeadRow.appendChild(inventoryIdHeader);
      	 	
      	 	var inventoryProductNameHeader = document.createElement("th");
      	 	inventoryProductNameHeader.innerHTML = "Product Name";
      	 	inventHeadRow.appendChild(inventoryProductNameHeader);
      	 	
-     	 	var retailerPriceHeader = document.createElement("th");
-     	 	retailerPriceHeader.innerHTML = "Retailer Price";
-     	 	inventHeadRow.appendChild(retailerPriceHeader);
-     	 	
-     	 	var supplierPriceHeader = document.createElement("th");
-     	 	supplierPriceHeader.innerHTML = "Supplier Price";
-     	 	inventHeadRow.appendChild(supplierPriceHeader);
-     	 	
+//     	 	var retailerPriceHeader = document.createElement("th");
+//     	 	retailerPriceHeader.innerHTML = "Retailer Price";
+//     	 	inventHeadRow.appendChild(retailerPriceHeader);
+//     	 	
+//     	 	var supplierPriceHeader = document.createElement("th");
+//     	 	supplierPriceHeader.innerHTML = "Supplier Price";
+//     	 	inventHeadRow.appendChild(supplierPriceHeader);
+//     	 	
      	 	var productQuantityHeader = document.createElement("th");
-     	 	productQuantityHeader.innerHTML = "Product Quantity";
+     	 	productQuantityHeader.innerHTML = "Stock Quantity";
      	 	inventHeadRow.appendChild(productQuantityHeader);
      	 	
      	 	var productThresholdHeader = document.createElement("th");
-     	 	productThresholdHeader.innerHTML = "Product Threshold";
+     	 	productThresholdHeader.innerHTML = "Stock Threshold";
      	 	inventHeadRow.appendChild(productThresholdHeader);
     
      	 	INVENTORY.modalHeader.innerHTML = INVENTORY.invObjArray[0].retailer.name;
@@ -104,21 +104,21 @@ INVENTORY.invProdQuantArray=[];
      	 		var newTableRow = document.createElement("tr");
      	 		inventTableBody.appendChild(newTableRow);     	 		
     	 		
-    	 		var inventID = document.createElement("td");
-    	 		inventID.innerHTML = inventoryID;
-    	 		newTableRow.appendChild(inventID);
+//    	 		var inventID = document.createElement("td");
+//    	 		inventID.innerHTML = inventoryID;
+//    	 		newTableRow.appendChild(inventID);
     	 		
     	 		var prodName = document.createElement("td");
     	 		prodName.innerHTML = productName;
     	 		newTableRow.appendChild(prodName);
     	 		
-    	 		var retPrice = document.createElement("td");
-    	 		retPrice.innerHTML = retailerPrice;
-    	 		newTableRow.appendChild(retPrice);
-    	 		
-    	 		var supPrice = document.createElement("td");
-    	 		supPrice.innerHTML = supplierPrice;
-    	 		newTableRow.appendChild(supPrice);
+//    	 		var retPrice = document.createElement("td");
+//    	 		retPrice.innerHTML = retailerPrice;
+//    	 		newTableRow.appendChild(retPrice);
+//    	 		
+//    	 		var supPrice = document.createElement("td");
+//    	 		supPrice.innerHTML = supplierPrice;
+//    	 		newTableRow.appendChild(supPrice);
     	 		
     	 		var prodQuantity = document.createElement("td");
     	 		prodQuantity.innerHTML = productQuantity;

@@ -2,6 +2,9 @@
  * 
  */
 
+var SHOWRET={};
+SHOWRET.loopable=true; //used to keep button from repeat appending of retialers 
+
  function unhide() {
 
     $.ajax({
@@ -12,12 +15,12 @@
 
             console.log(data); 				 
 
-
+            if(SHOWRET.loopable){
             for(i=0; i<data.length; i++) {	
 
                 var $retDiv = $("<div/>")  	
                     .addClass("row RetailRow")
-                    .html("<p class = \"useless\">RetailerID-<span class=\"retId\">"+data[i].id+"</span> &nbsp; <span class=\"retName\">"+data[i].name+"</span>"+ 
+                    .html("<p class = \"useless\">RetailerID-<span class=\"retId\">"+data[i].id+"</span> &nbsp; <span class=\"retName\">"+((data[i].name).bold()).big()+"</span>"+ 
                         "&nbsp;&nbsp;<span class=\"addr\">Address: "+data[i].address.street + " " + data[i].address.city + ", " +data[i].address.state + " " + data[i].address.zip+"</span></p>"+
                         "<div class = \"btn-group\">" +    							    		
 
@@ -108,7 +111,8 @@
 
                 $("#RetailersView").append($retDiv);				
 
-            } 				
+            } }
+            SHOWRET.loopable = false;
 
         },
 

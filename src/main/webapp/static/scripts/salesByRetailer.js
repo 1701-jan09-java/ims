@@ -34,16 +34,16 @@ function salesByRetButton(input) {
  	 	var saleHeadRow = document.createElement("tr");
  	 	saleHeader.appendChild(saleHeadRow);
  	 	
- 	 	var saleIdHeader = document.createElement("th");
- 	 	saleIdHeader.innerHTML = "Sale ID";
- 	 	saleHeadRow.appendChild(saleIdHeader);
- 	 	
- 	 	var saleProductNameHeader = document.createElement("th");
- 	 	saleProductNameHeader.innerHTML = "Product Name";
- 	 	saleHeadRow.appendChild(saleProductNameHeader);
- 	 	
+// 	 	var saleIdHeader = document.createElement("th");
+// 	 	saleIdHeader.innerHTML = "Sale ID";
+// 	 	saleHeadRow.appendChild(saleIdHeader);
+// 	 	
+// 	 	var saleProductNameHeader = document.createElement("th");
+// 	 	saleProductNameHeader.innerHTML = "Product ID";
+// 	 	saleHeadRow.appendChild(saleProductNameHeader);
+// 	 	
  	 	var saleProductIdHeader = document.createElement("th");
- 		saleProductIdHeader.innerHTML = "Product ID";
+ 		saleProductIdHeader.innerHTML = "Product Name";
  	 	saleHeadRow.appendChild(saleProductIdHeader);
  	 	
  	 	var saleProductCostHeader = document.createElement("th");
@@ -97,19 +97,19 @@ function salesByRetButton(input) {
   	 		 let saleID = global.retailData[index].id;
   	 		 let productID = global.retailData[index].product.id;
   	 		 let productName = global.retailData[index].product.name;
-  	 		 let productCost = global.retailData[index].cost;
+  	 		 let productCost = "$" + (global.retailData[index].cost/100);
   	 		 let quantitySold = global.retailData[index].productQuantity;
   	 		 
   	 		 var newTableRow = document.createElement("tr");
   	 		 saleTableBody.appendChild(newTableRow);     	 		
 	 		
-  	 		 var sID = document.createElement("td");
-  	 		 sID.innerHTML = saleID;
-  	 		 newTableRow.appendChild(sID);
-  	 		 
-  	 		 var prodID = document.createElement("td");
-  	 		 prodID.innerHTML = productID;
- 	 		 newTableRow.appendChild(prodID);
+//  	 		 var sID = document.createElement("td");
+//  	 		 sID.innerHTML = saleID;
+//  	 		 newTableRow.appendChild(sID);
+//  	 		 
+//  	 		 var prodID = document.createElement("td");
+//  	 		 prodID.innerHTML = productID;
+// 	 		 newTableRow.appendChild(prodID);
   	 		 
  	 		 var prodName = document.createElement("td");
   	 		 prodName.innerHTML = productName;
