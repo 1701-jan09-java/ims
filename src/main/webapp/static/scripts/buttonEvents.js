@@ -820,6 +820,8 @@ $(document).ready(function() {
             sendRequest("sale");
         } else if (divId === "#ProductsView") {
             sendRequest("product");
+        } else if (divId === "SuppliersView") {
+        	unhideSup();
         }
     });
     
@@ -841,6 +843,7 @@ $(document).ready(function() {
         [ "retailersButton", "#RetailersView" ],
         [ "productsButton", "#ProductsView" ],
         [ "purchaseOrderByRetailerButton", null ],
-        [ "salesButton", "#SalesView" ]
+        [ "salesButton", "#SalesView" ],
+        [ "suppliersButton", "#SuppliersView" ]
     ]);
 });
